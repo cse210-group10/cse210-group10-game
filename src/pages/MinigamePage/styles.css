@@ -1,0 +1,56 @@
+.minigame-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+  padding: 3rem;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #000;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.back-button:hover {
+  background-color: #000;
+  color: white;
+}
+
+.minigame-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: #000;
+  text-align: center;
+}
+
+.minigame-title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  font-weight: normal;
+}
+
+.minigame-message {
+  font-size: 2.5rem;
+  margin: 2rem 0;
+}
+
+.minigame-subtitle {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.minigame-info {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  color: #666;
+}

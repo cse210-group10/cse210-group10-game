@@ -1,0 +1,31 @@
+.start-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: white;
+  gap: 3rem;
+}
+
+.game-title {
+  font-size: 4rem;
+  color: #000;
+  font-weight: normal;
+  margin: 0;
+}
+
+.start-button {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 1.5rem 4rem;
+  font-size: 2rem;
+  font-weight: normal;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: #333;
+}

@@ -228,7 +228,6 @@ edu-game/
 ├── vite.config.ts                    # Vite config
 ├── .gitignore
 └── README.md                         # Project documentation
-
 ```
 
 ---
