@@ -30,9 +30,11 @@ const MinigamePage: React.FC = () => {
 
   return (
     <div className="minigame-page">
-      <button className="back-button" onClick={handleBackToMap}>
-        ← Back to Map
-      </button>
+      <div className="minigame-header">
+        <button className="back-button" onClick={handleBackToMap}>
+          ← Back to Map
+        </button>
+      </div>
       <div className="minigame-content">
         {/* Render the dynamically loaded minigame module */}
         <MinigameComponent />
