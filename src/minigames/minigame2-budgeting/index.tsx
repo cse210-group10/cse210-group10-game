@@ -17,3 +17,4 @@ const Minigame2: React.FC = () => {
 };
 
 export default Minigame2;
+

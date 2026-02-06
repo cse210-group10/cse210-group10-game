@@ -1,5 +1,7 @@
 import React from 'react';
 import './LevelModal.css';
+// This is the code for the level's popup; it's different from the modal since it defines the strucutre of the code;
+// same could be said for minigame page index-css relationship; use code to define structure and css to define specific style
 
 interface LevelModalProps {
   level: {
