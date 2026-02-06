@@ -1,13 +1,23 @@
 import React from 'react';
-import Minigame1 from './minigame1-scholarship';
-import Minigame2 from './minigame2-budgeting';
-import Minigame3 from './minigame3-saving';
-import Minigame4 from './minigame4-investing';
+import Minigame1, { metadata as meta1 } from './minigame1-scholarship';
+import Minigame2, { metadata as meta2 } from './minigame2-budgeting';
+import Minigame3, { metadata as meta3 } from './minigame3-saving';
+import Minigame4, { metadata as meta4 } from './minigame4-investing';
 
-// Plugin Registry - maps level IDs to minigame components
-export const MINIGAMES: Record<string, React.FC> = {
-  'level-1': Minigame1,
-  'level-2': Minigame2,
-  'level-3': Minigame3,
-  'level-4': Minigame4,
+export interface MinigameConfig {
+  Component: React.FC;
+  metadata: {
+    title: string;
+    description: string;
+    id: string;
+    icon?: string;
+  };
+}
+
+// Plugin Registry - maps level IDs to minigame configs
+export const MINIGAMES: Record<string, MinigameConfig> = {
+  'level-1': { Component: Minigame1, metadata: meta1 },
+  'level-2': { Component: Minigame2, metadata: meta2 },
+  'level-3': { Component: Minigame3, metadata: meta3 },
+  'level-4': { Component: Minigame4, metadata: meta4 },
 };

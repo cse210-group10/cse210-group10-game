@@ -1,5 +1,11 @@
 import React from 'react';
 
+export const metadata = {
+  title: "Budget Planner",
+  description: "Placeholder",
+  id: "level-2"
+};
+
 const Minigame2: React.FC = () => {
   return (
     <div style={{ textAlign: 'center', padding: '2rem' }}>

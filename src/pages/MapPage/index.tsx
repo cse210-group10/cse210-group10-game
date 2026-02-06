@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MINIGAMES } from '../../minigames';
+import LevelModal from './LevelModal';
 import './styles.css';
 
 const MapPage: React.FC = () => {
   const navigate = useNavigate();
+  const [selectedLevelId, setSelectedLevelId] = useState<string | null>(null);
 
-  const levels = [
-    { id: 'level-1', name: 'Level 1' },
-    { id: 'level-2', name: 'Level 2' },
-    { id: 'level-3', name: 'Level 3' },
-    { id: 'level-4', name: 'Level 4' },
-  ];
+  // Get all registered levels from registry
+  const levels = Object.values(MINIGAMES).map(config => config.metadata);
 
   const handleLevelClick = (levelId: string) => {
-    navigate(`/minigame/${levelId}`);
+    setSelectedLevelId(levelId);
   };
+
+  const handleStartLevel = () => {
+    if (selectedLevelId) {
+      navigate(`/minigame/${selectedLevelId}`);
+      setSelectedLevelId(null);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setSelectedLevelId(null);
+  };
+
+  const selectedLevelConfig = selectedLevelId ? MINIGAMES[selectedLevelId]?.metadata : null;
 
   return (
     <div className="map-page">
@@ -29,11 +41,19 @@ const MapPage: React.FC = () => {
               className="level-button"
               onClick={() => handleLevelClick(level.id)}
             >
-              {level.name}
+              {level.title}
             </button>
           ))}
         </div>
       </div>
+
+      {selectedLevelConfig && (
+        <LevelModal 
+          level={selectedLevelConfig}
+          onStart={handleStartLevel}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 };

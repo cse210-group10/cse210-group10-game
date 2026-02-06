@@ -12,7 +12,8 @@ const MinigamePage: React.FC = () => {
   };
 
   // Dynamically load the correct minigame component from registry
-  const MinigameComponent = MINIGAMES[levelId!];
+  const minigameConfig = MINIGAMES[levelId!];
+  const MinigameComponent = minigameConfig?.Component;
 
   if (!MinigameComponent) {
     return (
