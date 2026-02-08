@@ -11,3 +11,5 @@ export const MINIGAMES: Record<string, React.FC> = {
   'level-3': Minigame3,
   'level-4': Minigame4,
 };
+
+//could use this to hold general UI logic (progress bar, notification pop-ups)
