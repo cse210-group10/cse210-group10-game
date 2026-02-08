@@ -1,0 +1,20 @@
+.minigame-level2-container {
+  background-color: #c8e6c9; /* Green 100 - More distinct */
+  width: 100%;
+  height: 100%;
+  
+  /* Reset Frame Styles */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: auto;
+
+  /* Internal Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
