@@ -8,6 +8,7 @@ const MinigamePage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleBackToMap = () => {
+    console.log("Back Button Pressed")
     navigate('/map');
   };
 
@@ -15,29 +16,20 @@ const MinigamePage: React.FC = () => {
   const minigameConfig = MINIGAMES[levelId!];
   const MinigameComponent = minigameConfig?.Component;
 
-  if (!MinigameComponent) {
-    return (
-      <div className="minigame-page">
-        <button className="back-button" onClick={handleBackToMap}>
-          ← Back to Map
-        </button>
-        <div className="minigame-content">
-          <h1>Error: Minigame not found</h1>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="minigame-page">
       <div className="minigame-header">
         <button className="back-button" onClick={handleBackToMap}>
-          ← Back to Map
+          ←
         </button>
       </div>
+
       <div className="minigame-content">
-        {/* Render the dynamically loaded minigame module */}
-        <MinigameComponent />
+        {MinigameComponent ? (
+          <MinigameComponent />
+        ) : (
+          <h1>Error: Minigame not found</h1>
+        )}
       </div>
     </div>
   );
