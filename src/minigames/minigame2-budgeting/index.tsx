@@ -9,7 +9,7 @@ export const metadata = {
   id: "level-2"
 };
 
-//test function for each button click
+//test function for each button click, outdated / not needed anymore. will delete soon
 function testClick(){
   alert("Always starts from nothing");
 }

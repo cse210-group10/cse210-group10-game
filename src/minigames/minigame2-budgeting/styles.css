@@ -43,6 +43,7 @@
   transition: background-color 0.2s ease;
 }
 
+/*puts number on corner of buttons to match mock-up */
 .day-number-label{
   position: absolute;
   top: 5px;           
