@@ -70,11 +70,11 @@ function MapPage() {
             </span>
 
             <div className="coin-buttons">
-              <button className="coin-btn" onClick={() => addCoins(1)}>+</button>
-              <button className="coin-btn" onClick={() => spendCoins(1)}>−</button>
+              <button className="coin-btn" onClick={() => addCoins(1)} aria-label="Add coin" >+</button>
+              <button className="coin-btn" onClick={() => spendCoins(1)} aria-label="Spend coin" >−</button>
 
               {isDev && (
-                <button className="coin-reset-btn" onClick={() => setCoins(0)}>
+                <button className="coin-reset-btn" onClick={() => setCoins(0)} aria-label="Reset coins" >
                   Reset
                 </button>
               )}
