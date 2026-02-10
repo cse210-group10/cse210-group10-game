@@ -27,3 +27,38 @@
   justify-content: center;
   align-items: center;
 }
+
+/* calendar button formating, still tweakable but good enough for sprint 1 */
+.calendar-button{
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.day-number-label{
+  position: absolute;
+  top: 5px;           
+  left: 8px;          
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+/* Initial "Rest" state - teal/cyan color */
+.is-rest {
+  background-color: #94e3da; 
+  color: #000;
+}
+
+/* "Work" state - light green color */
+.is-work {
+  background-color: #a8e08f;
+  color: #000;
+}
