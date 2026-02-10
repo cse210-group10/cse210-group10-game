@@ -18,3 +18,12 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Trying initial styling here to loosely resemble mockup*/
+.button-container-row {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
