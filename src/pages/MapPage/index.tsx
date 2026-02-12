@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { MINIGAMES } from '../../minigames';
 import LevelModal from './LevelModal';
 import { useStars } from './Stars';
+import { useCoins } from './Coins';
+import coinIcon from '../../assets/coin.svg';
 import './styles.css';
 
 function MapPage() {
@@ -30,6 +32,12 @@ function MapPage() {
   const selectedLevelConfig = selectedLevelId ? MINIGAMES[selectedLevelId]?.metadata : null;
 
   const { stars } = useStars();
+
+  // We'll use addCoins/spendCoins for the little + / - test buttons.
+  const { coins, addCoins, spendCoins, setCoins } = useCoins();
+
+  const isDev = import.meta.env.DEV;
+
   // stars update will be handled upon completion of minigame
   // create minigame end scene with star results and it will update stars in map page accordingly
   return (
@@ -51,9 +59,30 @@ function MapPage() {
         </div>
       </div>
 
-      <div className="stars-container">
-        <span className="stars-label">⭐ {Number(stars) || 0}</span>
+      <div className="hud-container">
+        <div className="stars-container">
+          <span className="stars-label">⭐ {Number(stars) || 0}</span>
+
+          <div className="coins-container">
+            <span className="coins-label" aria-label="coin-display">
+              <img src={coinIcon} alt="Coin" className="coin-icon" />
+              {Number(coins) || 0}
+            </span>
+
+            <div className="coin-buttons">
+              <button className="coin-btn" onClick={() => addCoins(1)} aria-label="Add coin" >+</button>
+              <button className="coin-btn" onClick={() => spendCoins(1)} aria-label="Spend coin" >−</button>
+
+              {isDev && (
+                <button className="coin-reset-btn" onClick={() => setCoins(0)} aria-label="Reset coins" >
+                  Reset
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+
 
       {selectedLevelConfig && (
         <LevelModal

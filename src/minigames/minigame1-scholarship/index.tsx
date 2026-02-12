@@ -9,8 +9,6 @@ export const metadata = {
   id: "level-1",
 };
 
-// add you need to implement star logic
-// update retunred variable when done
 const result: MinigameResult = {  
   stars: 1, 
 }
