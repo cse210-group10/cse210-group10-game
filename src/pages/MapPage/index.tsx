@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MINIGAMES } from '../../minigames';
 import LevelModal from './LevelModal';
+import { useStars } from './Stars';
 import './styles.css';
 
-const MapPage: React.FC = () => {
+function MapPage() {
   const navigate = useNavigate();
   const [selectedLevelId, setSelectedLevelId] = useState<string | null>(null);
 
@@ -28,10 +29,13 @@ const MapPage: React.FC = () => {
 
   const selectedLevelConfig = selectedLevelId ? MINIGAMES[selectedLevelId]?.metadata : null;
 
+  const { stars } = useStars();
+  // stars update will be handled upon completion of minigame
+  // create minigame end scene with star results and it will update stars in map page accordingly
   return (
     <div className="map-page">
       <h1 className="map-title">Select a Level</h1>
-      
+
       <div className="map-container">
         <div className="connecting-line"></div>
         <div className="levels-row">
@@ -47,15 +51,18 @@ const MapPage: React.FC = () => {
         </div>
       </div>
 
+      <div className="stars-container">
+        <span className="stars-label">⭐ {Number(stars) || 0}</span>
+      </div>
+
       {selectedLevelConfig && (
-        <LevelModal 
+        <LevelModal
           level={selectedLevelConfig}
           onStart={handleStartLevel}
-          onClose={handleCloseModal}
-        />
+          onClose={handleCloseModal} />
       )}
     </div>
   );
-};
+}
 
 export default MapPage;

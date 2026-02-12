@@ -1,46 +1,47 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { MINIGAMES } from '../../minigames';
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { MINIGAMES } from "../../minigames";
+import MinigameEnd from "../../minigames/minigame-end";
+import type { MinigameResult } from "../../types/Minigame";
+import { StarsProvider } from "../MapPage/Stars";
+import { BackButton } from "../../components/BackButton";
 import './styles.css';
 
 const MinigamePage: React.FC = () => {
+  const [result, setResult] = useState<MinigameResult | null>(null);
   const { levelId } = useParams<{ levelId: string }>();
-  const navigate = useNavigate();
 
-  const handleBackToMap = () => {
-    navigate('/map');
+  const handleMinigameComplete = (result: MinigameResult) => {
+    console.log("Minigame result:", result);
+    setResult(result);
   };
 
   // Dynamically load the correct minigame component from registry
   const minigameConfig = MINIGAMES[levelId!];
   const MinigameComponent = minigameConfig?.Component;
 
-  if (!MinigameComponent) {
+  if (result) {
     return (
+      <MinigameEnd stars={result.stars} />
+    )
+  } 
+  return (
+    <StarsProvider>
       <div className="minigame-page">
-        <button className="back-button" onClick={handleBackToMap}>
-          ← Back to Map
-        </button>
+        <div className="minigame-header">
+          <BackButton/>
+        </div>
+
         <div className="minigame-content">
-          <h1>Error: Minigame not found</h1>
+          {MinigameComponent ? (
+            <MinigameComponent onComplete={handleMinigameComplete} />
+          ) : (
+            <h1>Error: Minigame not found</h1>
+          )}
         </div>
       </div>
+    </StarsProvider>
     );
-  }
-
-  return (
-    <div className="minigame-page">
-      <div className="minigame-header">
-        <button className="back-button" onClick={handleBackToMap}>
-          ← Back to Map
-        </button>
-      </div>
-      <div className="minigame-content">
-        {/* Render the dynamically loaded minigame module */}
-        <MinigameComponent />
-      </div>
-    </div>
-  );
 };
 
 export default MinigamePage;
