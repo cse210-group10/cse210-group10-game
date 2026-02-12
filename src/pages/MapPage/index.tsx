@@ -88,8 +88,7 @@ function MapPage() {
         <LevelModal
           level={selectedLevelConfig}
           onStart={handleStartLevel}
-          onClose={handleCloseModal}
-        />
+          onClose={handleCloseModal} />
       )}
     </div>
   );

@@ -9,11 +9,13 @@ import './styles.css';
 const MinigamePage: React.FC = () => {
   const [result, setResult] = useState<MinigameResult | null>(null);
   const { levelId } = useParams<{ levelId: string }>();
-  const navigate = useNavigate();
 
   const handleBackToMap = () => {
     console.log("Back Button Pressed")
     navigate('/map');
+  const handleMinigameComplete = (result: MinigameResult) => {
+    console.log("Minigame result:", result);
+    setResult(result);
   };
 
   const handleMinigameComplete = (result: MinigameResult) => {
