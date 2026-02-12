@@ -1,20 +1,15 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { MINIGAMES } from "../../minigames";
 import MinigameEnd from "../../minigames/minigame-end";
 import type { MinigameResult } from "../../types/Minigame";
 import { StarsProvider } from "../MapPage/Stars";
+import { BackButton } from "../../components/BackButton";
 import './styles.css';
 
 const MinigamePage: React.FC = () => {
   const [result, setResult] = useState<MinigameResult | null>(null);
   const { levelId } = useParams<{ levelId: string }>();
-  const navigate = useNavigate();
-
-  const handleBackToMap = () => {
-    console.log("Back Button Pressed")
-    navigate('/map');
-  };
 
   const handleMinigameComplete = (result: MinigameResult) => {
     console.log("Minigame result:", result);
@@ -34,9 +29,7 @@ const MinigamePage: React.FC = () => {
     <StarsProvider>
       <div className="minigame-page">
         <div className="minigame-header">
-          <button className="back-button" onClick={handleBackToMap}>
-            ←
-          </button>
+          <BackButton/>
         </div>
 
         <div className="minigame-content">

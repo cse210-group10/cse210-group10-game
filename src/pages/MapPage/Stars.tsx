@@ -8,6 +8,8 @@ export const StarsProvider = ({ children }: { children: React.ReactNode }) => {
   const [stars, setStars] = useState(0);
 
   const addStars = (earned: number) => {
+    if (earned < 0) return; // no negative stars
+    if (earned > 3) earned = 3; // max 3 stars per minigame
     setStars(prev => prev + earned);
   };
 
