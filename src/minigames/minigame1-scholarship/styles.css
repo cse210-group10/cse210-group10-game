@@ -18,3 +18,51 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Text of the paragraphs for this minigame */
+p {
+  color: black;
+  font-size: 1.5rem;
+}
+
+/* margins for minigame 1 heading, description, and image */
+.minigame-level1-container p, h1, img{
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+/* container for the character info and scholarship info */
+.scholarship-compare{
+  display: flex;
+}
+
+/* character profile pic and info */
+.profile {
+  float: left;
+  width: 60%;
+}
+
+/* Currently selected scholarship info */
+.scholarship-info {
+  float: left;
+}
+
+/* source for justify-content: https://www.geeksforgeeks.org/css/css-justify-content-property/ */
+.scholarship-btn-group {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 0.5rem;
+   
+}
+
+/* Buttons to change which scholarship is viewed */
+.scholarship-button{
+  margin-right: 10px;
+}
+
+/* Space between submit button and scholaship buttons */
+.submit-answer-button {
+  margin-top: 20px;
+}
+
+
