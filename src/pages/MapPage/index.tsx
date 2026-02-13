@@ -64,7 +64,7 @@ function MapPage() {
           <span className="stars-label">⭐ {Number(stars) || 0}</span>
 
           <div className="coins-container">
-            <span className="coins-label" aria-label="coin-display">
+            <span className="coins-label" aria-label="coin-display" data-testid="coin-display">
               <img src={coinIcon} alt="Coin" className="coin-icon" />
               {Number(coins) || 0}
             </span>

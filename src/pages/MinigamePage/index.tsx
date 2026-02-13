@@ -9,13 +9,11 @@ import './styles.css';
 const MinigamePage: React.FC = () => {
   const [result, setResult] = useState<MinigameResult | null>(null);
   const { levelId } = useParams<{ levelId: string }>();
+  const navigate = useNavigate();
 
   const handleBackToMap = () => {
-    console.log("Back Button Pressed")
+    console.log("Back Button Pressed");
     navigate('/map');
-  const handleMinigameComplete = (result: MinigameResult) => {
-    console.log("Minigame result:", result);
-    setResult(result);
   };
 
   const handleMinigameComplete = (result: MinigameResult) => {
@@ -30,8 +28,9 @@ const MinigamePage: React.FC = () => {
   if (result) {
     return (
       <MinigameEnd stars={result.stars} />
-    )
+    );
   } 
+  
   return (
     <StarsProvider>
       <div className="minigame-page">
@@ -50,7 +49,7 @@ const MinigamePage: React.FC = () => {
         </div>
       </div>
     </StarsProvider>
-    );
+  );
 };
 
 export default MinigamePage;

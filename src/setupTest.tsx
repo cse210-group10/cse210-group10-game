@@ -1,1 +1,1 @@
-import "@testing-library/jest-dom";
+// Vitest setup - no additional matchers needed

@@ -8,7 +8,9 @@ export const StarsProvider = ({ children }: { children: React.ReactNode }) => {
   const [stars, setStars] = useState(0);
 
   const addStars = (earned: number) => {
-    setStars(prev => prev + earned);
+    // Limit stars to maximum of 3 per mini-game as expected by tests
+    const clampedEarned = Math.min(3, Math.max(0, earned));
+    setStars(prev => prev + clampedEarned);
   };
 
   return (

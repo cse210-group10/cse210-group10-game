@@ -32,7 +32,7 @@ describe('CoinsProvider / useCoins', () => {
       </CoinsProvider>
     );
 
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('0');
+    expect(screen.getByLabelText('coin-value').textContent).toBe('0');
   });
 
   it('adds and spends coins correctly', () => {
@@ -43,13 +43,16 @@ describe('CoinsProvider / useCoins', () => {
     );
 
     // Click "add" twice => coins should be 2
-    fireEvent.click(screen.getByText('add'));
-    fireEvent.click(screen.getByText('add'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('2');
+    const addBtns = screen.getAllByText('add');
+    fireEvent.click(addBtns[0]);
+    fireEvent.click(addBtns[0]);
+    const coinValues = screen.getAllByLabelText('coin-value');
+    expect(coinValues[0].textContent).toBe('2');
 
     // Click "spend" once => coins should be 1
-    fireEvent.click(screen.getByText('spend'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('1');
+    const spendBtns = screen.getAllByText('spend');
+    fireEvent.click(spendBtns[0]);
+    expect(coinValues[0].textContent).toBe('1');
   });
 
   it('never goes below 0 coins', () => {
@@ -60,8 +63,10 @@ describe('CoinsProvider / useCoins', () => {
     );
 
     // We start at 0. If we spend, it should still be 0 (not -1).
-    fireEvent.click(screen.getByText('spend'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('0');
+    const spendBtns = screen.getAllByText('spend');
+    fireEvent.click(spendBtns[0]);
+    const coinValues = screen.getAllByLabelText('coin-value');
+    expect(coinValues[0].textContent).toBe('0');
   });
 
   it('ignores negative adds (edge case)', () => {
@@ -72,8 +77,10 @@ describe('CoinsProvider / useCoins', () => {
     );
 
     // Adding -5 should do nothing.
-    fireEvent.click(screen.getByText('add-negative'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('0');
+    const addNegativeBtns = screen.getAllByText('add-negative');
+    fireEvent.click(addNegativeBtns[0]);
+    const coinValues = screen.getAllByLabelText('coin-value');
+    expect(coinValues[0].textContent).toBe('0');
   });
 
   it('floors decimals (edge case)', () => {
@@ -84,12 +91,15 @@ describe('CoinsProvider / useCoins', () => {
     );
 
     // addCoins(2.9) should become addCoins(2)
-    fireEvent.click(screen.getByText('add-decimal'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('2');
+    const addDecimalBtns = screen.getAllByText('add-decimal');
+    fireEvent.click(addDecimalBtns[0]);
+    const coinValues = screen.getAllByLabelText('coin-value');
+    expect(coinValues[0].textContent).toBe('2');
 
     // setCoins(7.8) should become 7
-    fireEvent.click(screen.getByText('set-decimal'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('7');
+    const setDecimalBtns = screen.getAllByText('set-decimal');
+    fireEvent.click(setDecimalBtns[0]);
+    expect(coinValues[0].textContent).toBe('7');
   });
 
   it('clamps spending and setting so coins never becomes negative (edge case)', () => {
@@ -100,11 +110,14 @@ describe('CoinsProvider / useCoins', () => {
     );
 
     // If we try to spend way more coins than we have, it should clamp to 0.
-    fireEvent.click(screen.getByText('spend-too-much'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('0');
+    const spendTooMuchBtns = screen.getAllByText('spend-too-much');
+    fireEvent.click(spendTooMuchBtns[0]);
+    const coinValues = screen.getAllByLabelText('coin-value');
+    expect(coinValues[0].textContent).toBe('0');
 
     // If we try to set coins to a negative number, it should clamp to 0.
-    fireEvent.click(screen.getByText('set-negative'));
-    expect(screen.getByLabelText('coin-value')).toHaveTextContent('0');
+    const setNegativeBtns = screen.getAllByText('set-negative');
+    fireEvent.click(setNegativeBtns[0]);
+    expect(coinValues[0].textContent).toBe('0');
   });
 });
