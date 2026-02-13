@@ -33,7 +33,7 @@ describe('StarsContext', () => {
 
     expect(screen.getByTestId('stars').textContent).toBe('3')
 
-    fireEvent.click(screen.getByText('Add 5')) // max number of stars per mini game is 3
+    fireEvent.click(screen.getByText('Add 5')) // max number of stars added at once is 3
 
     expect(screen.getByTestId('stars').textContent).toBe('6')
   })
