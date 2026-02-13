@@ -1,7 +1,7 @@
 .minigame-level1-container {
   background-color: #bbdefb; /* Blue 100 - More distinct */
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   
   /* Reset Frame Styles - Full Screen Mode */
   border: none;

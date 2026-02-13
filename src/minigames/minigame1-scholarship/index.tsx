@@ -1,4 +1,5 @@
 import React from "react";
+import type { MinigameProps, MinigameResult } from "../../types/Minigame";
 import "./styles.css";
 import { useNavigate } from 'react-router-dom';
 
@@ -9,15 +10,20 @@ export const metadata = {
   id: "level-1",
 };
 
-const Minigame1: React.FC = () => {
+// const result: MinigameResult = {  
+//   stars: 1, 
+// }
+// reference code for how to use stars onComplete for minigames
 
+const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
+  
   const navigate = useNavigate();
 
   // Function to navigate to start of the minigame
   const handleMinigame1Start = () => {
     navigate('/minigame/level-1/character');
   };
-
+  
   return (
 
     // Placeholder information about how to play the game
@@ -38,6 +44,9 @@ const Minigame1: React.FC = () => {
         Start game
       </button>
 
+<!--       <button onClick={() => onComplete(result)}>
+        Placeholder Button
+      </button> -->
     </div>
   );
 };
