@@ -27,5 +27,7 @@ export const useQuestionLogic = () => {
         }
     };
 
-    return {currentQuestion, nextQuestion}
+//keep track of score, best out of 3 using submit button information
+
+    return {currentQuestion, nextQuestion, questionCount: (questionBank.length)}
 }

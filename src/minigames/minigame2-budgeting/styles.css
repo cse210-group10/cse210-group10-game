@@ -63,3 +63,15 @@
   background-color: #a8e08f;
   color: #000;
 }
+
+.submit-button {
+  margin-top: 40px;
+  padding: 10px 60px;
+  font-size: 2rem;
+  background-color: #B0B3B5; /* Light gray from mockup */
+  color: #000;              /* Black text */
+  border: 1px solid #8e8e8e; /* Subtle border for definition */
+  border-radius: 50px;      /* High value for rounded pill ends */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
