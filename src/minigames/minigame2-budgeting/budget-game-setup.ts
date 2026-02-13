@@ -44,7 +44,8 @@ export const useBudgetGameLogic = () => {
     totalWorkDays,
     currentQuestion,
     currentIncome,
-    submitAnswer
+    submitAnswer,
+    progress //for tests
 
   };
 };
