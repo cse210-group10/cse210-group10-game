@@ -1,11 +1,12 @@
-import React from 'react';
 import Minigame1, { metadata as meta1 } from './minigame1-scholarship';
 import Minigame2, { metadata as meta2 } from './minigame2-budgeting';
 import Minigame3, { metadata as meta3 } from './minigame3-saving';
 import Minigame4, { metadata as meta4 } from './minigame4-investing';
+import type { ComponentType } from "react";
+import type { MinigameProps } from "../types/Minigame";
 
 export interface MinigameConfig {
-  Component: React.FC;
+  Component: ComponentType<MinigameProps>;
   metadata: {
     title: string;
     description: string;
