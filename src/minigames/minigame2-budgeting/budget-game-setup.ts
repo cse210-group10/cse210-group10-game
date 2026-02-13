@@ -35,7 +35,7 @@ export const useBudgetGameLogic = () => {
     resetButtons();
     //add end of screen pop-up here
     if ( (currentQuestion.id) === questionCount){
-        alert(`Game over! You got: ${correctCount}$ out of ${questionCount}$ correct!`);
+        alert(`Game over! You got: ${correctCount}$ out of ${questionCount}$ correct! and missed ${incorrectCount}$.`);
     }
   };
   return {
