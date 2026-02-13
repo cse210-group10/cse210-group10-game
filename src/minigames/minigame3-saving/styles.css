@@ -1,20 +1,239 @@
-.minigame-level3-container {
-  background-color: #ffe0b2; /* Orange 100 - More distinct */
-  width: 100%;
-  height: 100%;
-  
-  /* Reset Frame Styles */
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  margin: 0;
-  max-width: none;
-  max-height: none;
-  aspect-ratio: auto;
-
-  /* Internal Layout */
+/* Selection Screen Styles */
+.selection-screen {
+  /* Main container - full screen with centered content */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  padding: 2rem;
+}
+
+.selection-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.selection-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* Grid layout for the 3 item cards */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 2rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Individual item card styling */
+.item-card {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease; /* smooth animations */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Hover effect when mouse is over item */
+.item-card:hover {
+  border-color: #007bff;
+  transform: translateY(-5px); /* lift up effect */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Visual feedback when item is selected */
+.item-card.selected {
+  border-color: #007bff;
+  background-color: #e3f2fd; /* light blue background */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Disable other items once one is selected */
+.item-card:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #ddd;
+}
+
+/* Item icon styling */
+.item-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+/* Item name styling */
+.item-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Item description styling */
+.item-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* Item value styling */
+.item-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff; /* blue color for money */
+}
+
+/* Continue section styling */
+.continue-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.selected-text {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Continue button styling */
+.continue-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+  background-color: #0056b3; /* darker blue on hover */
+}
+
+/* Confirmation Screen Styles */
+.confirmation-screen {
+  /* Same basic layout as selection screen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  padding: 2rem;
+}
+
+.confirmation-title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Selected item card - shows the chosen item */
+.selected-item-card {
+  background: white;
+  border: 2px solid #007bff;
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* space between icon and details */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Large icon for selected item */
+.item-icon-large {
+  font-size: 6rem;
+}
+
+/* Details section for selected item */
+.item-details {
+  text-align: left;
+}
+
+/* Selected item name */
+.item-name {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+/* Selected item description */
+.item-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+/* Selected item value - big and bold */
+.item-value-large {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Action buttons container */
+.confirmation-actions {
+  margin-top: 3rem;
+  display: flex;
+  gap: 2rem;
+}
+
+/* Back button styling */
+.back-button {
+  background-color: #6c757d; /* gray color */
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #545b62; /* darker gray on hover */
+}
+
+/* Responsive Design - make it work on mobile */
+@media (max-width: 768px) {
+  /* Stack items vertically on small screens */
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Stack icon and details vertically on mobile */
+  .selected-item-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Center text on mobile */
+  .item-details {
+    text-align: center;
+  }
+  
+  /* Stack buttons vertically on mobile */
+  .confirmation-actions {
+    flex-direction: column;
+    align-items: center;
+  }
 }
