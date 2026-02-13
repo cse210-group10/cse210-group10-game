@@ -1,6 +1,7 @@
 import React from "react";
 import type { MinigameProps, MinigameResult } from "../../types/Minigame";
 import "./styles.css";
+import { useNavigate } from 'react-router-dom';
 
 export const metadata = {
   title: "Scholarship Matcher",
@@ -9,22 +10,44 @@ export const metadata = {
   id: "level-1",
 };
 
-const result: MinigameResult = {  
-  stars: 1, 
-}
+// const result: MinigameResult = {  
+//   stars: 1, 
+// }
+// reference code for how to use stars onComplete for minigames
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
+  
+  const navigate = useNavigate();
+
+  // Function to navigate to start of the minigame
+  const handleMinigame1Start = () => {
+    navigate('/minigame/level-1/character');
+  };
+  
   return (
+
+    // Placeholder information about how to play the game
     <div className="minigame-level1-container">
-      <h1 style={{ fontSize: "3rem", marginBottom: "2rem" }}>Hi! I'm Game 1</h1>
-      <p style={{ fontSize: "1.5rem", color: "#666" }}>
-        Scholarship Matcher Module Loaded ✓
+      <h1>Scholarships</h1>
+      <p>
+        Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+        mollit anim id est laborum
       </p>
-      <button onClick={() => onComplete(result)}>
-        Placeholder Button
+
+      {/* navigate to start of the minigame */}
+      <button className="start-minigame1-button" onClick={handleMinigame1Start}>
+        Start game
       </button>
     </div>
   );
 };
 
 export default Minigame1;
+
+
+
