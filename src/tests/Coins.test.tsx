@@ -1,7 +1,6 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { CoinsProvider, useCoins } from './Coins';
+import { CoinsProvider, useCoins } from '../pages/MapPage/Coins';
 
 
 // We render it in the test, then click buttons to simulate user actions.

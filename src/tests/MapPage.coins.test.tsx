@@ -1,11 +1,10 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 
-import MapPage from './index';
-import { StarsProvider } from './Stars';
-import { CoinsProvider } from './Coins';
+import MapPage from '../pages/MapPage/index';
+import { StarsProvider } from '../pages/MapPage/Stars';
+import { CoinsProvider } from '../pages/MapPage/Coins';
 
 function renderMapPage() {
   return render(
