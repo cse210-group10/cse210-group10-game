@@ -43,10 +43,6 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
       <button className="start-minigame1-button" onClick={handleMinigame1Start}>
         Start game
       </button>
-
-<!--       <button onClick={() => onComplete(result)}>
-        Placeholder Button
-      </button> -->
     </div>
   );
 };
