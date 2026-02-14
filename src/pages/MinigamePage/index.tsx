@@ -5,6 +5,7 @@ import MinigameEnd from "../../minigames/minigame-end";
 import type { MinigameResult } from "../../types/Minigame";
 import { StarsProvider } from "../MapPage/Stars";
 import './styles.css';
+import Popup from "../../components/Popup";
 
 const MinigamePage: React.FC = () => {
   const [result, setResult] = useState<MinigameResult | null>(null);
@@ -20,6 +21,8 @@ const MinigamePage: React.FC = () => {
     console.log("Minigame result:", result);
     setResult(result);
   };
+
+  const [showPopup, setShowPopup] = useState(false);
 
   // Dynamically load the correct minigame component from registry
   const minigameConfig = MINIGAMES[levelId!];
@@ -38,6 +41,15 @@ const MinigamePage: React.FC = () => {
           <button className="back-button" onClick={handleBackToMap}>
             ←
           </button>
+          <button onClick={() => setShowPopup(true)}>Open</button>
+
+          {showPopup && (
+              <Popup
+              title="Tutorial"
+              content="yada yada tutorial stuff"
+              onClose={() => setShowPopup(false)}
+              />
+          )}
         </div>
 
         <div className="minigame-content">
