@@ -22,3 +22,5 @@ export const MINIGAMES: Record<string, MinigameConfig> = {
   'level-3': { Component: Minigame3, metadata: meta3 },
   'level-4': { Component: Minigame4, metadata: meta4 },
 };
+
+//could use this to hold general UI logic (progress bar, notification pop-ups)
