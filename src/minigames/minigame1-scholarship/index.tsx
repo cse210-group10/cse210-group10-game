@@ -17,9 +17,9 @@ export const metadata = {
 // reference code for how to use stars onComplete for minigames
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
-  
+  const [showPopup, setShowPopup] = useState(true);
   const navigate = useNavigate();
-
+  
   // Function to navigate to start of the minigame
   const handleMinigame1Start = () => {
     navigate('/minigame/level-1/character');
