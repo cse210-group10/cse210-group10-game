@@ -11,10 +11,30 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   padding: 1.5rem;
   background: transparent;
   border: none;
   z-index: 100; /* Ensure button is above game */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* progress bar wrapper */
+.minigame-header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* spacer to separate buttons from progress bar */
+.minigame-header-spacer {
+  width: 6rem;
+  flex-shrink: 0;
 }
 
 .back-button {
