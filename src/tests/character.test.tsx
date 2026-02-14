@@ -1,6 +1,7 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import {describe, it, expect} from "vitest";
-import ScholarshipCharacter from "./character";
+import "@testing-library/jest-dom";
+import ScholarshipCharacter from "../minigames/minigame1-scholarship/character"; 
 
 
  describe("ScholarshipCharacter", () => {

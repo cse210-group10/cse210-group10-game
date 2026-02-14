@@ -1,8 +1,9 @@
 import { useCalendarLogic } from "./calendar-logic"; // button logic
 import { useQuestionLogic } from "./question-logic"; // question logic
 import { useState } from "react"; // ties logic together for actual game
+import type { ProgressApi } from "../../types/Minigame";
 
-export const useBudgetGameLogic = () => {
+export const useBudgetGameLogic = (progressApi?: ProgressApi) => {
   //game logic set-up
   const {workDays, totalWorkDays, toggleDay, resetButtons} = useCalendarLogic(5);
   const {currentQuestion, nextQuestion, questionCount} = useQuestionLogic();
@@ -25,10 +26,14 @@ export const useBudgetGameLogic = () => {
     if (isCorrect){
       alert("Correct! Insert Correct Pop-up here!")
       setProgress(prev => ({...prev, correct: prev.correct + 1}));
+      // if correct, mark question as correct
+      progressApi?.markCorrect(currentQuestion.id - 1);
     }else{
       const difference = currentQuestion.answer - currentIncome;
       alert(`Close but not correct. You are ${Math.abs(difference)} coins$ off. Let's try on the next one! (Insert incorrect pop-up here)`)
       setProgress(prev => ({...prev, incorrect: prev.incorrect + 1}));
+      // if incorrect, mark question as incorrect
+      progressApi?.markIncorrect(currentQuestion.id - 1);
     }
     //resets buttons and goes to next question
     nextQuestion();
@@ -45,7 +50,7 @@ export const useBudgetGameLogic = () => {
     currentQuestion,
     currentIncome,
     submitAnswer,
+    questionCount, // for progress bar initialization
     progress //for tests
-
   };
 };
