@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 // import { useCalendarLogic } from './calendar-logic'; //math logic for interactive counter
 // import { useQuestionLogic } from './question-logic'; // question load / check answer
 import QuestionDisplay from './question-display'; // question view
 import { useBudgetGameLogic } from './budget-game-setup';
+import type { MinigameProps } from '../../types/Minigame';
 import './styles.css';
 
 export const metadata = {
@@ -12,7 +13,8 @@ export const metadata = {
   id: "level-2"
 };
 
-const Minigame2: React.FC = () => {
+// pass progress api to the minigame
+const Minigame2: React.FC<MinigameProps> = ({ progress }) => {
   //set-up everything from useBudgetGameLogic
   const {
     workDays,
@@ -20,8 +22,15 @@ const Minigame2: React.FC = () => {
     totalWorkDays,
     currentQuestion,
     currentIncome,
-    submitAnswer
-  } = useBudgetGameLogic();
+    submitAnswer,
+    // get total number of questions
+    questionCount
+  } = useBudgetGameLogic(progress);
+
+  // initialize progress bar with total number of questions
+  useEffect(() => {
+    progress?.init(questionCount);
+  }, [progress, questionCount]);
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
