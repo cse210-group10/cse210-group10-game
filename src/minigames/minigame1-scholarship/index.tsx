@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { MinigameProps, MinigameResult } from "../../types/Minigame";
 import "./styles.css";
 import { useNavigate } from 'react-router-dom';
+import Popup from "../../components/Popup";
 
 export const metadata = {
   title: "Scholarship Matcher",
@@ -21,9 +22,17 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
     navigate('/minigame/level-1/character');
   };
 
+  const [showPopup, setShowPopup] = useState(true);
 
   return (
     <div className="minigame-level1-container">
+      {showPopup && (
+          <Popup
+          title="Tutorial"
+          content="Minigame #1 is about..."
+          onClose={() => setShowPopup(false)}
+          />
+      )}
       <h1>Scholarships</h1>
       <p>
         Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

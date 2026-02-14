@@ -11,14 +11,14 @@ const Popup: React.FC<PopupProps> = ({
   return (
     <div className="popup-container">
       <div className="popup">
-         <h1 className="popup-title">{title}</h1>
-         <p className="popup-content">{content}</p>
-         <button
-         className="close-button"
-         onClick={onClose}
-         >
-         Ok!
-         </button>
+            <h1 className="popup-title">{title}</h1>
+            <p className="popup-content">{content}</p>
+            <button
+            className="close-button"
+            onClick={onClose}
+            >
+            Ok!
+            </button>
       </div>
     </div>
   );
