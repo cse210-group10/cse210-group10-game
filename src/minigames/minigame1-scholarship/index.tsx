@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import { useNavigate } from 'react-router-dom';
 
+// here defines the metadata of the games
 export const metadata = {
   title: "Scholarship Matcher",
   description:
@@ -9,6 +10,7 @@ export const metadata = {
   id: "level-1",
 };
 
+// here, another blank canvs; but this time is for the specific game
 const Minigame1: React.FC = () => {
 
   const navigate = useNavigate();

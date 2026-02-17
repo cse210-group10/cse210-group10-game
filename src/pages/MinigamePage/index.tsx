@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { MINIGAMES } from '../../minigames';
 import './styles.css';
 
+// this is the holder for the minigame, think of this a blank canvas where mini-games got loaded into dynamically;
+// This does not define the mini-game specific stuff, it provides a space to limits the scope (visually) of the minigames
+// and provides geneeral UI, sharable among minigames, such as back button
 const MinigamePage: React.FC = () => {
   const { levelId } = useParams<{ levelId: string }>();
   const navigate = useNavigate();

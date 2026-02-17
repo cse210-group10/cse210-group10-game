@@ -4,6 +4,11 @@ import { MINIGAMES } from '../../minigames';
 import LevelModal from './LevelModal';
 import './styles.css';
 
+
+// This is the index page of map, index is what node uses as a general entry point for it's components;
+// same for the index pages in minigame page, think of it as a general entry point
+
+
 const MapPage: React.FC = () => {
   const navigate = useNavigate();
   const [selectedLevelId, setSelectedLevelId] = useState<string | null>(null);

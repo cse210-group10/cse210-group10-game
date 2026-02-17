@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 
+// this is the structure/code for our game start page
+
 const StartPage: React.FC = () => {
   const navigate = useNavigate();
 
