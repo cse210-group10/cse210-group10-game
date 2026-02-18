@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { MinigameProps, MinigameResult } from "../../types/Minigame";
 import "./styles.css";
 import { useNavigate } from 'react-router-dom';
+import Popup from "../../components/Popup";
 
 export const metadata = {
   title: "Scholarship Matcher",
@@ -16,9 +17,9 @@ export const metadata = {
 // reference code for how to use stars onComplete for minigames
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
-  
+  const [showPopup, setShowPopup] = useState(true);
   const navigate = useNavigate();
-
+  
   // Function to navigate to start of the minigame
   const handleMinigame1Start = () => {
     navigate('/minigame/level-1/character');
@@ -28,6 +29,13 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
 
     // Placeholder information about how to play the game
     <div className="minigame-level1-container">
+      {showPopup && (
+          <Popup
+          title="Tutorial"
+          content="Minigame #1 is about..."
+          onClose={() => setShowPopup(false)}
+          />
+      )}
       <h1>Scholarships</h1>
       <p>
         Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -43,6 +51,10 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
       <button className="start-minigame1-button" onClick={handleMinigame1Start}>
         Start game
       </button>
+
+      {/* <button onClick={() => onComplete(result)}>
+        Placeholder Button
+      </button>  */}
     </div>
   );
 };
