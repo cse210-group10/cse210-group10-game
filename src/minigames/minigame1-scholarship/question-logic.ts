@@ -2,7 +2,17 @@ import {useState} from 'react';
 import * as scholarshipBank from './scholarshipBank.json';
 
 
-
+/*
+Scholarship data interface: content for one scholarship.
+    id: number;             -> scholarship ID in the dataset
+    name: string;           -> name of scholarship
+    dueDate: string;        -> due date of scholarship (Month Day, Year)
+    sponsor: string;        -> name of organization sponsoring the scholarship
+    amount: number;         -> amount for scholarship
+    description: string;    -> a general description for the scholarship
+    rankings: number[];     -> a 5-element array representing the rankings for each character
+                            -> ranking = num [0,1] where 1 is very relevant / top choice out of all the scholarships
+*/
 export interface ScholarshipData {
     id: number;
     name: string;
@@ -10,7 +20,7 @@ export interface ScholarshipData {
     sponsor: string;
     amount: number;
     description: string;
-    rankings: number[]; // [Maria, James, Emily, Marcus, Alex]
+    rankings: number[]; 
 }
 
 // hard-coded question bank for ease of use
