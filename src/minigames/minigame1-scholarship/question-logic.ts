@@ -2,6 +2,7 @@ import {useState} from 'react';
 import * as scholarshipBank from './scholarshipBank.json';
 
 
+
 /*
 Scholarship data interface: content for one scholarship.
     id: number;             -> scholarship ID in the dataset
@@ -23,23 +24,21 @@ export interface ScholarshipData {
     rankings: number[]; 
 }
 
+function getChosenArray(min: number, max: number): number[] {
+  const chosenSet = new Set<number>();
+  while (chosenSet.size < 4) {
+    chosenSet.add(Math.floor(Math.random() * (max - min) + min));
+  }
+  return Array.from(chosenSet);
+}
+
 // hard-coded question bank for ease of use
-const questionBank: ScholarshipData[] =[...scholarshipBank.scholarships];
+const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 
-// //question logic to advance to next question, without knowing logic behind moving to next question
-// export const useQuestionLogic = () => {
-//     const [levelId, setLevelId] = useState(0);
-//     const currentQuestion = questionBank[levelId];
 
-//     const nextQuestion = () => {
-//         if(levelId < questionBank.length - 1){
-//             setLevelId(prev => prev + 1);
-//         }else{
-//             alert("All levels done! Finish Screen goes here")
-//         }
-//     };
+let chosenIds = getChosenArray(0, 32);
 
-// //keep track of score, best out of 3 using submit button information
+export const selectedEntries = currentScholarships.filter((scholarshipEntry) => chosenIds.includes(scholarshipEntry.id));
 
-//     return {currentQuestion, nextQuestion, questionCount: (questionBank.length)}
-// }
+
+

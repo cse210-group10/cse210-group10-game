@@ -2,9 +2,10 @@ import React from "react";
 import "./styles.css";
 import { useState } from "react";
 import type { ScholarshipData } from "./question-logic";
-import scholarshipBank from './scholarshipBank.json';
+import { selectedEntries } from './question-logic';
 
-const scholarshipBankData: ScholarshipData[] = scholarshipBank.scholarships;
+const scholarshipBankData: ScholarshipData[] = selectedEntries;
+
 
 
 // Shows the page for scholarship minigame 1
@@ -61,41 +62,14 @@ const ScholarshipCharacter: React.FC = () => {
       {/* Buttons to view different scholarhship options */}
       <div className="scholarship-btn-group">
         
-        <button className="scholarship-button" 
-        onClick={() => {
-          handleSubmitClick(); 
-          setScholarshipInfo(scholarshipBankData[0]);
-        }} 
-        aria-label="first-scholarship-button">
-          Scholarship 1
-        </button>
-
-        <button className="scholarship-button" 
-        onClick={() => {
-          handleSubmitClick(); 
-          setScholarshipInfo(scholarshipBankData[1]);
-        }} 
-        aria-label="second-scholarship-button">
-          Scholarship 2
-        </button>
-
-        <button className="scholarship-button" 
-        onClick={() => {
-          handleSubmitClick(); 
-          setScholarshipInfo(scholarshipBankData[2]);
-        }} 
-        aria-label="third-scholarship-button">
-          Scholarship 3
-        </button>
-
-        <button className="scholarship-button" 
-        onClick={() => {
-          handleSubmitClick(); 
-          setScholarshipInfo(scholarshipBankData[3]);
-        }} 
-        aria-label="fourth-scholarship-button">
-          Scholarship 4
-        </button>
+        {selectedEntries.map((item, index) => (
+          <button key={item.id} onClick={() => {
+            handleSubmitClick();
+            setScholarshipInfo(item);
+          }}>
+            Scholarship {index + 1}
+          </button>
+        ))}
 
       </div>
 
