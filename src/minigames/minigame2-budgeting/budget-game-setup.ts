@@ -16,7 +16,7 @@ export const useBudgetGameLogic = () => {
   //submit answer button
   const submitAnswer = () => {
     //boolean to check if answer is right, need local answer to get progress for future sprints
-    const isCorrect = currentIncome === currentQuestion.answer;
+    const isCorrect = currentIncome === currentQuestion.answer; // need to change; outside frined found bug in very casual usability study
     
     //calculate number correct AND incorrect (if needed)
     const correctCount = isCorrect ? progress.correct + 1 : progress.correct;
