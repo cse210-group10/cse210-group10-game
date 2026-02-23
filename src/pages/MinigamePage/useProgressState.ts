@@ -1,3 +1,4 @@
+// Progress bar state and API for minigame page (init / markCorrect / markIncorrect).
 import { useState, useMemo, useRef } from 'react';
 import type { ProgressState, ProgressApi } from '../../types/Minigame';
 
@@ -20,18 +21,18 @@ export function useProgressState() {
         });
       },
 
-      // api to mark question as correct
+      // api to mark question as correct (0-based index)
       markCorrect(index: number) {
-        if (index < 0) return; 
+        if (index < 0 || index >= stateRef.current.total) return; 
         setProgressState((prev) => ({ 
           ...prev,  // save previous state
           statuses: prev.statuses.map((s, j) => (j === index ? 'correct' : s)),// update question at index to correct state
         }));
       },
 
-      // api to mark question as incorrect
+      // api to mark question as incorrect (0-based index)
       markIncorrect(index: number) {
-        if (index < 0) return;
+        if (index < 0 || index >= stateRef.current.total) return;
         setProgressState((prev) => ({
           ...prev,
           statuses: prev.statuses.map((s, j) => (j === index ? 'incorrect' : s)),

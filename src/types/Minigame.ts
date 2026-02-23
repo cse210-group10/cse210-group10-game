@@ -1,3 +1,4 @@
+// Minigame types and progress bar API (ProgressApi, ProgressState).
 export interface MinigameResult {
   stars: number;
 }

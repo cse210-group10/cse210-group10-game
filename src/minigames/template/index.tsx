@@ -16,7 +16,7 @@ const Minigame5: React.FC<MinigameProps> = ({ progress }) => {
   }, [progress]);
 
   return (
-    <div className="minigame-level4-container">
+    <div className="template-container">
       <h1 style={{ fontSize: '3rem', marginBottom: '2rem' }}>Hi! I'm Template</h1>
       <p style={{ fontSize: '1.5rem', color: '#666', marginBottom: '2rem' }}>
         ProgressBar demo: 5 dots at the top. Use the buttons below to mark each as correct (green) or incorrect (red).

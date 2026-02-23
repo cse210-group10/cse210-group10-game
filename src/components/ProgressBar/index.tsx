@@ -7,12 +7,18 @@ export interface ProgressBarProps {
   statuses: ProgressStatus[];
 }
 
+/**
+ * Ensures the statuses array has exactly `total` entries.
+ * Pads with 'pending' if shorter; truncates if longer.
+ */
+function ensureStatusesArray(total: number, statuses: ProgressStatus[]): ProgressStatus[] {
+  if (statuses.length >= total) return statuses.slice(0, total);
+  return [...statuses, ...Array<ProgressStatus>(total - statuses.length).fill('pending')];
+}
+
 const ProgressBar: React.FC<ProgressBarProps> = ({ total, statuses }) => {
   if (total === 0) return null;
-  const resolved =
-    statuses.length >= total
-      ? statuses
-      : (Array(total).fill('pending').slice(0, total) as ProgressStatus[]);
+  const resolved = ensureStatusesArray(total, statuses);
   return (
     <div
       className="progress-bar"

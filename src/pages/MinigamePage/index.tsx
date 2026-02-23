@@ -1,3 +1,4 @@
+// Minigame page: loads level, shows progress bar, passes progress API to minigame.
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { MINIGAMES } from "../../minigames";

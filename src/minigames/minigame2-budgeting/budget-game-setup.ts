@@ -26,13 +26,15 @@ export const useBudgetGameLogic = (progressApi?: ProgressApi) => {
     if (isCorrect){
       alert("Correct! Insert Correct Pop-up here!")
       setProgress(prev => ({...prev, correct: prev.correct + 1}));
-      // if correct, mark question as correct
+      // Mark question as correct. currentQuestion.id is 1-based;
+      // subtract 1 to convert to 0-based index for progress API.
       progressApi?.markCorrect(currentQuestion.id - 1);
     }else{
       const difference = currentQuestion.answer - currentIncome;
       alert(`Close but not correct. You are ${Math.abs(difference)} coins$ off. Let's try on the next one! (Insert incorrect pop-up here)`)
       setProgress(prev => ({...prev, incorrect: prev.incorrect + 1}));
-      // if incorrect, mark question as incorrect
+      // Mark question as incorrect. currentQuestion.id is 1-based;
+      // subtract 1 to convert to 0-based index for progress API.
       progressApi?.markIncorrect(currentQuestion.id - 1);
     }
     //resets buttons and goes to next question

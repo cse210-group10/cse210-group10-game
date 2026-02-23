@@ -1,3 +1,4 @@
+// Tests for progress bar API (useProgressState hook).
 import { describe, it, expect } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useProgressState } from '../pages/MinigamePage/useProgressState';
@@ -117,5 +118,37 @@ describe('useProgressState', () => {
     });
     const stateAfter = result.current.progressApi.getProgress();
     expect(stateAfter.statuses[0]).toBe('correct');
+  });
+
+  // test 10: markCorrect with out-of-bounds index (>= total)
+  it('markCorrect with index >= total does not change state', () => {
+    const { result } = renderHook(() => useProgressState());
+    act(() => {
+      result.current.progressApi.init(2);
+    });
+    act(() => {
+      result.current.progressApi.markCorrect(2); // index === total
+    });
+    expect(result.current.progressState.statuses).toEqual(['pending', 'pending']);
+    act(() => {
+      result.current.progressApi.markCorrect(5); // index > total
+    });
+    expect(result.current.progressState.statuses).toEqual(['pending', 'pending']);
+  });
+
+  // test 11: markIncorrect with out-of-bounds index (>= total)
+  it('markIncorrect with index >= total does not change state', () => {
+    const { result } = renderHook(() => useProgressState());
+    act(() => {
+      result.current.progressApi.init(2);
+    });
+    act(() => {
+      result.current.progressApi.markIncorrect(2); // index === total
+    });
+    expect(result.current.progressState.statuses).toEqual(['pending', 'pending']);
+    act(() => {
+      result.current.progressApi.markIncorrect(10); // index > total
+    });
+    expect(result.current.progressState.statuses).toEqual(['pending', 'pending']);
   });
 });
