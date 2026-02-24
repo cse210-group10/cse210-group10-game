@@ -26,7 +26,7 @@ export interface ScholarshipData {
 
 function getChosenArray(min: number, max: number): number[] {
   const chosenSet = new Set<number>();
-  while (chosenSet.size < 4) {
+  while (chosenSet.size < 4) { // 4 is the amount of answer choices
     chosenSet.add(Math.floor(Math.random() * (max - min) + min));
   }
   return Array.from(chosenSet);
@@ -35,8 +35,7 @@ function getChosenArray(min: number, max: number): number[] {
 // hard-coded question bank for ease of use
 const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 
-
-let chosenIds = getChosenArray(0, 32);
+let chosenIds = getChosenArray(0, currentScholarships.length);
 
 export const selectedEntries = currentScholarships.filter((scholarshipEntry) => chosenIds.includes(scholarshipEntry.id));
 
