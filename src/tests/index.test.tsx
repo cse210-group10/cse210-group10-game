@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { vi } from "vitest";
 //naming convention is weird for testing, so capital I is needed, apparently
 import Minigame2 from '../minigames/minigame2-budgeting/index';
 import { describe, it, expect} from 'vitest';
@@ -6,8 +7,7 @@ import { describe, it, expect} from 'vitest';
 describe('index.tsx main view container (for overall game)', () => {
     //creates container
     it('render main view with all starting elements', () => {
-        render(<Minigame2 />)
-    
+        render(<Minigame2 onComplete={vi.fn()} />)
 
         //check for total work days 
         expect(screen.getByText(/Total Work Days: /i)).toBeInTheDocument();
