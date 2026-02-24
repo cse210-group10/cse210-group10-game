@@ -1,0 +1,28 @@
+
+{
+    "questions":[
+        {
+            "id": 0, 
+            "question": "This is the tutorial question and the question text will appear here! Try clicking the calendar buttons to switch between day and work to earn 30 coins!", 
+            "rateEarned": 10, 
+            "answer":30
+        },
+        {
+            "id": 1, 
+            "question": "earn 75 coins!", 
+            "rateEarned": 25, 
+            "answer": 75
+        },
+        {
+            "id": 2, 
+            "question": "earn 28 coins!", 
+            "rateEarned":7, 
+            "answer":28},
+        {
+            "id":3, 
+            "question": "earn 45 coins!", 
+            "rateEarned":9, 
+            "answer":45
+        }
+    ]
+}

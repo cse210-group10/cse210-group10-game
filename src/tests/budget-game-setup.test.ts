@@ -14,15 +14,16 @@ describe('useBudgetGameLogic Integration', () => {
         act(() => { result.current.toggleDay(1); });
         act(() => { result.current.toggleDay(2); });
 
-        // Q1 rate is 25. 3 days * 25 = 75.
+        // Q0 rate is 30. 3 days * 10 = 30.
         expect(result.current.totalWorkDays).toBe(3);
-        expect(result.current.currentIncome).toBe(75);
+        expect(result.current.currentIncome).toBe(30);
     });
-
+    
     it('should advance the level even when the answer is incorrect', () => {
         const { result } = renderHook(() => useBudgetGameLogic());
 
-        // Target for Q1 is 75. Let's give a wrong answer (1 day = 25).
+        // Target for tutorial question is 30. Let's give a wrong answer (1 day = 30).
+        //CHANGE: used to focus on question 1, now focuses on question 0
         act(() => { result.current.toggleDay(0); });
 
         act(() => {
@@ -30,7 +31,7 @@ describe('useBudgetGameLogic Integration', () => {
         });
 
         // RULE: Player advances regardless of accuracy
-        expect(result.current.currentQuestion.id).toBe(2);
+        expect(result.current.currentQuestion.id).toBe(1);
         
         // RULE: Track that they got it wrong
         expect(result.current.progress.incorrect).toBe(1);
@@ -40,7 +41,8 @@ describe('useBudgetGameLogic Integration', () => {
     });
 
     it('should advance the level and increment correct count when answer is right', () => {
-        const { result } = renderHook(() => useBudgetGameLogic());
+        //CHANGE: added question skip in question logic and budget game logic so testing can be easier
+        const { result } = renderHook(() => useBudgetGameLogic(1));
 
         // Correct answer for Q1 (3 days * 25 = 75)
         act(() => { result.current.toggleDay(0); });

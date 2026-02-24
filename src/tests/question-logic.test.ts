@@ -11,9 +11,9 @@ describe('useQuestionLogic', () =>{
     it('always starts with 1st question from bank', () => {
         const {result} = renderHook(() => useQuestionLogic());
 
-        //verify starting point
-        expect(result.current.currentQuestion.id).toBe(1);
-        expect(result.current.questionCount).toBe(3);
+        //verify starting point; CHANGE: account for tutorial question
+        expect(result.current.currentQuestion.id).toBe(0);
+        expect(result.current.questionCount).toBe(4);
     });
     
     //test going to next question
@@ -25,21 +25,27 @@ describe('useQuestionLogic', () =>{
             result.current.nextQuestion();
         });
 
-        //verify
-        expect(result.current.currentQuestion.id).toBe(2);
+        //verify / CHANGE: Tutorial is ID 0 so next question is ID 1
+        expect(result.current.currentQuestion.id).toBe(1);
     });
 
     //test to never cause out-of-range error
     it('never goes beyond final question; finish alert should happen',() =>{
-        const {result} = renderHook(() => useQuestionLogic());
+        
+        //CHANGE: Added a optional parameter that allows for skipping, makes test writing easier
+        const {result} = renderHook(() => useQuestionLogic(3));
 
         //skip to end + go beyond it
-        act(()=>{
-            result.current.nextQuestion(); // 1 -> 2
-        });
-        act(()=>{
-            result.current.nextQuestion(); // 2 -> 3
-        });
+        //CHANGE: added tutorial to test
+        // act(()=>{
+        //     result.current.nextQuestion(); // 1 -> 2
+        // });
+        // act(()=>{
+        //     result.current.nextQuestion(); // 1 -> 2
+        // });
+        // act(()=>{
+        //     result.current.nextQuestion(); // 2 -> 3
+        // });
         act(()=>{
             result.current.nextQuestion(); // 3 -> null
         });

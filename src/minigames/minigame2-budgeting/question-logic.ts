@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import questionDataStore from "./questions.json";
 
 export interface questionData {
     id: number
@@ -7,16 +8,24 @@ export interface questionData {
     answer: number;
 }
 
-//hard-coded question bank for ease of use
-const questionBank: questionData[] =[
-    {id: 1, question: "earn 75 coins!", rateEarned: 25, answer: 75},
-    {id: 2, question: "earn 28 coins!", rateEarned:7, answer:28},
-    {id:3, question: "earn 45 coins!", rateEarned:9, answer:45}
-];
+//hard-coded question bank for ease of use; first question = tutorial level to play around with.
+//may not need anymore
+// const questionBank: questionData[] =[
+//     //{id: 0, question: "This is the tutorial question and the question text will appear here! Try clicking the calendar buttons to switch between day and work to earn 30 coins!", rateEarned: 10, answer:30},
+//     {id: 1, question: "earn 75 coins!", rateEarned: 25, answer: 75},
+//     {id: 2, question: "earn 28 coins!", rateEarned:7, answer:28},
+//     {id:3, question: "earn 45 coins!", rateEarned:9, answer:45}
+// ];
+
+//CHANGE:
+const questionBank = questionDataStore.questions as questionData[];
 
 //question logic to advance to next question, without knowing logic behind moving to next question
-export const useQuestionLogic = () => {
-    const [levelId, setLevelId] = useState(0);
+//change: added a way to skip around the mini-game for testing purposes
+
+
+export const useQuestionLogic = (initialLevel: number = 0) => {
+    const [levelId, setLevelId] = useState(initialLevel);
     const currentQuestion = questionBank[levelId];
 
     const nextQuestion = () => {

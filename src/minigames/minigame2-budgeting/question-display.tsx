@@ -14,7 +14,7 @@ const QuestionDisplay: React.FC<questionDisplayProps> = ({questionInfo, amountPe
             <h2>{questionInfo.question}</h2>
             <div className="question-data-info">
                 {/*displays rate earned and current amount from each work day*/}
-                <p> You earn {questionInfo.rateEarned} coins per work day.</p>
+                <p> You earn {questionInfo.rateEarned} coins per work day selected.</p>
                 <p>Current: {amountPerDay} coins</p>
             </div>
         </div>
