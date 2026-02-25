@@ -45,7 +45,10 @@ export const useBudgetGameLogic = () => {
     currentQuestion,
     currentIncome,
     submitAnswer,
-    progress //for tests
-
+    title,
+    content,
+    progress, //for tests
+    last,
+    questionCount, // for progress bar initialization
   };
 };

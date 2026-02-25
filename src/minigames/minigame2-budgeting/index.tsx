@@ -20,8 +20,24 @@ const Minigame2: React.FC = () => {
     totalWorkDays,
     currentQuestion,
     currentIncome,
-    submitAnswer
+    submitAnswer,
+    title,
+    content,
+    last,
+    questionCount
   } = useBudgetGameLogic();
+
+  // initialize progress bar with total number of questions
+  // useEffect(() => {
+  //   progress?.init(questionCount);
+  // }, [progress, questionCount]);
+
+  const result: MinigameResult = {  
+    // TODO: add actual star logic here (for Mo)
+    stars: 1, 
+  }
+
+  const [showPopup, setShowPopup] = useState(true);
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
