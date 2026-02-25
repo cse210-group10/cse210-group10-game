@@ -2,6 +2,8 @@ import {fireEvent, render, screen} from "@testing-library/react";
 import {describe, it, expect} from "vitest";
 import "@testing-library/jest-dom";
 import ScholarshipCharacter from "../minigames/minigame1-scholarship/character"; 
+import { selectedEntries } from '../minigames/minigame1-scholarship/question-logic';
+
 
 
  describe("ScholarshipCharacter", () => {
@@ -24,20 +26,51 @@ import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
         expect(screen.queryByText("Submit")).not.toBeInTheDocument()
     });
 
-    // Tests after button has been clicked
-    it("Display the scholarship 1 information when button is clicked", () => {
+    // Tests after button has been clicked 
+    it("Check if button appears after one of the scholarship buttons is clicked on", () => {
         render(<ScholarshipCharacter />);
-        fireEvent.click(screen.getByLabelText("first-scholarship-button"))
-        const scholarship1 = "Scholarship 1: This scholarship is for students entering a STEM program. It offers $10,000 towards tuition."
-        expect(screen.getByText(scholarship1)).toBeInTheDocument()
-     });
-
-     it("Check if button appears after one of the scholarship buttons is clicked on", () => {
-        render(<ScholarshipCharacter />);
-        fireEvent.click(screen.getByLabelText("second-scholarship-button"))
-        expect(screen.getByText("Submit")).toBeInTheDocument()
+        fireEvent.click(screen.getByText("Scholarship 2"));
+        expect(screen.getByText("Submit")).toBeInTheDocument();
     });
 
+    it("Display different scholarship info for each button", () => {
+        render(<ScholarshipCharacter />);
+        
+        const scholarships = [
+            { label: "Scholarship 1", name: selectedEntries[0].name },
+            { label: "Scholarship 2", name: selectedEntries[1].name },
+            { label: "Scholarship 3", name: selectedEntries[2].name },
+            { label: "Scholarship 4", name: selectedEntries[3].name },
+        ];
+        
+        scholarships.forEach(({label, name}) => {
+            fireEvent.click(screen.getByText(label));
+            expect(screen.getByText(name)).toBeInTheDocument();
+        });
+    });
+   it("Display complete scholarship 1 details", () => {
+        render(<ScholarshipCharacter />);
+        fireEvent.click(screen.getByText("Scholarship 1"));
+        expect(screen.getByText(selectedEntries[0].description)).toBeInTheDocument();
+    });
+
+    it("Display complete scholarship 2 details", () => {
+        render(<ScholarshipCharacter />);
+        fireEvent.click(screen.getByText("Scholarship 2"));
+        expect(screen.getByText(selectedEntries[1].description)).toBeInTheDocument();
+    });
+
+    it("Display complete scholarship 3 details", () => {
+        render(<ScholarshipCharacter />);
+        fireEvent.click(screen.getByText("Scholarship 3"));
+        expect(screen.getByText(selectedEntries[2].description)).toBeInTheDocument();
+    });
+
+    it("Display complete scholarship 4 details", () => {
+        render(<ScholarshipCharacter />);
+        fireEvent.click(screen.getByText("Scholarship 4"));
+        expect(screen.getByText(selectedEntries[3].description)).toBeInTheDocument();
+    });
  });
 
 //  source: https://vitest.dev/guide/browser/component-testing
