@@ -1,13 +1,13 @@
 import { useCalendarLogic } from "./calendar-logic"; // button logic
 import { useQuestionLogic } from "./question-logic"; // question logic
 import { useState } from "react"; // ties logic together for actual game
+import type { ProgressApi } from "../../types/Minigame";
 
-export const useBudgetGameLogic = () => {
+export const useBudgetGameLogic = (progressApi?: ProgressApi) => {
   const [title, setTitle] = useState("Budgeting Mini-Game");
   const [content, setContent] = useState("Welcome to the budgeting mini-game! Here, we will learn about...");
   const [last, setLast] = useState(false);
   console.log({title}, {content})
-
 
   //game logic set-up
   const {workDays, totalWorkDays, toggleDay, resetButtons} = useCalendarLogic(5);
@@ -32,11 +32,17 @@ export const useBudgetGameLogic = () => {
       setTitle("Correct!");
       setContent("You got this question right!")
       setProgress(prev => ({...prev, correct: prev.correct + 1}));
+      // Mark question as correct. currentQuestion.id is 1-based;
+      // subtract 1 to convert to 0-based index for progress API.
+      progressApi?.markCorrect(currentQuestion.id - 1);
     }else{
       const difference = currentQuestion.answer - currentIncome;
       setTitle("Close!");
       setContent("You are "+Math.abs(difference)+" coins off. Let's try on the next one!");
       setProgress(prev => ({...prev, incorrect: prev.incorrect + 1}));
+      // Mark question as incorrect. currentQuestion.id is 1-based;
+      // subtract 1 to convert to 0-based index for progress API.
+      progressApi?.markIncorrect(currentQuestion.id - 1);
     }
     //resets buttons and goes to next question
     nextQuestion();
@@ -58,6 +64,8 @@ export const useBudgetGameLogic = () => {
     title,
     content,
     progress, //for tests
-    last
+    last,
+    questionCount, // for progress bar initialization
+    progress //for tests
   };
 };

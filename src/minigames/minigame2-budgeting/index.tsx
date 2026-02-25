@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 // import { useCalendarLogic } from './calendar-logic'; //math logic for interactive counter
 // import { useQuestionLogic } from './question-logic'; // question load / check answer
@@ -25,8 +25,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
     submitAnswer,
     title,
     content,
-    last
-  } = useBudgetGameLogic();
+    last,
+    questionCount
+  } = useBudgetGameLogic(progress);
+
+  // initialize progress bar with total number of questions
+  useEffect(() => {
+    progress?.init(questionCount);
+  }, [progress, questionCount]);
 
   const result: MinigameResult = {  
     // TODO: add actual star logic here (for Mo)
