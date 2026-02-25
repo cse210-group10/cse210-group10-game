@@ -18,22 +18,20 @@ export const useBudgetGameLogic = (initialLevel: number = 0) => {
     //boolean to check if answer is right, need local answer to get progress for future sprints
     const isCorrect = currentIncome === currentQuestion.answer; // need to change; outside frined found bug in very casual usability study
 
-    //calculate number correct AND incorrect (if needed)
-    const correctCount = isCorrect ? progress.correct + 1 : progress.correct;
-    const incorrectCount = !isCorrect ? progress.incorrect + 1: progress.incorrect;
-
-    /* TUTORIAL SECTION; still implementing */
+    //Update: everything works + testing implemented in Vitest
 
     //variable changes to not count tutorial question
-    // const correctCount = (!isTutorial && isCorrect) ? progress.correct + 1 : progress.correct;
-    // const incorrectCount = (!isTutorial &&!isCorrect) ? progress.incorrect + 1: progress.incorrect;
-    //const isTutorial = currentQuestion.id === 0; // bool value designed to be used only for tutorial question
+    const isTutorial = currentQuestion.id === 0; // bool value designed to be used only for tutorial question
+    const correctCount = (!isTutorial && isCorrect) ? progress.correct + 1 : progress.correct;
+    const incorrectCount = (!isTutorial &&!isCorrect) ? progress.incorrect + 1: progress.incorrect;
 
-    // if(isTutorial && !isCorrect){
-    //   //pop-up logic goes here
-    //   alert("Almost there but not quite... Try flipping days to be the exact value! (insert pop-up here)")
-    //   return; // stops function early but should be recalled
-    // }
+    /* TUTORIAL SECTION */
+
+    if(isTutorial && !isCorrect){
+      //pop-up logic goes here
+      alert("Almost there but not quite... Try flipping days to be the exact value! (insert pop-up here)")
+      return; // stops function early but should be recalled
+    }
 
     /* MINI-GAME SECTION */
 

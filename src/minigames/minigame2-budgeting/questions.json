@@ -17,12 +17,25 @@
             "id": 2, 
             "question": "earn 28 coins!", 
             "rateEarned":7, 
-            "answer":28},
+            "answer":28
+        },
         {
             "id":3, 
             "question": "earn 45 coins!", 
             "rateEarned":9, 
             "answer":45
+        },
+                {
+            "id":4, 
+            "question": "earn 8 coins!", 
+            "rateEarned":4, 
+            "answer":8
+        },
+                {
+            "id":5, 
+            "question": "earn 27 coins!", 
+            "rateEarned":9, 
+            "answer":27
         }
     ]
 }

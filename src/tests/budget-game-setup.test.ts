@@ -20,10 +20,9 @@ describe('useBudgetGameLogic Integration', () => {
     });
     
     it('should advance the level even when the answer is incorrect', () => {
-        const { result } = renderHook(() => useBudgetGameLogic());
+        const { result } = renderHook(() => useBudgetGameLogic(1));
 
-        // Target for tutorial question is 30. Let's give a wrong answer (1 day = 30).
-        //CHANGE: used to focus on question 1, now focuses on question 0
+        //Target for Q1: 75, check if i can get it wrong and move on
         act(() => { result.current.toggleDay(0); });
 
         act(() => {
@@ -31,7 +30,7 @@ describe('useBudgetGameLogic Integration', () => {
         });
 
         // RULE: Player advances regardless of accuracy
-        expect(result.current.currentQuestion.id).toBe(1);
+        expect(result.current.currentQuestion.id).toBe(2);
         
         // RULE: Track that they got it wrong
         expect(result.current.progress.incorrect).toBe(1);
@@ -57,5 +56,31 @@ describe('useBudgetGameLogic Integration', () => {
         expect(result.current.currentQuestion.id).toBe(2);
         expect(result.current.progress.correct).toBe(1);
         expect(result.current.totalWorkDays).toBe(0);
+    });
+
+    it('should never advance past the tutorial if the provided answer is wrong', () => {
+        const { result } = renderHook(() => useBudgetGameLogic(0));
+
+        //get answer wrong + submit
+        act(() => {result.current.toggleDay(0)});
+        act(() => {result.current.submitAnswer()});
+
+        //stays in tutorial
+        expect(result.current.currentQuestion.id).toBe(0);
+    });
+
+    it('tutorial should never affect the correct or incorrect portions of the mini-game for star counts', () => {
+        const { result } = renderHook(() => useBudgetGameLogic(0));
+
+        //get answer wrong + submit + check if incorrect was updated
+        act(() => {result.current.toggleDay(0)});
+        act(() => {result.current.submitAnswer()});
+        expect(result.current.progress.incorrect).toBe(0);
+
+        //get answer right + submit + check if correct was updated (answer: 30, with rate: 10)
+        act(() => {result.current.toggleDay(0)})
+        act(() => {result.current.toggleDay(1)})
+        act(() => {result.current.toggleDay(2)})
+        expect(result.current.progress.correct).toBe(0);
     });
 });
