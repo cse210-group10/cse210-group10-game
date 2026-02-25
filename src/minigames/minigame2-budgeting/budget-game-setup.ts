@@ -37,7 +37,9 @@ export const useBudgetGameLogic = (initialLevel: number = 0) => {
 
     if (isCorrect){
       alert("Correct! Insert Correct Pop-up here!")
-      setProgress(prev => ({...prev, correct: prev.correct + 1}));
+      if(!isTutorial){
+        setProgress(prev => ({...prev, correct: prev.correct + 1}));
+      }
     }else{
       
       // find difference between answer and choice, Priorities: thematic integrity over mechanical correctness, so turning in a value over target = wrong
@@ -56,7 +58,7 @@ export const useBudgetGameLogic = (initialLevel: number = 0) => {
     //add end of screen pop-up here
     //Change: adding tutorial as 0th index so i need to account for 0 index with this check now
     if ( (currentQuestion.id) === questionCount - 1){
-        alert(`Game over! You got: ${correctCount} out of ${questionCount}, missing ${incorrectCount} questions total.`);
+        alert(`Game over! You got: ${correctCount} out of ${questionCount - 1}, missing ${incorrectCount} questions total.`);
     }
   };
   return {
