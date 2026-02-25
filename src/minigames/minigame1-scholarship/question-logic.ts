@@ -17,7 +17,7 @@ Scholarship data interface: content for one scholarship.
 export interface ScholarshipData {
     id: number;
     name: string;
-    dueDate: string;
+    weeksLeft: number;
     sponsor: string;
     amount: number;
     description: string;
@@ -38,6 +38,5 @@ const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 let chosenIds = getChosenArray(0, currentScholarships.length);
 
 export const selectedEntries = currentScholarships.filter((scholarshipEntry) => chosenIds.includes(scholarshipEntry.id));
-
 
 

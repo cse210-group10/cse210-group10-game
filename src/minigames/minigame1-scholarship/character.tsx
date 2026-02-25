@@ -50,7 +50,7 @@ const ScholarshipCharacter: React.FC = () => {
               <h2>{scholarshipInfo.name}</h2>
               <p><strong>Sponsor:</strong> {scholarshipInfo.sponsor}</p>
               <p><strong>Amount:</strong> ${scholarshipInfo.amount.toLocaleString()}</p>
-              <p><strong>Due Date:</strong> {scholarshipInfo.dueDate}</p>
+              <p><strong>Weeks Left:</strong> {scholarshipInfo.weeksLeft.toLocaleString()}</p>
               <p><strong>Description:</strong> {scholarshipInfo.description}</p>
             </div>
           ) : (
