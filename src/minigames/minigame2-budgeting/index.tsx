@@ -29,6 +29,7 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   } = useBudgetGameLogic();
 
   const result: MinigameResult = {  
+    // TODO: add actual star logic here (for Mo)
     stars: 1, 
   }
 
@@ -45,7 +46,7 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
 
   const submitHelper = () => {
     submitAnswer();
-    console.log({title}, {content})
+    // console.log(Minigame2 Popup Debugging: {title}, {content})
     setShowPopup(true);
   };
 

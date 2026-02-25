@@ -3,8 +3,6 @@ import { useQuestionLogic } from "./question-logic"; // question logic
 import { useState } from "react"; // ties logic together for actual game
 
 export const useBudgetGameLogic = () => {
-  // let title = "Budgeting Mini-Game";
-  // let content = "Welcome to the budgeting mini-game! Here, we will learn about...";
   const [title, setTitle] = useState("Budgeting Mini-Game");
   const [content, setContent] = useState("Welcome to the budgeting mini-game! Here, we will learn about...");
   const [last, setLast] = useState(false);
