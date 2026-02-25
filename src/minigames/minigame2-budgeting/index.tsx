@@ -27,12 +27,12 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
     content,
     last,
     questionCount
-  } = useBudgetGameLogic(progress);
+  } = useBudgetGameLogic();
 
   // initialize progress bar with total number of questions
-  useEffect(() => {
-    progress?.init(questionCount);
-  }, [progress, questionCount]);
+  // useEffect(() => {
+  //   progress?.init(questionCount);
+  // }, [progress, questionCount]);
 
   const result: MinigameResult = {  
     // TODO: add actual star logic here (for Mo)

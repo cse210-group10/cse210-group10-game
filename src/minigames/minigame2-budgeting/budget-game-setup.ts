@@ -66,6 +66,5 @@ export const useBudgetGameLogic = (progressApi?: ProgressApi) => {
     progress, //for tests
     last,
     questionCount, // for progress bar initialization
-    progress //for tests
   };
 };
