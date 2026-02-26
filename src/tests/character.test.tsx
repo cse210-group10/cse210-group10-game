@@ -48,7 +48,7 @@ import { selectedEntries } from '../minigames/minigame1-scholarship/question-log
             expect(screen.getByText(name)).toBeInTheDocument();
         });
     });
-   it("Display complete scholarship 1 details", () => {
+    it("Display complete scholarship 1 details", () => {
         render(<ScholarshipCharacter />);
         fireEvent.click(screen.getByText("Scholarship 1"));
         expect(screen.getByText(selectedEntries[0].description)).toBeInTheDocument();

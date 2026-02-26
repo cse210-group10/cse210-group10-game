@@ -1,10 +1,8 @@
 import React from "react";
 import "./styles.css";
 import { useState } from "react";
-import type { ScholarshipData } from "./question-logic";
-import { selectedEntries } from './question-logic';
+import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
 
-const scholarshipBankData: ScholarshipData[] = selectedEntries;
 
 
 
@@ -13,14 +11,18 @@ const ScholarshipCharacter: React.FC = () => {
 
   // text for the initial state
   const initialText = "Please select one of the scholarships with the buttons below.";
+
+  const characterIndex = 0; // 0-4 for the 5 different characters
+  const { currentScholarships, submitAnswer, progressArray, questionId } = useScholarshipLogic(characterIndex);
+  const [selectedScholarshipId, setSelectedScholarshipId] = useState<number | null>(null);
   //state variable to change scholarship based on button click
   const [scholarshipInfo, setScholarshipInfo] = useState<ScholarshipData | null>(null);
 
    // Display submit button when a scholarship is clicked on
   const [submitVisible, setSubmitVisible] = useState(false);
-  function handleSubmitClick() {
-    setSubmitVisible(true);
-  }
+
+  // Debug: log when props change
+  console.log("Component rendered. QuestionId:", questionId, "currentScholarships count:", currentScholarships.length, "selectedId:", selectedScholarshipId, "submitVisible:", submitVisible);
 
   return (
 
@@ -61,21 +63,36 @@ const ScholarshipCharacter: React.FC = () => {
 
       {/* Buttons to view different scholarhship options */}
       <div className="scholarship-btn-group">
-        
-        {selectedEntries.map((item, index) => (
-          <button key={item.id} onClick={() => {
-            handleSubmitClick();
-            setScholarshipInfo(item);
-          }}>
-            Scholarship {index + 1}
-          </button>
-        ))}
-
+        {currentScholarships.length === 0 ? (
+          <p>Loading scholarships...</p>
+        ) : (
+          currentScholarships.map((item, index) => (
+            <button key={item.id} onClick={() => {
+              console.log("Button clicked, setting ID:", item.id);
+              setSelectedScholarshipId(item.id);
+              setScholarshipInfo(item);
+              setSubmitVisible(true);
+            }}>
+              Scholarship {index + 1}
+            </button>
+          ))
+        )}
       </div>
 
         {/* Submit button will be visible when one of the scholarship buttons have been selected */}
         {submitVisible && (
-          <button className="submit-answer-button">
+          <button className="submit-answer-button" onClick={() => {
+            if (selectedScholarshipId) {
+              // print out the selected scholarship ID for testing purposes
+              console.log("Selected scholarship ID:", selectedScholarshipId);
+              submitAnswer(selectedScholarshipId);
+              setSubmitVisible(false);
+              setSelectedScholarshipId(null);
+              setScholarshipInfo(null);
+            } else {
+              alert("Please select a scholarship before submitting.");
+            }
+          }}>
             Submit
           </button>
         )}
