@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 // import { useCalendarLogic } from './calendar-logic'; //math logic for interactive counter
 // import { useQuestionLogic } from './question-logic'; // question load / check answer
 import QuestionDisplay from './question-display'; // question view
 import { useBudgetGameLogic } from './budget-game-setup';
-import type { MinigameProps } from '../../types/Minigame';
+import type { MinigameResult, MinigameProps } from '../../types/Minigame';
+import Popup from '../../components/Popup';
 import './styles.css';
 
 export const metadata = {
@@ -13,8 +14,7 @@ export const metadata = {
   id: "level-2"
 };
 
-// pass progress api to the minigame
-const Minigame2: React.FC<MinigameProps> = ({ progress }) => {
+const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   //set-up everything from useBudgetGameLogic
   const {
     workDays,
@@ -23,14 +23,23 @@ const Minigame2: React.FC<MinigameProps> = ({ progress }) => {
     currentQuestion,
     currentIncome,
     submitAnswer,
-    // get total number of questions
+    title,
+    content,
+    last,
     questionCount
-  } = useBudgetGameLogic(progress);
+  } = useBudgetGameLogic();
 
   // initialize progress bar with total number of questions
-  useEffect(() => {
-    progress?.init(questionCount);
-  }, [progress, questionCount]);
+  // useEffect(() => {
+  //   progress?.init(questionCount);
+  // }, [progress, questionCount]);
+
+  const result: MinigameResult = {  
+    // TODO: add actual star logic here (for Mo)
+    stars: 1, 
+  }
+
+  const [showPopup, setShowPopup] = useState(true);
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
@@ -41,9 +50,23 @@ const Minigame2: React.FC<MinigameProps> = ({ progress }) => {
     );
   };
 
+  const submitHelper = () => {
+    submitAnswer();
+    // console.log(Minigame2 Popup Debugging: {title}, {content})
+    setShowPopup(true);
+  };
+
   // not sure on this mini-game level2 container\
   return (
     <div className="minigame-level2-container">
+
+      {showPopup && (
+          <Popup
+          title={title}
+          content={content}
+          onClose={() => {setShowPopup(false); if(last) onComplete(result);}}
+          />
+      )}
       
       {/* testing question display */}
       <QuestionDisplay questionInfo={currentQuestion} amountPerDay={currentIncome}/>
@@ -55,7 +78,7 @@ const Minigame2: React.FC<MinigameProps> = ({ progress }) => {
         {/* helper function from above */}
         {workDays.map(renderCalendarButton)}
       </div>
-      <button className="submit-button" onClick={submitAnswer}>
+      <button className="submit-button" onClick={submitHelper}>
         Submit
       </button>
     </div>

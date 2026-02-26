@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { MinigameProps, MinigameResult } from "../../types/Minigame";
+import type { MinigameProps/*, MinigameResult*/ } from "../../types/Minigame";
 import "./styles.css";
 import { useNavigate } from 'react-router-dom';
 import Popup from "../../components/Popup";
@@ -16,7 +16,8 @@ export const metadata = {
 // }
 // reference code for how to use stars onComplete for minigames
 
-const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
+// ({ onComplete })
+const Minigame1: React.FC<MinigameProps> = () => {
   const [showPopup, setShowPopup] = useState(true);
   const navigate = useNavigate();
   
