@@ -82,7 +82,7 @@ export const useScholarshipLogic = (characterIndex: number) => {
       console.log("Incrementing to next question");
       setQuestionId(prev => prev + 1);
     } else {
-      console.log("Game over! Showing alert");
+      // console.log("Game over! Showing alert");
       alert(`Game over! You got ${progressCount.correct} out of 5 correct.`);
     }
   };

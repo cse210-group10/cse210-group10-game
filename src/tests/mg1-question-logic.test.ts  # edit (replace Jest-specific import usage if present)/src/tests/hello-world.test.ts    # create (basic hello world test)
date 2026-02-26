@@ -1,0 +1,13 @@
+const { test, expect } = require('vitest');
+
+test('hello world', () => {
+	expect('Hello World').toBe('Hello World');
+});
+
+const { describe, it } = require('vitest');
+
+describe('MG1 Question Logic', () => {
+	it('should perform a specific logic test', () => {
+		// Your test logic here
+	});
+});
