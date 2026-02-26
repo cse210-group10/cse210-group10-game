@@ -24,7 +24,7 @@ export const useQuestionLogic = (initialLevel: number = 0) => {
         if(levelId < questionBank.length - 1){
             setLevelId(prev => prev + 1);
         }else{
-            alert("All levels done! Finish Screen goes here")
+            //alert("All levels done! Finish Screen goes here")
         }
     };
 
