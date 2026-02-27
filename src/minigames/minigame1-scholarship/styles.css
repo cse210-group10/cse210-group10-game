@@ -19,12 +19,6 @@
   justify-content: center;
 }
 
-.minigame-content{
-  overflow: scroll; 
-}
-
-
-
 /* Text of the paragraphs for this minigame */
 p {
   color: black;
