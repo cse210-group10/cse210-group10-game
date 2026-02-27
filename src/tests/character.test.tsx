@@ -1,9 +1,22 @@
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
-import {describe, it, expect} from "vitest";
+import {describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom";
 import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
+import * as ScholarshipLogic from "../minigames/minigame1-scholarship/question-logic";
 
 
+// Hoisted mock for navigation
+const { mockNavigate } = vi.hoisted(() => ({
+  mockNavigate: vi.fn(),
+}));
+
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
 
  describe("ScholarshipCharacter", () => {
     // Tests initial state
@@ -53,6 +66,52 @@ import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
         expect(screen.getByText(/Description:/)).toBeInTheDocument();
     });
  });
+
+describe("ScholarshipCharacter - end game popup", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("shows end-game popup when isGameOver is true", async () => {
+    vi.spyOn(ScholarshipLogic, "useScholarshipLogic").mockReturnValue({
+      currentScholarships: [
+        { id: 1, name: "Test", weeksLeft: 4, sponsor: "Sponsor", amount: 1000, description: "desc", rankings: [1, 0, 0, 0, 0] },
+      ],
+      submitAnswer: vi.fn(),
+      totalCorrect: { correct: 3, incorrect: 2 },
+      progressArray: [true, true, true, false, false],
+      questionId: 4,
+      isGameOver: true,
+    } as any);
+
+    render(<ScholarshipCharacter />);
+
+    expect(await screen.findByText("Game Over!")).toBeInTheDocument();
+    expect(screen.getByText("You got 3 out of 5 correct.")).toBeInTheDocument();
+  });
+
+  it("clicking Ok closes popup and navigates to main route", async () => {
+    vi.spyOn(ScholarshipLogic, "useScholarshipLogic").mockReturnValue({
+      currentScholarships: [
+        { id: 1, name: "Test", weeksLeft: 4, sponsor: "Sponsor", amount: 1000, description: "desc", rankings: [1, 0, 0, 0, 0] },
+      ],
+      submitAnswer: vi.fn(),
+      totalCorrect: { correct: 4, incorrect: 1 },
+      progressArray: [true, true, true, true, false],
+      questionId: 4,
+      isGameOver: true,
+    } as any);
+
+    render(<ScholarshipCharacter />);
+
+    const okButton = await screen.findByRole("button", { name: /ok!/i });
+    fireEvent.click(okButton);
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith("/map", { replace: true });
+    });
+  });
+});
 
 //  source: https://vitest.dev/guide/browser/component-testing
 //  source: https://vitest.dev/api/expect 

@@ -34,20 +34,30 @@ describe('useScholarshipLogic', () => {
         expect(validateAnswer(4, mockScholarships)).toBe(false);
     });
 
-    it('nextQuestion increments questionId until the end of questions, then shows alert', () => {
+    it('nextQuestion increments questionId until the end of questions, then sets game over', () => {
         const { result } = renderHook(() => useScholarshipLogic(0));
+
+        expect(result.current.questionId).toBe(0);
+        expect(result.current.isGameOver).toBe(false);
 
         act(() => { result.current.nextQuestion(); }); // 0 -> 1
         act(() => { result.current.nextQuestion(); }); // 1 -> 2
         act(() => { result.current.nextQuestion(); }); // 2 -> 3
         act(() => { result.current.nextQuestion(); }); // 3 -> 4
-        act(() => { result.current.nextQuestion(); }); // should alert
 
+        expect(result.current.questionId).toBe(4);
+        expect(result.current.isGameOver).toBe(false);
 
-        expect(globalThis.alert).toHaveBeenLastCalledWith(
+        act(() => { result.current.nextQuestion(); }); // end -> game over
+
+        expect(result.current.questionId).toBe(4);
+        expect(result.current.isGameOver).toBe(true);
+        expect(globalThis.alert).not.toHaveBeenCalledWith(
             expect.stringContaining("Game over! You got")
         );
-    });
+        });
+
+    // ...existing code...
 
     it('submitAnswer updates progressCount and progressArray correctly on correct answer', () => {
         const { result } = renderHook(() => useScholarshipLogic(0));
@@ -60,8 +70,8 @@ describe('useScholarshipLogic', () => {
         ];
 
         expect(mockScholarships.length).toBe(4);
-        expect(result.current.progressCount.correct).toBe(0);
-        expect(result.current.progressCount.incorrect).toBe(0);
+        expect(result.current.totalCorrect.correct).toBe(0);
+        expect(result.current.totalCorrect.incorrect).toBe(0);
         expect(result.current.progressArray[0]).toBe(null);
     });
 
@@ -69,8 +79,10 @@ describe('useScholarshipLogic', () => {
         const { result } = renderHook(() => useScholarshipLogic(0));
 
         expect(result.current.progressArray).toEqual([null, null, null, null, null]);
-        expect(result.current.progressCount).toEqual({ correct: 0, incorrect: 0 });
+        expect(result.current.totalCorrect).toEqual({ correct: 0, incorrect: 0 });
     });
+
+    // ...existing code...
 
     it('scholarshipsForThisRound loads when questionId is 0-4', () => {
         const { result } = renderHook(() => useScholarshipLogic(0));

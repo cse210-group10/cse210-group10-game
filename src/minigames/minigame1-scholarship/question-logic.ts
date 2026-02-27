@@ -42,9 +42,10 @@ const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 // Custom hook to manage scholarship question logic
 export const useScholarshipLogic = (characterIndex: number) => {
   const [questionId, setQuestionId] = useState(0);
-  const [progressCount, setProgressCount] = useState({ correct: 0, incorrect: 0 });
+  const [totalCorrect, setTotalCorrect] = useState({ correct: 0, incorrect: 0 });
   const [progressArray, setProgressArray] = useState<(boolean | null)[]>([null, null, null, null, null]);
   const [scholarshipsForThisRound, setScholarshipsForThisRound] = useState<ScholarshipData[]>([]);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   // Initialize scholarships when questionId changes
   useEffect(() => {
@@ -82,8 +83,7 @@ export const useScholarshipLogic = (characterIndex: number) => {
       console.log("Incrementing to next question");
       setQuestionId(prev => prev + 1);
     } else {
-      // console.log("Game over! Showing alert");
-      alert(`Game over! You got ${progressCount.correct} out of 5 correct.`);
+      setIsGameOver(true);
     }
   };
 
@@ -95,10 +95,10 @@ export const useScholarshipLogic = (characterIndex: number) => {
     // Update correct count
     if (isCorrect) {
       alert("Correct! Show correct answer feedback here.");
-      setProgressCount(prev => ({ ...prev, correct: prev.correct + 1 }));
+      setTotalCorrect(prev => ({ ...prev, correct: prev.correct + 1 }));
+      //update progress array to show correct answer
     } else {
       alert("Incorrect. Show incorrect answer feedback here.");
-      setProgressCount(prev => ({ ...prev, incorrect: prev.incorrect + 1 }));
     }
     // Update array of correct and incorrect booleans for the progress bar
     const updatedProgressArray = [...progressArray];
@@ -112,11 +112,12 @@ export const useScholarshipLogic = (characterIndex: number) => {
   return {
     currentScholarships: scholarshipsForThisRound,
     questionId,
-    progressCount,
+    totalCorrect,
     progressArray,
     validateAnswer,
     nextQuestion,
     submitAnswer,
-    totalQuestions: 5
+    totalQuestions: 5,
+    isGameOver
   };
 };
