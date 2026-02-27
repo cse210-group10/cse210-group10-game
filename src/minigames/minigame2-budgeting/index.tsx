@@ -5,7 +5,8 @@ import CalendarButton from './calendar-button'; //buttons for interactive counte
 import QuestionDisplay from './question-display'; // question view
 import { useBudgetGameLogic } from './budget-game-setup';
 import type { MinigameResult, MinigameProps } from '../../types/Minigame';
-import Popup from '../../components/Popup';
+import PopupLesson from '../../components/PopupLesson';
+import lessonDataStore from './lessons.json';
 import './styles.css';
 
 export const metadata = {
@@ -13,6 +14,11 @@ export const metadata = {
   description: "Placeholder",
   id: "level-2"
 };
+
+export interface lessonData {
+    id: number;
+    lessonContent: string;
+}
 
 const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   //set-up everything from useBudgetGameLogic
@@ -40,6 +46,9 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   }
 
   const [showPopup, setShowPopup] = useState(true);
+  const lastLessonID = 6; //id for last paragraph in lesson
+  const currentLessons = lessonDataStore.lessons as lessonData[];
+  const [lessonID, setLessonID] = useState(0);
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
@@ -58,14 +67,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
 
   // not sure on this mini-game level2 container\
   return (
-    <div className="minigame-level2-container">
 
-      {showPopup && (
-          <Popup
-          title={title}
-          content={content}
-          onClose={() => {setShowPopup(false); if(last) onComplete(result);}}
-          />
+    <div className="minigame-level2-container">
+      {showPopup && (lessonID != lastLessonID) &&(
+        <PopupLesson
+        title= {title}
+        content= {currentLessons[lessonID].lessonContent}
+        onClickNext={() => setLessonID(prev => prev + 1)}
+        />
       )}
       
       {/* testing question display */}
