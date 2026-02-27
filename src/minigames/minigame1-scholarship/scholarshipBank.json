@@ -1,0 +1,292 @@
+{
+  "scholarships": [
+    {
+      "id": 0,
+      "name": "Gates Scholarship",
+      "dueDate": "September 15, 2026",
+      "sponsor": "Bill & Melinda Gates Foundation",
+      "amount": 200000,
+      "description": "Full-ride scholarship for exceptional minority students with significant financial need. For incoming undergraduate freshmen who are Pell-eligible minority students (African American, American Indian/Alaska Native, Asian Pacific Islander American, Hispanic American).",
+      "rankings": [0.95, 0.0, 0.0, 0.60, 0.0]
+    },
+    {
+      "id": 1,
+      "name": "Jack Kent Cooke Foundation Scholarship",
+      "dueDate": "November 1, 2026",
+      "sponsor": "Jack Kent Cooke Foundation",
+      "amount": 55000,
+      "description": "Supports high-achieving students with financial need. For high school seniors with GPA 3.5+ and family income up to $95,000.",
+      "rankings": [0.90, 0.50, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 2,
+      "name": "Coca-Cola Scholars Program",
+      "dueDate": "October 31, 2026",
+      "sponsor": "The Coca-Cola Company",
+      "amount": 20000,
+      "description": "Merit-based scholarship for community leaders. For high school seniors with minimum 3.0 GPA and demonstrated leadership.",
+      "rankings": [0.75, 0.90, 0.0, 0.75, 0.0]
+    },
+    {
+      "id": 3,
+      "name": "Davidson Fellows Scholarship",
+      "dueDate": "February 12, 2026",
+      "sponsor": "Davidson Institute",
+      "amount": 50000,
+      "description": "Awards for students who complete significant projects in STEM, literature, music, or philosophy. For students 18 and under who have completed a significant piece of work.",
+      "rankings": [0.70, 0.30, 0.95, 0.0, 0.60]
+    },
+    {
+      "id": 4,
+      "name": "SMART Scholarship",
+      "dueDate": "December 1, 2026",
+      "sponsor": "U.S. Department of Defense",
+      "amount": 150000,
+      "description": "Full scholarship for STEM students in exchange for DoD service. For undergraduate and graduate STEM majors with U.S. citizenship and commitment to DoD employment. Includes full tuition plus stipend.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 5,
+      "name": "Ron Brown Scholar Program",
+      "dueDate": "January 9, 2026",
+      "sponsor": "CAP Charitable Foundation",
+      "amount": 40000,
+      "description": "Scholarship for African American students demonstrating leadership. For high school seniors showing academic excellence and community service.",
+      "rankings": [0.0, 0.95, 0.0, 0.50, 0.0]
+    },
+    {
+      "id": 6,
+      "name": "Hispanic Scholarship Fund",
+      "dueDate": "March 30, 2026",
+      "sponsor": "Hispanic Scholarship Fund",
+      "amount": 5000,
+      "description": "Supporting Hispanic American students. For undergraduate and graduate students with Hispanic heritage and minimum 3.0 GPA.",
+      "rankings": [0.95, 0.0, 0.0, 0.0, 0.70]
+    },
+    {
+      "id": 7,
+      "name": "Dell Scholars Program",
+      "dueDate": "December 1, 2026",
+      "sponsor": "Michael & Susan Dell Foundation",
+      "amount": 20000,
+      "description": "Supports students who overcome adversity. For high school seniors who participated in approved college readiness program, have 2.4 GPA minimum, and are Pell-eligible.",
+      "rankings": [0.85, 0.0, 0.0, 0.95, 0.0]
+    },
+    {
+      "id": 8,
+      "name": "Flinn Scholars Program",
+      "dueDate": "October 15, 2026",
+      "sponsor": "Flinn Foundation",
+      "amount": 120000,
+      "description": "Arizona's premier merit scholarship. For high school seniors who are Arizona residents attending Arizona State, University of Arizona, or Northern Arizona University. Includes full tuition, stipend, and study abroad.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 9,
+      "name": "QuestBridge National College Match",
+      "dueDate": "September 26, 2026",
+      "sponsor": "QuestBridge",
+      "amount": 200000,
+      "description": "Matches high-achieving, low-income students with full scholarships. For high school seniors with family income typically under $65,000 and top academic performance.",
+      "rankings": [0.95, 0.0, 0.0, 0.70, 0.0]
+    },
+    {
+      "id": 10,
+      "name": "Elks National Foundation Most Valuable Student",
+      "dueDate": "November 5, 2026",
+      "sponsor": "Elks National Foundation",
+      "amount": 50000,
+      "description": "Merit-based scholarship recognizing leadership and academic achievement. For high school seniors with U.S. citizenship, leadership experience, and financial need.",
+      "rankings": [0.80, 0.85, 0.0, 0.80, 0.0]
+    },
+    {
+      "id": 11,
+      "name": "Burger King Scholars Program",
+      "dueDate": "December 15, 2026",
+      "sponsor": "Burger King Foundation",
+      "amount": 60000,
+      "description": "For students in the U.S., Canada, and Puerto Rico. For high school seniors with 2.5 GPA minimum, work experience preferred.",
+      "rankings": [0.70, 0.70, 0.0, 0.95, 0.60]
+    },
+    {
+      "id": 12,
+      "name": "AXA Achievement Scholarship",
+      "dueDate": "February 1, 2026",
+      "sponsor": "AXA Foundation",
+      "amount": 25000,
+      "description": "For students who demonstrate ambition and drive. For high school seniors with demonstrated achievement in school, community, or workplace.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 13,
+      "name": "UNCF Scholarships",
+      "dueDate": "Rolling",
+      "sponsor": "United Negro College Fund",
+      "amount": 10000,
+      "description": "Various scholarships for African American students. For undergraduate and graduate students, specific requirements vary by scholarship.",
+      "rankings": [0.0, 0.85, 0.0, 0.80, 0.0]
+    },
+    {
+      "id": 14,
+      "name": "Women Techmakers Scholars Program",
+      "dueDate": "December 6, 2026",
+      "sponsor": "Google",
+      "amount": 10000,
+      "description": "Supporting women in computing and technology. For undergraduate and graduate women pursuing computer science or related field.",
+      "rankings": [0.90, 0.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 15,
+      "name": "APIA Scholarship",
+      "dueDate": "January 15, 2026",
+      "sponsor": "Asian & Pacific Islander American Scholarship Fund",
+      "amount": 20000,
+      "description": "For Asian American and Pacific Islander students. For undergraduate and graduate students with Asian/Pacific Islander heritage, 2.7 GPA minimum, and U.S. citizenship or permanent resident status.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 16,
+      "name": "Point Foundation Scholarship",
+      "dueDate": "January 26, 2026",
+      "sponsor": "Point Foundation",
+      "amount": 13600,
+      "description": "Supporting LGBTQ students. For undergraduate and graduate LGBTQ students with demonstrated leadership.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.85]
+    },
+    {
+      "id": 17,
+      "name": "National Merit Scholarship",
+      "dueDate": "October 2026",
+      "sponsor": "National Merit Scholarship Corporation",
+      "amount": 2500,
+      "description": "Based on PSAT/NMSQT performance. For high school juniors with high PSAT scores and U.S. citizenship or permanent resident status.",
+      "rankings": [0.0, 0.75, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 18,
+      "name": "Dream.US National Scholarship",
+      "dueDate": "February 27, 2026",
+      "sponsor": "TheDream.US",
+      "amount": 33000,
+      "description": "Largest scholarship program for DREAMers. For high school seniors and community college graduates who are DACA eligible with significant financial need.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.98]
+    },
+    {
+      "id": 19,
+      "name": "Foot Locker Scholar Athletes Program",
+      "dueDate": "December 17, 2026",
+      "sponsor": "Foot Locker Foundation",
+      "amount": 20000,
+      "description": "For student-athletes with financial need. For high school seniors who participate in high school or community-based sports with 3.0 GPA minimum.",
+      "rankings": [0.0, 0.0, 0.0, 0.95, 0.0]
+    },
+    {
+      "id": 20,
+      "name": "Scholastic Art & Writing Awards",
+      "dueDate": "September 15, 2026",
+      "sponsor": "Scholastic Inc.",
+      "amount": 10000,
+      "description": "For creative teens in visual arts and writing. For students in grades 7-12 who submit original artwork or writing.",
+      "rankings": [0.30, 0.0, 0.40, 0.0, 0.95]
+    },
+    {
+      "id": 21,
+      "name": "Doodle for Google",
+      "dueDate": "March 20, 2026",
+      "sponsor": "Google",
+      "amount": 30000,
+      "description": "Annual art competition for K-12 students. Create a Google Doodle based on annual theme. Includes college scholarship and tech package.",
+      "rankings": [0.30, 0.0, 0.50, 0.0, 0.90]
+    },
+    {
+      "id": 22,
+      "name": "NSHSS Foundation Scholarships",
+      "dueDate": "April 1, 2026",
+      "sponsor": "National Society of High School Scholars",
+      "amount": 2500,
+      "description": "Various scholarships for high-achieving students. For high school students with NSHSS membership, requirements vary by specific scholarship.",
+      "rankings": [0.60, 0.70, 0.75, 0.0, 0.50]
+    },
+    {
+      "id": 23,
+      "name": "NCWIT Award for Aspirations in Computing",
+      "dueDate": "November 10, 2026",
+      "sponsor": "National Center for Women & IT",
+      "amount": 10000,
+      "description": "Recognizing young women in computing. For high school girls with interest in computing/technology and leadership experience.",
+      "rankings": [0.85, 0.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "id": 24,
+      "name": "Voice of Democracy Scholarship",
+      "dueDate": "October 31, 2026",
+      "sponsor": "Veterans of Foreign Wars",
+      "amount": 35000,
+      "description": "Audio essay competition on patriotic theme. For students in grades 9-12 who record a 3-5 minute audio essay.",
+      "rankings": [0.50, 0.90, 0.50, 0.40, 0.0]
+    },
+    {
+      "id": 25,
+      "name": "Young Naturalist Awards",
+      "dueDate": "January 9, 2027",
+      "sponsor": "American Museum of Natural History",
+      "amount": 2500,
+      "description": "For original science research essays. For students in grades 7-12 who submit original research-based essay.",
+      "rankings": [0.0, 0.0, 0.95, 0.0, 0.0]
+    },
+    {
+      "id": 26,
+      "name": "NACA Regional Council Student Leader Scholarships",
+      "dueDate": "May 1, 2026",
+      "sponsor": "National Association for Campus Activities",
+      "amount": 1000,
+      "description": "For student leaders involved in activities. For high school juniors and seniors with leadership in student activities or government.",
+      "rankings": [0.60, 0.90, 0.70, 0.75, 0.80]
+    },
+    {
+      "id": 27,
+      "name": "Best Buy @15 Scholarship",
+      "dueDate": "February 15, 2026",
+      "sponsor": "Best Buy",
+      "amount": 3000,
+      "description": "For students who use technology to help their community. For students in grades 9-12 with 2.5 GPA and use of technology for community service.",
+      "rankings": [0.85, 0.30, 0.0, 0.0, 0.30]
+    },
+    {
+      "id": 28,
+      "name": "Siemens Competition",
+      "dueDate": "September 15, 2026",
+      "sponsor": "Siemens Foundation",
+      "amount": 100000,
+      "description": "For outstanding research projects in STEM. For high school students with original research in math, science, or engineering.",
+      "rankings": [0.65, 0.0, 0.90, 0.0, 0.0]
+    },
+    {
+      "id": 29,
+      "name": "The Carson Scholars Fund",
+      "dueDate": "February 28, 2026",
+      "sponsor": "Carson Scholars Fund",
+      "amount": 1000,
+      "description": "For students who excel academically and in community service. For students in grades 4-11 with 3.75 GPA minimum and humanitarian qualities.",
+      "rankings": [0.0, 0.0, 0.90, 0.0, 0.0]
+    },
+    {
+      "id": 30,
+      "name": "Gloria Barron Prize for Young Heroes",
+      "dueDate": "April 30, 2026",
+      "sponsor": "Barron Prize",
+      "amount": 10000,
+      "description": "For young leaders making positive change. For ages 8-18 with significant service to people or the environment.",
+      "rankings": [0.70, 0.70, 0.85, 0.70, 0.75]
+    },
+    {
+      "id": 31,
+      "name": "NFIB Young Entrepreneur Awards",
+      "dueDate": "December 31, 2026",
+      "sponsor": "National Federation of Independent Business",
+      "amount": 25000,
+      "description": "For young entrepreneurs with their own business. For high school students who own and operate a small business.",
+      "rankings": [0.0, 0.0, 0.0, 0.0, 0.90]
+    }
+  ]
+}

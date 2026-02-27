@@ -1,0 +1,25 @@
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.progress-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.progress-dot--pending {
+  background-color: #ccc;
+}
+
+.progress-dot--correct {
+  background-color: #22c55e;
+}
+
+.progress-dot--incorrect {
+  background-color: #ef4444;
+}
