@@ -12,8 +12,8 @@ describe('useQuestionLogic', () =>{
         const {result} = renderHook(() => useQuestionLogic());
 
         //verify starting point
-        expect(result.current.currentQuestion.id).toBe(1);
-        expect(result.current.questionCount).toBe(3);
+        expect(result.current.currentQuestion.id).toBe(0);
+        expect(result.current.questionCount).toBe(6);
     });
     
     //test going to next question
@@ -26,25 +26,19 @@ describe('useQuestionLogic', () =>{
         });
 
         //verify
-        expect(result.current.currentQuestion.id).toBe(2);
+        expect(result.current.currentQuestion.id).toBe(1);
     });
 
     //test to never cause out-of-range error
     it('does not go past last question', () => {
-        const {result} = renderHook(() => useQuestionLogic());
-
-        //go to next question twice (to get to last question)
-        act(()=>{
-            result.current.nextQuestion();
-            result.current.nextQuestion();
-        });
+        const {result} = renderHook(() => useQuestionLogic(5));
 
         //try to go to next question again (should not change)
         act(()=>{
-            result.current.nextQuestion();
+            result.current.nextQuestion(); // 5 -> null
         });
 
         //verify still on last question
-        expect(result.current.currentQuestion.id).toBe(3);
+        expect(result.current.currentQuestion.id).toBe(5);
     });
 });
