@@ -27,6 +27,9 @@ export const useBudgetGameLogic = (progressApi?: ProgressApi, initialLevel: numb
     //tutorial check
     const isTutorial = currentQuestion.id === 0;
 
+    //final question check
+    const isFinalQuestion = currentQuestion.id === questionCount - 1;
+
     //calculate number correct AND incorrect (if needed)
     const correctCount = (!isTutorial && isCorrect) ? progress.correct + 1 : progress.correct;
     const incorrectCount = (!isTutorial && !isCorrect) ? progress.incorrect + 1: progress.incorrect;
@@ -40,38 +43,63 @@ export const useBudgetGameLogic = (progressApi?: ProgressApi, initialLevel: numb
       return;
     }
 
-    /* MINIGAME SECTION */
+
+    /* POP-UP TITLE MESSAGE + CONTENT */
+    let resultTitle = isCorrect ? "Correct!" : "Incorrect...";
+    let resultContent = "";
+
+    /*  CHECK ANSWER SECTION */
 
     if (isCorrect){
-      setTitle("Correct!");
-      setContent("You got this question right!")
-      if (!isTutorial){
-        setProgress(prev => ({...prev, correct: prev.correct + 1}));
-        // Mark question as correct. currentQuestion.id is 1-based;
-        // subtract 1 to convert to 0-based index for progress API.
-        progressApi?.markCorrect(currentQuestion.id - 1);
-      }
+      //handle message for correct answer
+      resultContent = isTutorial ? "You got this question right. This ends the tutorial" : "You got this question right";
+    //calculate difference
     }else{
       //find missing amount
       const difference = currentQuestion.answer - currentIncome;
       //calculate over / under
-      const status = difference > 0 ? "under" : "over"; //positive difference = overkill, negative difference = missed the target
-      setTitle("Close!");
-      setContent("You are " + Math.abs(difference) + " coins " + status + ". Let's try on the next one!");
-      setProgress(prev => ({...prev, incorrect: prev.incorrect + 1}));
-      // Mark question as incorrect. currentQuestion.id is 1-based;
-      // subtract 1 to convert to 0-based index for progress API.
-      progressApi?.markIncorrect(currentQuestion.id - 1);
+      const status = difference > 0 ? "short" : "over"; //positive difference = overkill, negative difference = missed the target
+
+      //incorrect message (changes based on final question statement)
+      resultContent = "Sorry... You are " + Math.abs(difference) + " coins " + status;
+      
+      // resultContent = "You are " + Math.abs(difference) + " coins " + status + ". Let's try on the next one!";
     }
+
+    if (!isTutorial){
+      if(isCorrect){
+        setProgress(prev => ({...prev, correct: prev.correct + 1}));
+        // Mark question as correct. currentQuestion.id is 1-based;
+        // subtract 1 to convert to 0-based index for progress API.
+        progressApi?.markCorrect(currentQuestion.id - 1);
+      }else{
+        setProgress(prev => ({...prev, incorrect: prev.incorrect + 1}));
+        // Mark question as incorrect. currentQuestion.id is 1-based;
+        // subtract 1 to convert to 0-based index for progress API.
+        progressApi?.markIncorrect(currentQuestion.id - 1);
+      }
+    }
+
+    
+
+    //Display mid-game progress or end of game stats
+    if (isFinalQuestion){
+      // setTitle("Game Over!");
+      // setContent("You got: "+correctCount+" out of "+(questionCount - 1)+" correct! and missed "+incorrectCount+"."); 
+      resultTitle = "Game Over!"
+      resultContent = resultContent + "... You got: "+correctCount+" out of "+(questionCount - 1)+" correct and missed "+incorrectCount+".";
+      setLast(true);
+    //mid game progress
+    }else{
+      resultContent = resultContent + ", let's keep going!";
+    }
+
     //resets buttons and goes to next question
     nextQuestion();
     resetButtons();
-    //add end of screen pop-up here
-  if ( (currentQuestion.id) === questionCount - 1){
-    setTitle("Game Over!");
-    setContent("You got: "+correctCount+" out of "+(questionCount - 1)+" correct! and missed "+incorrectCount+"."); 
-    setLast(true);
-    }
+    //display answer results
+    setTitle(resultTitle);
+    setContent(resultContent);
   };
   return {
     workDays,
