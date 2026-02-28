@@ -6,6 +6,11 @@ export interface PopupProps {
 
 export interface PopupPropsLesson {
   title: string;
-  content: string;
+  contentID: number;
   onClickNext: () => void;
+}
+
+export interface lessonData {
+    id: number;
+    lessonContent: string;
 }
