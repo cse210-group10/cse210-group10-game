@@ -25,7 +25,6 @@ export interface lessonData {
 // const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
 // ({ onComplete })
 const Minigame1: React.FC<MinigameProps> = () => {
-  const [showPopup, setShowPopup] = useState(true);
   const navigate = useNavigate();
   
   // Function to navigate to start of the minigame
