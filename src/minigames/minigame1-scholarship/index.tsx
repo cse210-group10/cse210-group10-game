@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import type { MinigameProps, MinigameResult } from "../../types/Minigame";
+import type { MinigameProps } from "../../types/Minigame";
 import "./styles.css";
-import { useNavigate } from 'react-router-dom';
 import Popup from "../../components/Popup";
+import ScholarshipCharacter from "./character";
 
 export const metadata = {
   title: "Scholarship Matcher",
@@ -18,12 +18,16 @@ export const metadata = {
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
   const [showPopup, setShowPopup] = useState(true);
-  const navigate = useNavigate();
+  const [hasStarted, setHasStarted] = useState(false);
+
+  if (hasStarted) {
+    return <ScholarshipCharacter onComplete={onComplete} />;
+  }
   
   // Function to navigate to start of the minigame
-  const handleMinigame1Start = () => {
-    navigate('/minigame/level-1/character');
-  };
+  // const handleMinigame1Start = () => {
+  //   navigate('/minigame/level-1/character');
+  // };
   
   return (
 
@@ -36,6 +40,8 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
           onClose={() => setShowPopup(false)}
           />
       )}
+
+       
       <h1>Scholarships</h1>
       <p>
         Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -48,10 +54,13 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
       </p>
 
       {/* navigate to start of the minigame */}
-      <button className="start-minigame1-button" onClick={handleMinigame1Start}>
+      {/* <button className="start-minigame1-button" onClick={handleMinigame1Start}>
+        Start game
+      </button> */}
+
+      <button className="start-minigame1-button" onClick={() => setHasStarted(true)}>
         Start game
       </button>
-
       {/* <button onClick={() => onComplete(result)}>
         Placeholder Button
       </button>  */}
@@ -60,6 +69,4 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
 };
 
 export default Minigame1;
-
-
 

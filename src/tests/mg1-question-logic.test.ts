@@ -1,22 +1,13 @@
-/*
-tests needed: this tests the logic only not rendering
-
-- validateAnswer() returns true for correct answer and false for incorrect answer
-- nextQuestion() increments questionId until the end of the questions, then shows alert
-- submitAnswer() calls validateAnswer, updates progressCount and progressArray correctly, and shows correct/incorrect feedback
-- initialization of scholarshipsForThisRound based on questionId changes
-- making sure that correct answer is determined by the scholarship with the highest ranking for the current character
-- making sure progressarray matches progressCount (e.g. if correct count is 2, there should be 2 true values in progressArray)
-*/
 import { renderHook, act } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { useScholarshipLogic } from '../minigames/minigame1-scholarship/question-logic';
 import type { ScholarshipData } from '../minigames/minigame1-scholarship/question-logic';
 
-// stop browser alert from interrupting tests
-globalThis.alert = vi.fn();
-
 describe('useScholarshipLogic', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
     it('validateAnswer returns true for correct answer and false for incorrect answer', () => {
         const { result } = renderHook(() => useScholarshipLogic(0));
         const { validateAnswer } = result.current;
@@ -52,9 +43,6 @@ describe('useScholarshipLogic', () => {
 
         expect(result.current.questionId).toBe(4);
         expect(result.current.isGameOver).toBe(true);
-        expect(globalThis.alert).not.toHaveBeenCalledWith(
-            expect.stringContaining("Game over! You got")
-        );
         });
 
     // ...existing code...
@@ -80,6 +68,45 @@ describe('useScholarshipLogic', () => {
 
         expect(result.current.progressArray).toEqual([null, null, null, null, null]);
         expect(result.current.totalCorrect).toEqual({ correct: 0, incorrect: 0 });
+    });
+
+    it('submitAnswer marks progress true, increments correct count, and advances on correct choice', () => {
+        const { result } = renderHook(() => useScholarshipLogic(0));
+        const roundScholarships = result.current.currentScholarships;
+        const bestScholarship = roundScholarships.reduce((best, current) =>
+            current.rankings[0] > best.rankings[0] ? current : best
+        );
+        const feedbackSpy = vi.fn();
+
+        act(() => {
+            result.current.submitAnswer(bestScholarship.id, feedbackSpy);
+        });
+
+        expect(result.current.totalCorrect).toEqual({ correct: 1, incorrect: 0 });
+        expect(result.current.progressArray[0]).toBe(true);
+        expect(result.current.questionId).toBe(1);
+        expect(feedbackSpy).toHaveBeenCalledWith(true);
+    });
+
+    it('submitAnswer marks progress false, keeps correct count, and advances on incorrect choice', () => {
+        const { result } = renderHook(() => useScholarshipLogic(0));
+        const roundScholarships = result.current.currentScholarships;
+        const bestScholarship = roundScholarships.reduce((best, current) =>
+            current.rankings[0] > best.rankings[0] ? current : best
+        );
+        const wrongScholarship = roundScholarships.find((s) => s.id !== bestScholarship.id);
+        const feedbackSpy = vi.fn();
+
+        expect(wrongScholarship).toBeDefined();
+
+        act(() => {
+            result.current.submitAnswer(wrongScholarship!.id, feedbackSpy);
+        });
+
+        expect(result.current.totalCorrect).toEqual({ correct: 0, incorrect: 0 });
+        expect(result.current.progressArray[0]).toBe(false);
+        expect(result.current.questionId).toBe(1);
+        expect(feedbackSpy).toHaveBeenCalledWith(false);
     });
 
     // ...existing code...

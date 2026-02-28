@@ -22,6 +22,7 @@ export interface ScholarshipData {
     amount: number;
     description: string;
     rankings: number[]; 
+    last: boolean; 
 }
 
 function getChosenArray(min: number, max: number): number[] {
@@ -35,10 +36,6 @@ function getChosenArray(min: number, max: number): number[] {
 // hard-coded question bank for ease of use
 const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 
-// let chosenIds = getChosenArray(0, currentScholarships.length);
-
-// export const selectedEntries = currentScholarships.filter((scholarshipEntry) => chosenIds.includes(scholarshipEntry.id));
-
 // Custom hook to manage scholarship question logic
 export const useScholarshipLogic = (characterIndex: number) => {
   const [questionId, setQuestionId] = useState(0);
@@ -46,6 +43,8 @@ export const useScholarshipLogic = (characterIndex: number) => {
   const [progressArray, setProgressArray] = useState<(boolean | null)[]>([null, null, null, null, null]);
   const [scholarshipsForThisRound, setScholarshipsForThisRound] = useState<ScholarshipData[]>([]);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [title, setTitle] = useState("Budgeting Mini-Game");
+  const [content, setContent] = useState("Welcome to the budgeting mini-game! Here, we will learn about...");
 
   // Initialize scholarships when questionId changes
   useEffect(() => {
@@ -62,25 +61,25 @@ export const useScholarshipLogic = (characterIndex: number) => {
   const validateAnswer = 
                         (selectedScholarshipId: number, 
                         scholarshipsForThisRound: ScholarshipData[]): boolean => {
-    console.log("validateAnswer called");
+    // console.log("validateAnswer called");
     // Get the rankings for this specific character from each of the 4 scholarships
     const characterScholarshipRankings = [];
     for (let i = 0; i < scholarshipsForThisRound.length; i++) {
       characterScholarshipRankings.push(scholarshipsForThisRound[i].rankings[characterIndex]);
     }
-    console.log("Character rankings:", characterScholarshipRankings);
+    // console.log("Character rankings:", characterScholarshipRankings);
     let maxRanking = Math.max(...characterScholarshipRankings);
     let bestScholarshipIndex = characterScholarshipRankings.indexOf(maxRanking);
     let bestScholarshipId = scholarshipsForThisRound[bestScholarshipIndex].id;
-    console.log("Best scholarship ID:", bestScholarshipId, "Selected ID:", selectedScholarshipId);
+    // console.log("Best scholarship ID:", bestScholarshipId, "Selected ID:", selectedScholarshipId);
     return selectedScholarshipId === bestScholarshipId;
   };
 
   // Move to next question round
   const nextQuestion = () => {
-    console.log("nextQuestion called. Current questionId:", questionId);
+    // console.log("nextQuestion called. Current questionId:", questionId);
     if (questionId < 4) {
-      console.log("Incrementing to next question");
+      // console.log("Incrementing to next question");
       setQuestionId(prev => prev + 1);
     } else {
       setIsGameOver(true);
@@ -88,23 +87,22 @@ export const useScholarshipLogic = (characterIndex: number) => {
   };
 
   // Handle answer submission
-  const submitAnswer = (selectedScholarshipId: number) => {
+  const submitAnswer = (
+    selectedScholarshipId: number,
+    onFeedback?: (isCorrect: boolean) => void
+  ) => {
     
     const isCorrect = validateAnswer(selectedScholarshipId, scholarshipsForThisRound);
 
     // Update correct count
     if (isCorrect) {
-      alert("Correct! Show correct answer feedback here.");
       setTotalCorrect(prev => ({ ...prev, correct: prev.correct + 1 }));
-      //update progress array to show correct answer
-    } else {
-      alert("Incorrect. Show incorrect answer feedback here.");
-    }
+    } 
     // Update array of correct and incorrect booleans for the progress bar
     const updatedProgressArray = [...progressArray];
     updatedProgressArray[questionId] = isCorrect;
     setProgressArray(updatedProgressArray);
-    
+    if (onFeedback) onFeedback(isCorrect);
     nextQuestion();
 
   };
@@ -118,6 +116,8 @@ export const useScholarshipLogic = (characterIndex: number) => {
     nextQuestion,
     submitAnswer,
     totalQuestions: 5,
-    isGameOver
+    isGameOver,
+    title,
+    content
   };
 };

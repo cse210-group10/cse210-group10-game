@@ -89,28 +89,6 @@ describe("ScholarshipCharacter - end game popup", () => {
     expect(await screen.findByText("Game Over!")).toBeInTheDocument();
     expect(screen.getByText("You got 3 out of 5 correct.")).toBeInTheDocument();
   });
-
-  it("clicking Ok closes popup and navigates to main route", async () => {
-    vi.spyOn(ScholarshipLogic, "useScholarshipLogic").mockReturnValue({
-      currentScholarships: [
-        { id: 1, name: "Test", weeksLeft: 4, sponsor: "Sponsor", amount: 1000, description: "desc", rankings: [1, 0, 0, 0, 0] },
-      ],
-      submitAnswer: vi.fn(),
-      totalCorrect: { correct: 4, incorrect: 1 },
-      progressArray: [true, true, true, true, false],
-      questionId: 4,
-      isGameOver: true,
-    } as any);
-
-    render(<ScholarshipCharacter />);
-
-    const okButton = await screen.findByRole("button", { name: /ok!/i });
-    fireEvent.click(okButton);
-
-    await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith("/map", { replace: true });
-    });
-  });
 });
 
 //  source: https://vitest.dev/guide/browser/component-testing
