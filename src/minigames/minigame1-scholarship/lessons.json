@@ -1,0 +1,40 @@
+{
+    "lessons": [
+        {
+            "id": 0,
+            "lessonContent": "Welcome to your first lesson! We are going to talk about scholarships and saving for college."
+        },
+
+        {
+            "id": 1,
+            "lessonContent": "It costs money to attend college. When you attend college, there are many costs. You have to pay for tuition, food, a place to live, and books for class. It can be very expensive, so it is important to make wise decisions when it comes to college."
+        },
+
+        {
+            "id": 2,
+            "lessonContent": "Education is an investment. Cambridge Dictionary defines investment as 'the act of putting money, effort, time, etc. into something to make a profit or get an advantage, or the money, effort, time, etc. used to do this.' This means that you are putting money, effort, and time into your education in hopes of getting something greater out of it. College might lead to better opportunities which could be a reason for why you are willing to pay a lot of money for your education."
+        },
+
+        {
+            "id": 3,
+            "lessonContent": "One thing you might consider to help you pay for college are scholarships. What's nice about scholarships is that, unlike loans,  you don't have to pay them back! So think about your interests and the skills you have, and try to find scholarships that apply to you. Remember,  you might have to write an essay or fill out an application, so make sure you are looking at these scholarships well before you apply to college so you can complete the requirements on time."
+
+        },
+        {
+            "id": 4,
+            "lessonContent": "Another thing to be careful of are scams! People online might pretend to be a legitimate scholarship when really they just want to get your money. If the scholarship asks for an application fee, it is likely a scam! To find legitimate scholarships look at the colleges you plan on applying to, government organizations, or some private organizations like non-profits and corporations."
+        },
+
+        {
+            "id": 5,
+            "lessonContent": "Most of this information about scholarships and applying to college is from  khan academy, so if you want more information or want to review, check out their resources."
+
+        },
+
+        {
+            "id": 6,
+            "lessonContent": "Remember to pay attention to the scholarships in the game. Write down the names of the ones you might be interested in applying to later."
+
+        }
+    ]
+}
