@@ -14,16 +14,16 @@ describe('useBudgetGameLogic Integration', () => {
         act(() => { result.current.toggleDay(1); });
         act(() => { result.current.toggleDay(2); });
 
-        // Q1 rate is 25. 3 days * 25 = 75.
+        // Q1 rate is 30. 3 days * 10 = 30.
         expect(result.current.totalWorkDays).toBe(3);
-        expect(result.current.currentIncome).toBe(75);
+        expect(result.current.currentIncome).toBe(30);
     });
 
     it('should advance the level even when the answer is incorrect', () => {
-        const { result } = renderHook(() => useBudgetGameLogic());
+        const { result } = renderHook(() => useBudgetGameLogic(undefined, 1));
 
         // Target for Q1 is 75. Let's give a wrong answer (1 day = 25).
-        act(() => { result.current.toggleDay(0); });
+        act(() => { result.current.toggleDay(1); });
 
         act(() => {
             result.current.submitAnswer();
@@ -40,7 +40,7 @@ describe('useBudgetGameLogic Integration', () => {
     });
 
     it('should advance the level and increment correct count when answer is right', () => {
-        const { result } = renderHook(() => useBudgetGameLogic());
+        const { result } = renderHook(() => useBudgetGameLogic(undefined, 1));
 
         // Correct answer for Q1 (3 days * 25 = 75)
         act(() => { result.current.toggleDay(0); });

@@ -3,3 +3,9 @@ export interface PopupProps {
   content: string;
   onClose: () => void;
 }
+
+export interface PopupPropsLesson {
+  title: string;
+  content: string;
+  onClickNext: () => void;
+}

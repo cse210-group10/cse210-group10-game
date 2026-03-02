@@ -1,14 +1,24 @@
 import React from "react";
 import "./styles.css";
+import type { MinigameProps, MinigameResult } from "../../types/Minigame";
 import { useState } from "react";
+import Popup from "../../components/Popup";
+import type { ScholarshipData } from "./question-logic";
+import { selectedEntries } from './question-logic';
+
+const scholarshipBankData: ScholarshipData[] = selectedEntries;
+
+
 
 // Shows the page for scholarship minigame 1
 const ScholarshipCharacter: React.FC = () => {
 
+  const [showPopup, setShowPopup] = useState(true);
+
   // text for the initial state
   const initialText = "Please select one of the scholarships with the buttons below.";
   //state variable to change scholarship based on button click
-  const [scholarshipInfo, setScholarshipInfo] = useState(initialText);
+  const [scholarshipInfo, setScholarshipInfo] = useState<ScholarshipData | null>(null);
 
    // Display submit button when a scholarship is clicked on
   const [submitVisible, setSubmitVisible] = useState(false);
@@ -19,6 +29,14 @@ const ScholarshipCharacter: React.FC = () => {
   return (
 
     <div className="minigame-level1-container">
+
+      {showPopup && (
+        <Popup
+        title="Tutorial"
+        content="This mini game is about scholarships. You will be shown a description of a student. Click  the different scholarship buttons at the bottom of the page to view different scholarship options. Select the scholarship that is best for the student, then click the submit button."
+        onClose={() => setShowPopup(false)}
+        />
+      )}
       
       {/* container for the character info and scholarship info*/}
       <div className="scholarship-compare">
@@ -39,36 +57,31 @@ const ScholarshipCharacter: React.FC = () => {
 
         {/* Displays the currently selected scholarship */}
         <div className="scholarship-info">
-          <p> {scholarshipInfo} </p>
+          {scholarshipInfo ? (
+            <div>
+              <h2>{scholarshipInfo.name}</h2>
+              <p><strong>Sponsor:</strong> {scholarshipInfo.sponsor}</p>
+              <p><strong>Amount:</strong> ${scholarshipInfo.amount.toLocaleString()}</p>
+              <p><strong>Due Date:</strong> {scholarshipInfo.dueDate}</p>
+              <p><strong>Description:</strong> {scholarshipInfo.description}</p>
+            </div>
+          ) : (
+            <p>{initialText}</p>
+          )}
         </div>
       </div>
 
       {/* Buttons to view different scholarhship options */}
       <div className="scholarship-btn-group">
         
-        <button className="scholarship-button" 
-        onClick={() => {handleSubmitClick(); setScholarshipInfo("Scholarship 1: This scholarship is for students entering a STEM program. It offers $10,000 towards tuition.")}} 
-        aria-label="first-scholarship-button">
-          Scholarship 1
-        </button>
-
-        <button className="scholarship-button" 
-        onClick={() => {handleSubmitClick(); setScholarshipInfo("Scholarship 2: This scholarship offers $5,000 for any student entering a 4 year program.")}}
-        aria-label="second-scholarship-button">
-          Scholarship 2
-        </button>
-
-        <button className="scholarship-button" 
-        onClick={() => {handleSubmitClick(); setScholarshipInfo("Scholarship 3: This scholarship offers $15,000, but you must submit an essay and a project idea.")}}
-        aria-label="third-scholarship-button">
-          Scholarship 3
-        </button>
-
-        <button className="scholarship-button" 
-        onClick={() => {handleSubmitClick(); setScholarshipInfo("Scholarship 4: This scholarship offers $2,000, and there will be 20 recipients.")}}
-        aria-label="fourth-scholarship-button">
-          Scholarship 4
-        </button>
+        {selectedEntries.map((item, index) => (
+          <button key={item.id} onClick={() => {
+            handleSubmitClick();
+            setScholarshipInfo(item);
+          }}>
+            Scholarship {index + 1}
+          </button>
+        ))}
 
       </div>
 
