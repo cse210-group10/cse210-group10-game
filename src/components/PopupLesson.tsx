@@ -17,16 +17,13 @@ const PopupLesson: React.FC<PopupPropsLesson> = ({
    onClickNext,
 }) => {
 
-  const [currentLessons, setcurrentLessons] = useState(currentLessonsBudget);
+  let currentLessons = currentLessonsBudget;
 
   // Determines which JSON file to use based on title of mini-game
-  if (title == 'Budget Planner') {
-      console.log(title)
-      setcurrentLessons(currentLessonsBudget)
-  } else {
-      console.log(title)
-      setcurrentLessons(currentLessonsScholarship)
-  }
+  
+  if (title == 'Scholarship Matcher') {
+    currentLessons = currentLessonsScholarship;
+  } 
 
   return (
     <div className="popup-container">
