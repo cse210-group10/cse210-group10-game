@@ -17,14 +17,11 @@ const PopupLesson: React.FC<PopupPropsLesson> = ({
    onClickNext,
 }) => {
 
-  const [currentLessons, setcurrentLessons] = useState(currentLessonsBudget);
+  let currentLessons = currentLessonsBudget;
 
-  if (title == 'Budget Planner') {
-      console.log(title)
-      setcurrentLessons(currentLessonsBudget)
-    } else if (title == 'Scholarship Matcher') {
-      setcurrentLessons(currentLessonsScholarship)
-  }
+  if (title == 'Scholarship Matcher') {
+    currentLessons = currentLessonsScholarship;
+  } 
 
   return (
     <div className="popup-container">
