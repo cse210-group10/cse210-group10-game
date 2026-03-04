@@ -1,7 +1,8 @@
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom";
-import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
+// import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
+import Minigame1 from "../minigames/minigame1-scholarship/index";
 import * as ScholarshipLogic from "../minigames/minigame1-scholarship/question-logic";
 
 
@@ -18,35 +19,35 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
- describe("ScholarshipCharacter", () => {
+ describe("Minigame1", () => {
     // Tests initial state
     it("Display the initial scholarship message before button is clicked", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         const initialScholarMessage = "Please select one of the scholarships with the buttons below."
         expect(screen.getByText(initialScholarMessage)).toBeInTheDocument()
     });
 
     // This will change when we add information about the actual characters in the game
     it("Displays details about the character", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         const initialChar = "Hi! I'm Bethany"
         expect(screen.getByText(initialChar)).toBeInTheDocument()
     });
 
     it("Submit button should not be displayed at the initial state", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         expect(screen.queryByText("Submit")).not.toBeInTheDocument()
     });
 
     // Tests after button has been clicked 
     it("Check if button appears after one of the scholarship buttons is clicked on", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         fireEvent.click(screen.getByText("Scholarship 2"));
         expect(screen.getByText("Submit")).toBeInTheDocument();
     });
 
     it("Display different scholarship info when buttons are clicked", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         
         // Click scholarship 1 and verify scholarship name appears
         fireEvent.click(screen.getByText("Scholarship 1"));
@@ -55,7 +56,7 @@ vi.mock("react-router-dom", async () => {
     });
 
     it("Display scholarship details when a button is clicked", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         
         // Click any scholarship button
         fireEvent.click(screen.getByText("Scholarship 1"));
@@ -84,7 +85,7 @@ describe("ScholarshipCharacter - end game popup", () => {
       isGameOver: true,
     } as any);
 
-    render(<ScholarshipCharacter />);
+    render(<Minigame1 />);
 
     expect(await screen.findByText("Game Over!")).toBeInTheDocument();
     expect(screen.getByText("You got 3 out of 5 correct.")).toBeInTheDocument();
