@@ -1,4 +1,4 @@
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import {describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom";
 // import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
@@ -46,13 +46,24 @@ vi.mock("react-router-dom", async () => {
         expect(screen.getByText("Submit")).toBeInTheDocument();
     });
 
-    it("Display different scholarship info when buttons are clicked", () => {
+    it("Display different scholarship info when buttons are clicked", async () => {
         render(<Minigame1 />);
         
-        // Click scholarship 1 and verify scholarship name appears
+        // Click scholarship 1 and wait for scholarship info to display
         fireEvent.click(screen.getByText("Scholarship 1"));
-        const scholarshipNames = screen.getAllByText(/^[A-Z]/); // Should show at least one scholarship
-        expect(scholarshipNames.length).toBeGreaterThan(0);
+        await waitFor(() => {
+            expect(screen.getByText(/Sponsor:/)).toBeInTheDocument();
+        });
+        
+        // Get the scholarship name after first selection
+        const scholarship1Name = screen.getByRole("heading", { level: 2 }).textContent;
+        
+        // Click scholarship 2 and wait for scholarship info to update
+        fireEvent.click(screen.getByText("Scholarship 2"));
+        await waitFor(() => {
+            const scholarship2Name = screen.getByRole("heading", { level: 2 }).textContent;
+            expect(scholarship2Name).not.toBe(scholarship1Name);
+        });
     });
 
     it("Display scholarship details when a button is clicked", () => {
