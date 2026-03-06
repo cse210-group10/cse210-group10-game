@@ -43,8 +43,8 @@ export const useScholarshipLogic = (characterIndex: number) => {
   const [progressArray, setProgressArray] = useState<(boolean | null)[]>([null, null, null, null, null]);
   const [scholarshipsForThisRound, setScholarshipsForThisRound] = useState<ScholarshipData[]>([]);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [title, setTitle] = useState("Budgeting Mini-Game");
-  const [content, setContent] = useState("Welcome to the budgeting mini-game! Here, we will learn about...");
+  const [title, setTitle] = useState("Scholarship Mini-Game");
+  const [content, setContent] = useState("Welcome to the scholarship mini-game! Here, we will learn about...");
 
   // Initialize scholarships when questionId changes
   useEffect(() => {
