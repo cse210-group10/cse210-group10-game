@@ -1,20 +1,40 @@
 import type { StarsContextValue } from '../../types/Minigame';
 import React, { useState, useContext, createContext } from 'react';
 
+// Track stars earned per minigame level (max 3 per level)
+type LevelStars = Record<string, number>;
 
 const StarsContext = createContext<StarsContextValue | undefined>(undefined);
 
 export const StarsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [stars, setStars] = useState(0);
+  const [totalStars, setTotalStars] = useState(0);
+  const [levelStars, setLevelStars] = useState<LevelStars>({});
 
-  const addStars = (earned: number) => {
-    // Limit stars to maximum of 3 per mini-game as expected by tests
-    const clampedEarned = Math.min(3, Math.max(0, earned));
-    setStars(prev => prev + clampedEarned);
+  const addStars = (levelId: string, earned: number) => {
+    // Get current stars for this level
+    const currentLevelStars = levelStars[levelId] || 0;
+    
+    // Only add stars if the new score is higher than current
+    // and we haven't reached max (3 stars)
+    if (earned > currentLevelStars) {
+      const maxStars = 3;
+      const newStars = Math.min(earned, maxStars);
+      const starsToAdd = newStars - currentLevelStars;
+      
+      setTotalStars(prev => prev + starsToAdd);
+      setLevelStars(prev => ({
+        ...prev,
+        [levelId]: newStars
+      }));
+    }
+  };
+
+  const getLevelStars = (levelId: string): number => {
+    return levelStars[levelId] || 0;
   };
 
   return (
-    <StarsContext.Provider value={{ stars, addStars }}>
+    <StarsContext.Provider value={{ stars: totalStars, addStars, getLevelStars }}>
       {children}
     </StarsContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 // import { useCalendarLogic } from './calendar-logic'; //math logic for interactive counter
 // import { useQuestionLogic } from './question-logic'; // question load / check answer
@@ -27,7 +27,7 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
     title,
     content,
     last,
-    questionCount
+    progress
   } = useBudgetGameLogic();
 
   // initialize progress bar with total number of questions
@@ -35,10 +35,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   //   progress?.init(questionCount);
   // }, [progress, questionCount]);
 
+  // Stars calculation: 3 stars for 4-5 correct, 2 stars for 2-3 correct, 1 star for 0-1 correct
+  const correctAnswers = progress.correct;
+  const stars = correctAnswers >= 4 ? 3 : correctAnswers >= 2 ? 2 : 1;
+
   const result: MinigameResult = {  
-    // TODO: add actual star logic here (for Mo)
-    stars: 1, 
-  }
+    stars,
+    levelId: 'level-2'
+  };
 
   const [showPopup, setShowPopup] = useState(true);
   const lastLessonID = 6; //id for last paragraph in lesson
