@@ -1,22 +1,33 @@
-import React from 'react';
-import type { PopupPropsLesson } from '../types/General';
+import React, { useState } from 'react';
+import type { PopupPropsLesson, lessonData } from '../types/General';
 import './styles.css';
+import lessonDataStoreScholarship from '../minigames/minigame1-scholarship/lessons.json'; 
+import lessonDataStoreBudget from '../minigames/minigame2-budgeting/lessons.json'; 
 
 // popup component for lessons
+// DataStore for each minigame
+export const currentLessonsBudget = lessonDataStoreBudget.lessons as lessonData[];
+export const currentLessonsScholarship = lessonDataStoreScholarship.lessons as lessonData[];
 
 // creates a popup with a title, content, and an next button to go to the next lesson
 // using the next button (no clicking outside to close)
 const PopupLesson: React.FC<PopupPropsLesson> = ({
    title,
-   content,
+   contentID,
    onClickNext,
 }) => {
+
+  let currentLessons = currentLessonsBudget;
+
+  if (title == 'Scholarship Matcher') {
+    currentLessons = currentLessonsScholarship;
+  } 
 
   return (
     <div className="popup-container">
       <div className="popup">
             <h1 className="popup-title">{title}</h1>
-            <p className="popup-content">{content}</p>
+            <p className="popup-content">{currentLessons[contentID].lessonContent}</p>
             <button
             className="button"
             onClick={onClickNext}
@@ -38,7 +49,7 @@ in return(
    {showPopup && (lessonID != lastLessonID) &&(
       <PopupLesson
       title= {title}
-      content= {content}
+      contentID={lessonID}
       onClickNext={() => setLessonID(prev => prev + 1)}
       />
     )}

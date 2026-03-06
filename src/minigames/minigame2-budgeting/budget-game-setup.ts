@@ -5,7 +5,7 @@ import type { ProgressApi } from "../../types/Minigame";
 
 export const useBudgetGameLogic = (progressApi?: ProgressApi, initialLevel: number = 0) => {
   const [title, setTitle] = useState("Budgeting Mini-Game");
-  const [content, setContent] = useState("Welcome to the budgeting mini-game! Here, we will learn about...");
+  const [content, setContent] = useState("Welcome to the budgeting mini-game! Before playing the mini-game, we are going to discuss budgeting and making a plan for your money.");
   const [last, setLast] = useState(false);
   console.log({title}, {content})
 
