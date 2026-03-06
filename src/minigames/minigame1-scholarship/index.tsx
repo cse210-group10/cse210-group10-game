@@ -33,7 +33,6 @@ const Minigame1: React.FC<MinigameProps> = () => {
     navigate('/minigame/level-1/character');
   };
   
-  const [showPopup, setShowPopup] = useState(true);
   const lastLessonID = 7; //id for last paragraph in lesson
   const currentLessons = lessonDataStore.lessons as lessonData[];
   const [lessonID, setLessonID] = useState(0);
@@ -47,7 +46,7 @@ const Minigame1: React.FC<MinigameProps> = () => {
       {showPopup && (lessonID != lastLessonID) &&(
         <PopupLesson
         title= "Scholarship Matcher"
-        content= {currentLessons[lessonID].lessonContent}
+        contentID={lessonID}
         onClickNext={() => setLessonID(prev => prev + 1)}
         />
       )}
