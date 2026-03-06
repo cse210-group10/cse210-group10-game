@@ -26,7 +26,7 @@ p {
 }
 
 /* margins for minigame 1 heading, description, and image */
-.minigame-level1-container p, h1, img{
+.minigame-level1-container p, h1, img, ul{
   margin-left: 6rem;
   margin-right: 6rem;
 }

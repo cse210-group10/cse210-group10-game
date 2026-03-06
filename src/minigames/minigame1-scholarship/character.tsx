@@ -1,6 +1,8 @@
 import React from "react";
 import "./styles.css";
+import type { MinigameProps, MinigameResult } from "../../types/Minigame";
 import { useState } from "react";
+import Popup from "../../components/Popup";
 import type { ScholarshipData } from "./question-logic";
 import { selectedEntries } from './question-logic';
 
@@ -10,6 +12,8 @@ const scholarshipBankData: ScholarshipData[] = selectedEntries;
 
 // Shows the page for scholarship minigame 1
 const ScholarshipCharacter: React.FC = () => {
+
+  const [showPopup, setShowPopup] = useState(true);
 
   // text for the initial state
   const initialText = "Please select one of the scholarships with the buttons below.";
@@ -25,6 +29,14 @@ const ScholarshipCharacter: React.FC = () => {
   return (
 
     <div className="minigame-level1-container">
+
+      {showPopup && (
+        <Popup
+        title="Tutorial"
+        content="This mini game is about scholarships. You will be shown a description of a student. Click  the different scholarship buttons at the bottom of the page to view different scholarship options. Select the scholarship that is best for the student, then click the submit button."
+        onClose={() => setShowPopup(false)}
+        />
+      )}
       
       {/* container for the character info and scholarship info*/}
       <div className="scholarship-compare">
