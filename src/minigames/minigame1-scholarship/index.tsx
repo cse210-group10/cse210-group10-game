@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import type { MinigameProps/*, MinigameResult*/ } from "../../types/Minigame";
+import React from "react";
+import { useState, useEffect, useRef } from "react";
+import type { MinigameProps } from "../../types/Minigame";
 import "./styles.css";
-import { useNavigate } from 'react-router-dom';
+import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
+import Popup from "../../components/Popup";
 import PopupLesson from "../../components/PopupLesson";
-import lessonDataStore from './lessons.json';
 
 export const metadata = {
   title: "Scholarship Matcher",
@@ -22,45 +23,130 @@ export interface lessonData {
 // }
 // reference code for how to use stars onComplete for minigames
 
-// const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
-// ({ onComplete })
-const Minigame1: React.FC<MinigameProps> = () => {
-  const [showPopup, setShowPopup] = useState(true);
-  const navigate = useNavigate();
-  
-  // Function to navigate to start of the minigame
-  const handleMinigame1Start = () => {
-    navigate('/minigame/level-1/character');
-  };
-  
+const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
+  const initialText = "Please select one of the scholarships with the buttons below.";
+  const characterIndex = 0;
+  const { currentScholarships, submitAnswer, totalCorrect, questionId, isGameOver } = useScholarshipLogic(characterIndex);
+  const [selectedScholarshipId, setSelectedScholarshipId] = useState<ScholarshipData | null>(null);
+  const [scholarshipInfo, setScholarshipInfo] = useState<ScholarshipData | null>(null);
+  const [submitVisible, setSubmitVisible] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const handledGameOverRef = useRef(false);
+  const [feedbackPopup, setFeedbackPopup] = useState<{ visible: boolean; isCorrect: boolean }>({
+    visible: false,
+    isCorrect: false,
+  });
+
+  //For lesson pop up box
+  const [showPopupLesson, setShowPopupLesson] = useState(true);
   const lastLessonID = 7; //id for last paragraph in lesson
-  const currentLessons = lessonDataStore.lessons as lessonData[];
   const [lessonID, setLessonID] = useState(0);
-  
+  const [title, setTitle] = useState("Scholarship Matcher");
+
+  useEffect(() => {
+    if (!isGameOver || handledGameOverRef.current) return;
+    handledGameOverRef.current = true;
+    setShowPopup(true);
+  }, [isGameOver]);
+
+  const stars = totalCorrect.correct >= 4 ? 3 : totalCorrect.correct >= 2 ? 2 : 1;
+
   return (
-
-    // Placeholder information about how to play the game
     <div className="minigame-level1-container">
-      <h1>Scholarship Matcher</h1>
 
-      {showPopup && (lessonID != lastLessonID) &&(
+      {showPopupLesson && (lessonID != lastLessonID) &&(
         <PopupLesson
-        title= "Scholarship Matcher"
+        title= {title}
         contentID={lessonID}
         onClickNext={() => setLessonID(prev => prev + 1)}
         />
       )}
 
-      {/* navigate to start of the minigame */}
-        <button className="start-minigame1-button" onClick={handleMinigame1Start}>
-          Start game
-        </button>
+      {/* feedback popup after each question */}
+      {feedbackPopup.visible && (
+        <Popup
+          title={feedbackPopup.isCorrect ? "Correct!" : "Incorrect"}
+          content={feedbackPopup.isCorrect
+            ? "Great job! That scholarship is the best match."
+            : "Not quite! Try to match the scholarship to the student's needs."}
+          onClose={() => setFeedbackPopup({ visible: false, isCorrect: false })}
+        />
+      )}
+      {showPopup && (
+        <Popup
+          title="Game Over!"
+          content={`You got ${totalCorrect.correct} out of 5 correct.`}
+          onClose={() => {
+            setShowPopup(false);
+            onComplete({ stars });
+          }}
+        />
+      )}
 
+      <div className="scholarship-compare">
+        <div className="profile">
+          <div className="profile-pic">
+            <img src="/src/minigames/minigame1-scholarship/undraw_profile-pic.svg" alt="profile-pic" />
+          </div>
+          <h1>Hi! I'm Bethany</h1>
+          <p>
+            Here is some information about me: I'm interested in environmental engineering 
+            and veterinary science. I hope to go to a school with a strong STEM program.  
+            Click on one of the scholarships below to decide which one is right for me.
+          </p>
+        </div>
+
+        <div className="scholarship-info">
+          {scholarshipInfo ? (
+            <div>
+              <h2>{scholarshipInfo.name}</h2>
+              <p><strong>Sponsor:</strong> {scholarshipInfo.sponsor}</p>
+              <p><strong>Amount:</strong> ${scholarshipInfo.amount.toLocaleString()}</p>
+              <p><strong>Weeks Left:</strong> {scholarshipInfo.weeksLeft.toLocaleString()}</p>
+              <p><strong>Description:</strong> {scholarshipInfo.description}</p>
+            </div>
+          ) : (
+            <p>{initialText}</p>
+          )}
+        </div>
+      </div>
+
+      <div className="scholarship-btn-group">
+        {currentScholarships.map((item, index) => (
+          <button
+            key={`${questionId}-${item.id}`}
+            onClick={() => {
+              setSelectedScholarshipId(item);
+              setScholarshipInfo(item);
+              setSubmitVisible(true);
+            }}
+          >
+            Scholarship {index + 1}
+          </button>
+        ))}
+      </div>
+
+      {submitVisible && !isGameOver && (
+        <button
+          className="submit-answer-button"
+          onClick={() => {
+            if (selectedScholarshipId) {
+              submitAnswer(selectedScholarshipId.id, (isCorrect) => {
+                setFeedbackPopup({ visible: true, isCorrect });
+              });
+              setSubmitVisible(false);
+              setSelectedScholarshipId(null);
+              setScholarshipInfo(null);
+            } else {
+              alert("Please select a scholarship before submitting.");
+            }
+          }}
+        >
+          Submit
+        </button>
+      )}
     </div>
   );
 };
 
 export default Minigame1;
-
-
-
