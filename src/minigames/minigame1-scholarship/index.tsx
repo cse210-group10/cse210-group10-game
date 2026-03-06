@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import type { MinigameProps/*, MinigameResult*/ } from "../../types/Minigame";
 import "./styles.css";
 import { useState, useEffect, useRef } from "react";
 import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
@@ -12,6 +13,16 @@ export const metadata = {
     "Placeholder",
   id: "level-1",
 };
+
+export interface lessonData {
+    id: number;
+    lessonContent: string;
+}
+
+// const result: MinigameResult = {  
+//   stars: 1, 
+// }
+// reference code for how to use stars onComplete for minigames
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
   const initialText = "Please select one of the scholarships with the buttons below.";

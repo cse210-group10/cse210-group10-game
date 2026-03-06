@@ -2,6 +2,11 @@ import React from 'react';
 import type { PopupProps } from '../types/General';
 import './styles.css';
 
+// popup component
+
+// creates a popup with a title, content, and an ok button to close the popup
+// forces highest z-index and centers the popup on the screen, only closeable 
+// using the ok button (no clicking outside to close)
 const Popup: React.FC<PopupProps> = ({
    title,
    content,

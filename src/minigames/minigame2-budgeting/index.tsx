@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 // import { useCalendarLogic } from './calendar-logic'; //math logic for interactive counter
 // import { useQuestionLogic } from './question-logic'; // question load / check answer
 import QuestionDisplay from './question-display'; // question view
 import { useBudgetGameLogic } from './budget-game-setup';
+import type { MinigameResult, MinigameProps } from '../../types/Minigame';
+import PopupLesson from '../../components/PopupLesson';
 import './styles.css';
 
 export const metadata = {
@@ -12,7 +14,7 @@ export const metadata = {
   id: "level-2"
 };
 
-const Minigame2: React.FC = () => {
+const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   //set-up everything from useBudgetGameLogic
   const {
     workDays,
@@ -21,6 +23,10 @@ const Minigame2: React.FC = () => {
     currentQuestion,
     currentIncome,
     submitAnswer,
+    title,
+    content,
+    last,
+    questionCount,
     title,
     content,
     last,
@@ -38,6 +44,8 @@ const Minigame2: React.FC = () => {
   }
 
   const [showPopup, setShowPopup] = useState(true);
+  const lastLessonID = 6; //id for last paragraph in lesson
+  const [lessonID, setLessonID] = useState(0);
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
@@ -48,9 +56,23 @@ const Minigame2: React.FC = () => {
     );
   };
 
+  const submitHelper = () => {
+    submitAnswer();
+    // console.log(Minigame2 Popup Debugging: {title}, {content})
+    setShowPopup(true);
+  };
+
   // not sure on this mini-game level2 container\
   return (
+
     <div className="minigame-level2-container">
+      {showPopup && (lessonID != lastLessonID) &&(
+        <PopupLesson
+        title= {title}
+        contentID={lessonID}
+        onClickNext={() => setLessonID(prev => prev + 1)}
+        />
+      )}
       
       {/* testing question display */}
       <QuestionDisplay questionInfo={currentQuestion} amountPerDay={currentIncome}/>
@@ -62,7 +84,7 @@ const Minigame2: React.FC = () => {
         {/* helper function from above */}
         {workDays.map(renderCalendarButton)}
       </div>
-      <button className="submit-button" onClick={submitAnswer}>
+      <button className="submit-button" onClick={submitHelper}>
         Submit
       </button>
     </div>

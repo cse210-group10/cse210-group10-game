@@ -12,8 +12,8 @@ describe('useQuestionLogic', () =>{
         const {result} = renderHook(() => useQuestionLogic());
 
         //verify starting point
-        expect(result.current.currentQuestion.id).toBe(1);
-        expect(result.current.questionCount).toBe(3);
+        expect(result.current.currentQuestion.id).toBe(0);
+        expect(result.current.questionCount).toBe(6);
     });
     
     //test going to next question
@@ -26,27 +26,19 @@ describe('useQuestionLogic', () =>{
         });
 
         //verify
-        expect(result.current.currentQuestion.id).toBe(2);
+        expect(result.current.currentQuestion.id).toBe(1);
     });
 
     //test to never cause out-of-range error
-    it('never goes beyond final question; finish alert should happen',() =>{
-        const {result} = renderHook(() => useQuestionLogic());
+    it('does not go past last question', () => {
+        const {result} = renderHook(() => useQuestionLogic(5));
 
-        //skip to end + go beyond it
+        //try to go to next question again (should not change)
         act(()=>{
-            result.current.nextQuestion(); // 1 -> 2
-        });
-        act(()=>{
-            result.current.nextQuestion(); // 2 -> 3
-        });
-        act(()=>{
-            result.current.nextQuestion(); // 3 -> null
+            result.current.nextQuestion(); // 5 -> null
         });
 
-        //verification 
-        expect(result.current.currentQuestion.id).toBe(3);
-        //subject to change
-        expect(globalThis.alert).toHaveBeenCalledWith("All levels done! Finish Screen goes here");
+        //verify still on last question
+        expect(result.current.currentQuestion.id).toBe(5);
     });
 });

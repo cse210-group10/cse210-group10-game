@@ -19,8 +19,6 @@ const PopupLesson: React.FC<PopupPropsLesson> = ({
 
   let currentLessons = currentLessonsBudget;
 
-  // Determines which JSON file to use based on title of mini-game
-  
   if (title == 'Scholarship Matcher') {
     currentLessons = currentLessonsScholarship;
   } 

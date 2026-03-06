@@ -59,4 +59,15 @@ describe('Popup', () => {
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
+
+  it('does not call onClose on initial render', () => {
+    render(<Popup {...defaultProps} />);
+    expect(mockOnClose).not.toHaveBeenCalled();
+  });
+
+  it('renders updated content when props change', () => {
+    const { rerender } = render(<Popup {...defaultProps} />);
+    rerender(<Popup {...defaultProps} content="New content." />);
+    expect(screen.getByText('New content.')).toBeInTheDocument();
+  });
 });
