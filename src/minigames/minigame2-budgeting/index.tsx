@@ -5,6 +5,7 @@ import CalendarButton from './calendar-button'; //buttons for interactive counte
 import QuestionDisplay from './question-display'; // question view
 import { useBudgetGameLogic } from './budget-game-setup';
 import type { MinigameResult, MinigameProps } from '../../types/Minigame';
+import Popup from '../../components/Popup';
 import PopupLesson from '../../components/PopupLesson';
 import './styles.css';
 
@@ -62,6 +63,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   return (
 
     <div className="minigame-level2-container">
+      {showPopup && (
+          <Popup
+          title={title}
+          content={content}
+          onClose={() => {setShowPopup(false); if(last) onComplete(result);}}
+          />
+      )}
+      
       {showPopup && (lessonID != lastLessonID) &&(
         <PopupLesson
         title= {title}
