@@ -3,20 +3,23 @@ import { describe, test, expect } from 'vitest'
 import { StarsProvider, useStars } from '../pages/MapPage/Stars.tsx'
 
 function TestComponent() {
-  const { stars, addStars } = useStars()
+  const { stars, addStars, getLevelStars } = useStars()
 
   return (
     <>
       <span data-testid="stars">{stars}</span>
-      <button onClick={() => addStars(5)}>Add 5</button>
-      <button onClick={() => addStars(3)}>Add 3</button>
-      <button onClick={() => addStars(-1)}>Add -1</button>
+      <span data-testid="level1-stars">{getLevelStars('level-1')}</span>
+      <button onClick={() => addStars('level-1', 5)}>Set 5 to level 1</button>
+      <button onClick={() => addStars('level-1', 3)}>Set 3 to level 1</button>
+      <button onClick={() => addStars('level-1', 2)}>Set 2 to level 1</button>
+      <button onClick={() => addStars('level-1', 1)}>Set 1 to level 1</button>
+      <button onClick={() => addStars('level-2', 2)}>Set 2 to level 2</button>
     </>
   )
 }
 
 describe('StarsContext', () => {
-  test('adds stars correctly', () => {
+  test('only adds stars when new score is higher, max 3 per level', () => {
     render(
       <StarsProvider>
         <TestComponent />
@@ -25,16 +28,27 @@ describe('StarsContext', () => {
 
     expect(screen.getByTestId('stars').textContent).toBe('0')
 
-    fireEvent.click(screen.getByText('Add 3'))
+    // Set 2 stars - should work
+    fireEvent.click(screen.getByText('Set 2 to level 1'))
+    expect(screen.getByTestId('stars').textContent).toBe('2')
+    expect(screen.getByTestId('level1-stars').textContent).toBe('2')
 
+    // Try to set 1 star - lower than current (2), should not update
+    fireEvent.click(screen.getByText('Set 1 to level 1'))
+    expect(screen.getByTestId('stars').textContent).toBe('2')
+    expect(screen.getByTestId('level1-stars').textContent).toBe('2')
+
+    // Set 3 stars - higher than current (2), should update
+    fireEvent.click(screen.getByText('Set 3 to level 1'))
+    expect(screen.getByTestId('stars').textContent).toBe('3')
+    expect(screen.getByTestId('level1-stars').textContent).toBe('3')
+
+    // Try to set 5 stars - max is 3, stays at 3
+    fireEvent.click(screen.getByText('Set 5 to level 1'))
     expect(screen.getByTestId('stars').textContent).toBe('3')
 
-    fireEvent.click(screen.getByText('Add -1')) // no negative numbers
-
-    expect(screen.getByTestId('stars').textContent).toBe('3')
-
-    fireEvent.click(screen.getByText('Add 5')) // max number of stars obtained at once is 3
-    
-    expect(screen.getByTestId('stars').textContent).toBe('6')
+    // Add to different level
+    fireEvent.click(screen.getByText('Set 2 to level 2'))
+    expect(screen.getByTestId('stars').textContent).toBe('5') // 3 + 2 = 5
   })
 })

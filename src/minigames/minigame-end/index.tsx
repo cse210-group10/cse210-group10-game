@@ -6,13 +6,14 @@ import './styles.css';
 
 const MinigameEnd: React.FC<MinigameResult> = ({
   stars,
+  levelId,
 }) => {
   const navigate = useNavigate();
   const { addStars } = useStars();
-  console.log(`Minigame completed with ${stars} stars!`);
+  console.log(`Minigame completed with ${stars} stars for level ${levelId}!`);
 
   const handleMinigameCompleteHelper = () => {
-    addStars(stars);
+    addStars(levelId, stars);
     navigate('/map');
   };
 

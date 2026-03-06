@@ -38,10 +38,10 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
   });
 
   //For lesson pop up box
-  const [showPopupLesson, setShowPopupLesson] = useState(true);
+  const [showPopupLesson] = useState(true);
   const lastLessonID = 7; //id for last paragraph in lesson
   const [lessonID, setLessonID] = useState(0);
-  const [title, setTitle] = useState("Scholarship Matcher");
+  const [title] = useState("Scholarship Matcher");
 
   useEffect(() => {
     if (!isGameOver || handledGameOverRef.current) return;
@@ -79,7 +79,7 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
           content={`You got ${totalCorrect.correct} out of 5 correct.`}
           onClose={() => {
             setShowPopup(false);
-            onComplete({ stars });
+            onComplete({ stars, levelId: 'level-1' });
           }}
         />
       )}

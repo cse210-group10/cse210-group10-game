@@ -35,10 +35,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   //   progress?.init(questionCount);
   // }, [progress, questionCount]);
 
+  // Stars calculation: 3 stars for 4-5 correct, 2 stars for 2-3 correct, 1 star for 0-1 correct
+  const correctAnswers = progress.correct;
+  const stars = correctAnswers >= 4 ? 3 : correctAnswers >= 2 ? 2 : 1;
+
   const result: MinigameResult = {  
-    // TODO: add actual star logic here (for Mo)
-    stars: 1, 
-  }
+    stars,
+    levelId: 'level-2'
+  };
 
   const [showPopup, setShowPopup] = useState(true);
   const [showEndPopup, setShowEndPopup] = useState(false);
