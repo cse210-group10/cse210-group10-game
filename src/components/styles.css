@@ -11,7 +11,7 @@
 }
 
 .back-button:hover {
-  background-color: #f0f0f0;
+  background-color: white;
   transform: translateY(-2px);
 }
 
@@ -28,27 +28,26 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background-color: #000000ab;
+  background-color: #f0f0f08b;
 }
 
 .popup {
-  background-color: #ffffff;
-  width: 50vw;
-  height: 45vh;
+  background-color: #f0f0f0;
+  width: 75vw;
+  height: 75vh;
   border-radius: 20px;
   /* padding: 1rem; */
   border-radius: 1.5rem;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* pushes header top, button bottom */
+  justify-content: center;
   align-items: center;
-  padding: 5rem;                  /* breathing room around edges */
   opacity: 1;
 }
 
 .popup-title {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
   font-weight: bold;
   color: #1861CA;
@@ -68,19 +67,10 @@
   font-weight: bold;
   border-radius: 2rem;
   cursor: pointer;
+  font-weight: normal;
+  color: #000;
 }
 
 .popup-content {
   color: #000;
-  font-size: 1.5rem;
-  flex: 1;
-  overflow-y: auto;
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 1rem 0;
-  box-sizing: border-box;
-  word-break: break-word;
-  overflow-wrap: break-word;
 }

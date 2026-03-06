@@ -24,6 +24,8 @@ export interface ScholarshipData {
     rankings: number[]; 
 }
 
+  export const SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS = 5;
+
 function getChosenArray(min: number, max: number): number[] {
   const chosenSet = new Set<number>();
   while (chosenSet.size < 4) { // 4 is the amount of answer choices
@@ -39,7 +41,9 @@ const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 export const useScholarshipLogic = (characterIndex: number) => {
   const [questionId, setQuestionId] = useState(0);
   const [totalCorrect, setTotalCorrect] = useState({ correct: 0, incorrect: 0 });
-  const [progressArray, setProgressArray] = useState<(boolean | null)[]>([null, null, null, null, null]);
+  const [progressArray, setProgressArray] = useState<(boolean | null)[]>(
+    Array<boolean | null>(SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS).fill(null)
+  );
   const [scholarshipsForThisRound, setScholarshipsForThisRound] = useState<ScholarshipData[]>([]);
   const [isGameOver, setIsGameOver] = useState(false);
   const [title] = useState("Scholarship Mini-Game");
@@ -47,7 +51,7 @@ export const useScholarshipLogic = (characterIndex: number) => {
 
   // Initialize scholarships when questionId changes
   useEffect(() => {
-    if (questionId < 5) {
+    if (questionId < SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS) {
       const chosenIds = getChosenArray(0, currentScholarships.length);
       const scholarships = currentScholarships.filter((scholarship) => 
         chosenIds.includes(scholarship.id)
@@ -77,7 +81,7 @@ export const useScholarshipLogic = (characterIndex: number) => {
   // Move to next question round
   const nextQuestion = () => {
     // console.log("nextQuestion called. Current questionId:", questionId);
-    if (questionId < 4) {
+    if (questionId < SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS - 1) {
       // console.log("Incrementing to next question");
       setQuestionId(prev => prev + 1);
     } else {
@@ -114,7 +118,7 @@ export const useScholarshipLogic = (characterIndex: number) => {
     validateAnswer,
     nextQuestion,
     submitAnswer,
-    totalQuestions: 5,
+    totalQuestions: SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS,
     isGameOver,
     title,
     content
