@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import type { MinigameProps/*, MinigameResult*/ } from "../../types/Minigame";
-import "./styles.css";
+import React from "react";
 import { useState, useEffect, useRef } from "react";
+import type { MinigameProps } from "../../types/Minigame";
+import "./styles.css";
 import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
 import Popup from "../../components/Popup";
 import PopupLesson from "../../components/PopupLesson";
-import type { MinigameProps } from '../../types/Minigame';
 
 export const metadata = {
   title: "Scholarship Matcher",

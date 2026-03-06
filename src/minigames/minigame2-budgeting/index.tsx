@@ -26,10 +26,6 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
     title,
     content,
     last,
-    questionCount,
-    title,
-    content,
-    last,
     questionCount
   } = useBudgetGameLogic();
 
