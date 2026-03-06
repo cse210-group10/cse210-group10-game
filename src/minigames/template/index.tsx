@@ -10,10 +10,14 @@ export const metadata = {
 
 const TOTAL_QUESTIONS = 5;
 
-const Minigame5: React.FC<MinigameProps> = ({ progress }) => {
+const Minigame5: React.FC<MinigameProps> = ({ progress, onComplete }) => {
   useEffect(() => {
     progress?.init(TOTAL_QUESTIONS);
   }, [progress]);
+
+  const handleComplete = () => {
+    onComplete({ stars: 1, levelId: 'level-5' });
+  };
 
   return (
     <div className="template-container">
@@ -41,6 +45,9 @@ const Minigame5: React.FC<MinigameProps> = ({ progress }) => {
           </span>
         ))}
       </div>
+      <button onClick={handleComplete} style={{ marginTop: '2rem', padding: '1rem 2rem' }}>
+        Complete Game
+      </button>
     </div>
   );
 };

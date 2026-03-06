@@ -1,6 +1,7 @@
 // Minigame types and progress bar API (ProgressApi, ProgressState).
 export interface MinigameResult {
   stars: number;
+  levelId: string;
 }
 
 export interface MinigameProps {
@@ -10,7 +11,8 @@ export interface MinigameProps {
 
 export type StarsContextValue = {
   stars: number;
-  addStars: (earned: number) => void;
+  addStars: (levelId: string, earned: number) => void;
+  getLevelStars: (levelId: string) => number;
 };
 
 // three possible question statuses

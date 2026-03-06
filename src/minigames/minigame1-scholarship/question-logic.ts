@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import * as scholarshipBank from './scholarshipBank.json';
+import scholarshipBank from './scholarshipBank.json';
 
 
 
@@ -22,7 +22,6 @@ export interface ScholarshipData {
     amount: number;
     description: string;
     rankings: number[]; 
-    last: boolean; 
 }
 
 function getChosenArray(min: number, max: number): number[] {
@@ -43,8 +42,8 @@ export const useScholarshipLogic = (characterIndex: number) => {
   const [progressArray, setProgressArray] = useState<(boolean | null)[]>([null, null, null, null, null]);
   const [scholarshipsForThisRound, setScholarshipsForThisRound] = useState<ScholarshipData[]>([]);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [title, setTitle] = useState("Scholarship Mini-Game");
-  const [content, setContent] = useState("Welcome to the scholarship mini-game! Here, we will learn about...");
+  const [title] = useState("Scholarship Mini-Game");
+  const [content] = useState("Welcome to the scholarship mini-game! Here, we will learn about...");
 
   // Initialize scholarships when questionId changes
   useEffect(() => {

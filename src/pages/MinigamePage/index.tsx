@@ -31,9 +31,9 @@ const MinigamePage: React.FC = () => {
 
   if (result) {
     return (
-      <MinigameEnd stars={result.stars} />
+      <MinigameEnd stars={result.stars} levelId={result.levelId} />
     );
-  } 
+  }
   
   return (
     <StarsProvider>

@@ -44,7 +44,7 @@ const Minigame3: React.FC<MinigameProps> = ({ onComplete }) => {
   const handleContinue = () => {
     // For now, complete with 3 stars
     // In the future, this could lead to an actual saving challenge
-    onComplete({ stars: 3 });
+    onComplete({ stars: 3, levelId: 'level-3' });
   };
 
   return (
