@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useCalendarLogic } from "./useCalendarLogic"; // button logic
 import CalendarButton from './calendar-button'; //buttons for interactive counter
-// import { useCalendarLogic } from './calendar-logic'; //math logic for interactive counter
-// import { useQuestionLogic } from './question-logic'; // question load / check answer
 import QuestionDisplay from './question-display'; // question view
-import { useBudgetGameLogic } from './budget-game-setup';
+import { useBudgetGameLogic } from './useBudgetGameLogic';
 import type { MinigameResult, MinigameProps } from '../../types/Minigame';
 import Popup from '../../components/Popup';
 import './styles.css';
@@ -15,19 +14,21 @@ export const metadata = {
 };
 
 const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
+  //game logic set-up
+  const {workDays, totalWorkDays, toggleDay, resetButtons} = useCalendarLogic(5);
+  
   //set-up everything from useBudgetGameLogic
   const {
-    workDays,
-    toggleDay,
-    totalWorkDays,
     currentQuestion,
+    correctQuestions,
     currentIncome,
     submitAnswer,
     title,
     content,
+    progress, //for tests
     last,
-    questionCount
-  } = useBudgetGameLogic();
+    questionCount, // for progress bar initialization
+  } = useBudgetGameLogic(0, totalWorkDays);
 
   // initialize progress bar with total number of questions
   // useEffect(() => {
@@ -40,6 +41,7 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   }
 
   const [showPopup, setShowPopup] = useState(true);
+  const [showEndPopup, setShowEndPopup] = useState(false);
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
@@ -52,9 +54,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
 
   const submitHelper = () => {
     submitAnswer();
-    // console.log(Minigame2 Popup Debugging: {title}, {content})
+    resetButtons();
     setShowPopup(true);
   };
+
+  const completeHelper = () => {
+    console.log("running completeHelper");
+    setShowEndPopup(true);
+  }
 
   // not sure on this mini-game level2 container\
   return (
@@ -64,10 +71,19 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
           <Popup
           title={title}
           content={content}
-          onClose={() => {setShowPopup(false); if(last) onComplete(result);}}
+          onClose={() => {setShowPopup(false); if(last) completeHelper();}}
           />
       )}
-      
+
+      {showEndPopup && (
+          <Popup
+          title={"Game Over!"}
+          content={"You got: " + Number(correctQuestions) + 
+            " out of "+(questionCount - 1)+" correct! and missed " + Number(currentQuestion.id-correctQuestions) + "."}
+          onClose={() => {setShowPopup(false); onComplete(result);}}
+          />
+      )}
+
       {/* testing question display */}
       <QuestionDisplay questionInfo={currentQuestion} amountPerDay={currentIncome}/>
       

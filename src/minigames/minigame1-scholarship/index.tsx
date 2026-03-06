@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { MinigameProps/*, MinigameResult*/ } from "../../types/Minigame";
 import "./styles.css";
 import { useNavigate } from 'react-router-dom';
-import PopupLesson from "../../components/PopupLesson";
+import Popup from "../../components/Popup";
 import lessonDataStore from './lessons.json';
 
 export const metadata = {
@@ -33,7 +33,6 @@ const Minigame1: React.FC<MinigameProps> = () => {
     navigate('/minigame/level-1/character');
   };
   
-  const [showPopup, setShowPopup] = useState(true);
   const lastLessonID = 7; //id for last paragraph in lesson
   const currentLessons = lessonDataStore.lessons as lessonData[];
   const [lessonID, setLessonID] = useState(0);
@@ -45,10 +44,11 @@ const Minigame1: React.FC<MinigameProps> = () => {
       <h1>Scholarship Matcher</h1>
 
       {showPopup && (lessonID != lastLessonID) &&(
-        <PopupLesson
+        <Popup
         title= "Scholarship Matcher"
         content= {currentLessons[lessonID].lessonContent}
-        onClickNext={() => setLessonID(prev => prev + 1)}
+        onClose={() => setLessonID(prev => prev + 1)}
+        buttonText= {lessonID === lastLessonID - 1 ? "Start Game!" : "Next"}
         />
       )}
 

@@ -11,6 +11,7 @@ const Popup: React.FC<PopupProps> = ({
    title,
    content,
    onClose,
+   buttonText = 'Ok!',
 }) => {
 
   return (
@@ -22,7 +23,7 @@ const Popup: React.FC<PopupProps> = ({
             className="close-button"
             onClick={onClose}
             >
-            Ok!
+            {buttonText}
             </button>
       </div>
     </div>
