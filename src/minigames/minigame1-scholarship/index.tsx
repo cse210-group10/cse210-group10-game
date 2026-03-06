@@ -4,7 +4,6 @@ import type { MinigameProps } from "../../types/Minigame";
 import "./styles.css";
 import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
 import Popup from "../../components/Popup";
-import PopupLesson from "../../components/PopupLesson";
 
 export const metadata = {
   title: "Scholarship Matcher",
@@ -55,10 +54,10 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
     <div className="minigame-level1-container">
 
       {showPopupLesson && (lessonID != lastLessonID) &&(
-        <PopupLesson
+        <Popup
         title= {title}
-        contentID={lessonID}
-        onClickNext={() => setLessonID(prev => prev + 1)}
+        content={String(lessonID)}
+        onClose={() => setLessonID(prev => prev + 1)}
         />
       )}
 
