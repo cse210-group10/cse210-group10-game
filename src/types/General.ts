@@ -4,3 +4,8 @@ export interface PopupProps {
   onClose: () => void;
   buttonText?: string;
 }
+
+export interface lessonData {
+    id: number;
+    lessonContent: string;
+}

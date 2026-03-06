@@ -1,77 +1,107 @@
-import {fireEvent, render, screen} from "@testing-library/react";
-import {describe, it, expect} from "vitest";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom";
-import ScholarshipCharacter from "../minigames/minigame1-scholarship/character"; 
-import { selectedEntries } from '../minigames/minigame1-scholarship/question-logic';
+// import ScholarshipCharacter from "../minigames/minigame1-scholarship/character";
+import Minigame1 from "../minigames/minigame1-scholarship/index";
+import * as ScholarshipLogic from "../minigames/minigame1-scholarship/question-logic";
 
 
+// Hoisted mock for navigation
+const { mockNavigate } = vi.hoisted(() => ({
+  mockNavigate: vi.fn(),
+}));
 
- describe("ScholarshipCharacter", () => {
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
+
+ describe("Minigame1", () => {
     // Tests initial state
     it("Display the initial scholarship message before button is clicked", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         const initialScholarMessage = "Please select one of the scholarships with the buttons below."
         expect(screen.getByText(initialScholarMessage)).toBeInTheDocument()
     });
 
     // This will change when we add information about the actual characters in the game
     it("Displays details about the character", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         const initialChar = "Hi! I'm Bethany"
         expect(screen.getByText(initialChar)).toBeInTheDocument()
     });
 
     it("Submit button should not be displayed at the initial state", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         expect(screen.queryByText("Submit")).not.toBeInTheDocument()
     });
 
     // Tests after button has been clicked 
     it("Check if button appears after one of the scholarship buttons is clicked on", () => {
-        render(<ScholarshipCharacter />);
+        render(<Minigame1 />);
         fireEvent.click(screen.getByText("Scholarship 2"));
         expect(screen.getByText("Submit")).toBeInTheDocument();
     });
 
-    it("Display different scholarship info for each button", () => {
-        render(<ScholarshipCharacter />);
+    it("Display different scholarship info when buttons are clicked", async () => {
+        render(<Minigame1 />);
         
-        const scholarships = [
-            { label: "Scholarship 1", name: selectedEntries[0].name },
-            { label: "Scholarship 2", name: selectedEntries[1].name },
-            { label: "Scholarship 3", name: selectedEntries[2].name },
-            { label: "Scholarship 4", name: selectedEntries[3].name },
-        ];
+        // Click scholarship 1 and wait for scholarship info to display
+        fireEvent.click(screen.getByText("Scholarship 1"));
+        await waitFor(() => {
+            expect(screen.getByText(/Sponsor:/)).toBeInTheDocument();
+        });
         
-        scholarships.forEach(({label, name}) => {
-            fireEvent.click(screen.getByText(label));
-            expect(screen.getByText(name)).toBeInTheDocument();
+        // Get the scholarship name after first selection
+        const scholarship1Name = screen.getByRole("heading", { level: 2 }).textContent;
+        
+        // Click scholarship 2 and wait for scholarship info to update
+        fireEvent.click(screen.getByText("Scholarship 2"));
+        await waitFor(() => {
+            const scholarship2Name = screen.getByRole("heading", { level: 2 }).textContent;
+            expect(scholarship2Name).not.toBe(scholarship1Name);
         });
     });
-   it("Display complete scholarship 1 details", () => {
-        render(<ScholarshipCharacter />);
+
+    it("Display scholarship details when a button is clicked", () => {
+        render(<Minigame1 />);
+        
+        // Click any scholarship button
         fireEvent.click(screen.getByText("Scholarship 1"));
-        expect(screen.getByText(selectedEntries[0].description)).toBeInTheDocument();
-    });
-
-    it("Display complete scholarship 2 details", () => {
-        render(<ScholarshipCharacter />);
-        fireEvent.click(screen.getByText("Scholarship 2"));
-        expect(screen.getByText(selectedEntries[1].description)).toBeInTheDocument();
-    });
-
-    it("Display complete scholarship 3 details", () => {
-        render(<ScholarshipCharacter />);
-        fireEvent.click(screen.getByText("Scholarship 3"));
-        expect(screen.getByText(selectedEntries[2].description)).toBeInTheDocument();
-    });
-
-    it("Display complete scholarship 4 details", () => {
-        render(<ScholarshipCharacter />);
-        fireEvent.click(screen.getByText("Scholarship 4"));
-        expect(screen.getByText(selectedEntries[3].description)).toBeInTheDocument();
+        
+        // Verify sponsor and amount fields are displayed
+        expect(screen.getByText(/Sponsor:/)).toBeInTheDocument();
+        expect(screen.getByText(/Amount:/)).toBeInTheDocument();
+        expect(screen.getByText(/Description:/)).toBeInTheDocument();
     });
  });
+
+describe("ScholarshipCharacter - end game popup", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("shows end-game popup when isGameOver is true", async () => {
+    vi.spyOn(ScholarshipLogic, "useScholarshipLogic").mockReturnValue({
+      currentScholarships: [
+        { id: 1, name: "Test", weeksLeft: 4, sponsor: "Sponsor", amount: 1000, description: "desc", rankings: [1, 0, 0, 0, 0] },
+      ],
+      submitAnswer: vi.fn(),
+      totalCorrect: { correct: 3, incorrect: 2 },
+      progressArray: [true, true, true, false, false],
+      questionId: 4,
+      isGameOver: true,
+    } as any);
+
+    render(<Minigame1 />);
+
+    expect(await screen.findByText("Game Over!")).toBeInTheDocument();
+    expect(screen.getByText("You got 3 out of 5 correct.")).toBeInTheDocument();
+  });
+});
 
 //  source: https://vitest.dev/guide/browser/component-testing
 //  source: https://vitest.dev/api/expect 

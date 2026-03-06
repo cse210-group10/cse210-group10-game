@@ -5,6 +5,7 @@ import QuestionDisplay from './question-display'; // question view
 import { useBudgetGameLogic } from './useBudgetGameLogic';
 import type { MinigameResult, MinigameProps } from '../../types/Minigame';
 import Popup from '../../components/Popup';
+import PopupLesson from '../../components/PopupLesson';
 import './styles.css';
 
 export const metadata = {
@@ -65,22 +66,13 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
 
   // not sure on this mini-game level2 container\
   return (
-    <div className="minigame-level2-container">
 
+    <div className="minigame-level2-container">
       {showPopup && (
           <Popup
           title={title}
           content={content}
-          onClose={() => {setShowPopup(false); if(last) completeHelper();}}
-          />
-      )}
-
-      {showEndPopup && (
-          <Popup
-          title={"Game Over!"}
-          content={"You got: " + Number(correctQuestions) + 
-            " out of "+(questionCount - 1)+" correct! and missed " + Number(currentQuestion.id-correctQuestions) + "."}
-          onClose={() => {setShowPopup(false); onComplete(result);}}
+          onClose={() => {setShowPopup(false); if(last) onComplete(result);}}
           />
       )}
 
