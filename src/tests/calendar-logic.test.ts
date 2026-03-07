@@ -1,5 +1,5 @@
 import {renderHook, act} from '@testing-library/react';
-import { useCalendarLogic } from '../minigames/minigame2-budgeting/calendar-logic';
+import { useCalendarLogic } from '../minigames/minigame2-budgeting/useCalendarLogic';
 import {describe, it, expect} from 'vitest';
 
 describe('useCalendarLogic', () => {
