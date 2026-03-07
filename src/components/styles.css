@@ -11,7 +11,7 @@
 }
 
 .back-button:hover {
-  background-color: #f0f0f0;
+  background-color: white;
   transform: translateY(-2px);
 }
 
@@ -32,13 +32,13 @@
 }
 
 .popup {
-  background-color: #f0f0f0;
+  background-color: white;
   width: 75vw;
   height: 75vh;
   border-radius: 20px;
   /* padding: 1rem; */
   border-radius: 1.5rem;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,10 +49,22 @@
 .popup-title {
   font-size: 3rem;
   margin-bottom: 2rem;
-  font-weight: normal;
-  color: #000;
+  font-weight: bold;
+  color: #1861CA;
+  position: absolute;
+  top: 20%;
 }
 
-.popup-content {
-  color: #000;
+.lesson-button {
+  background-color: #689B40;
+  border: 2px solid #689B40;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 20%;
+}
+
+.lesson-button:hover {
+  background-color: white;
+  border: 2px solid #689B40;
+  color: #689B40;
 }
