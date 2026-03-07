@@ -1,5 +1,5 @@
 .minigame-level1-container {
-  background-color: #bbdefb; /* Blue 100 - More distinct */
+  background-color: white; /* Blue 100 - More distinct */
   width: 100vw;
   height: 100vh;
   
@@ -25,26 +25,49 @@ p {
   font-size: 1.5rem;
 }
 
-/* margins for minigame 1 heading, description, and image */
-.minigame-level1-container p, h1, img, ul{
-  margin-left: 6rem;
-  margin-right: 6rem;
+h1 {
+  color: black;
+  font-size: 2rem;
 }
 
+/* margins for minigame 1 heading, description, and image */
+/* .minigame-level1-container p, h1, img, ul{
+  margin-left: 5rem;
+  margin-right: 5rem;
+} */
+
 /* container for the character info and scholarship info */
-.scholarship-compare{
-  display: flex;
+.scholarship-compare:after{
+  content: "";
+  display: table;
+  margin-top: 2rem;
+  clear: both;
 }
 
 /* character profile pic and info */
 .profile {
   float: left;
-  width: 60%;
+  width: 50%;
+}
+
+.profile p, h1, h2, img{
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 /* Currently selected scholarship info */
 .scholarship-info {
   float: left;
+  width: 50%;
+}
+
+.scholarship-info p{
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.profile-pic img{
+  width: 50%;
 }
 
 /* source for justify-content: https://www.geeksforgeeks.org/css/css-justify-content-property/ */
