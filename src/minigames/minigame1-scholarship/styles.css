@@ -27,7 +27,7 @@ p {
 
 h1 {
   color: black;
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 /* margins for minigame 1 heading, description, and image */
@@ -51,8 +51,8 @@ h1 {
 }
 
 .profile p, h1, h2, img{
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 /* Currently selected scholarship info */
@@ -67,7 +67,7 @@ h1 {
 }
 
 .profile-pic img{
-  width: 50%;
+  width: 40%;
 }
 
 /* source for justify-content: https://www.geeksforgeeks.org/css/css-justify-content-property/ */
@@ -75,17 +75,17 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 0.5rem;
-   
+}
+
+.scholarship-btn-group button{
+  margin: 10px;
 }
 
 /* Buttons to change which scholarship is viewed */
-.scholarship-button{
-  margin-right: 10px;
-}
+.submit-answer-button{
+  position: fixed;
+  bottom: 2rem;
+} 
 
-/* Space between submit button and scholaship buttons */
-.submit-answer-button {
-  margin-top: 20px;
-}
 
 
