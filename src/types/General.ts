@@ -1,7 +1,7 @@
 export interface PopupProps {
   title: string;
   content: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export interface PopupPropsLesson {

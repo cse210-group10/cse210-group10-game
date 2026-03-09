@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useCalendarLogic } from './useCalendarLogic'; // calendar logic
 import { useBudgetGameLogic } from './useBudgetGameLogic'; // question logic
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 import QuestionDisplay from './question-display'; // question view
 import type { MinigameResult, MinigameProps } from '../../types/Minigame';
 import Popup from '../../components/Popup';
+import type { PopupProps } from '../../types/General'; // pop-up for question feedback and end game summary
 import './styles.css';
 
 export const metadata = {
@@ -14,21 +14,18 @@ export const metadata = {
 };
 
 const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
-  //game logic set-up
-  const {workDays, totalWorkDays, toggleDay, resetButtons} = useCalendarLogic(5);
-  
   //set-up everything from useBudgetGameLogic
   const {
-    currentQuestion,
-    correctQuestions,
-    currentIncome,
-    submitAnswer,
-    title,
-    content,
+    questionDisplayProps,
+    popupProps,
+    endPopupProps,
     progress, //for tests
     last,
-    questionCount, // for progress bar initialization
-  } = useBudgetGameLogic(0, totalWorkDays);
+    workDays,
+    submitAnswer,
+    resetButtons,
+    toggleDay,
+  } = useBudgetGameLogic(0);
 
   // initialize progress bar with total number of questions
   // useEffect(() => {
@@ -63,7 +60,6 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   };
 
   const completeHelper = () => {
-    console.log("running completeHelper");
     setShowEndPopup(true);
   }
 
@@ -73,26 +69,29 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
     <div className="minigame-level2-container">
       {showPopup && (
           <Popup
-          title={title}
-          content={content}
-          onClose={() => {setShowPopup(false); if(last) completeHelper();}}
+          title={popupProps.title}
+          content={popupProps.content}
+          onClose={() => {
+            setShowPopup(false);
+            if (last) {
+              completeHelper();
+            } 
+          }}
           />
       )}
 
       {showEndPopup && (
           <Popup
-          title={"Game Over!"}
-          content={"You got: " + Number(correctQuestions) + 
-            " out of "+(questionCount - 1)+" correct! and missed " + Number(currentQuestion.id-correctQuestions) + "."}
+          title={endPopupProps.title}
+          content={endPopupProps.content}
           onClose={() => {setShowPopup(false); onComplete(result);}}
           />
       )}
 
-      {/* testing question display */}
-      <QuestionDisplay questionInfo={currentQuestion} amountPerDay={currentIncome}/>
-      
-      {/*Counter Display to check each work day, can reintegrate math logic later in calendar logic*/}
-      <h2>Total Work Days: {totalWorkDays}</h2>
+      <QuestionDisplay 
+        questionInfo={questionDisplayProps.questionInfo} 
+        amountPerDay={questionDisplayProps.amountPerDay} 
+        totalWorkDays={questionDisplayProps.totalWorkDays}/>
       
       <div className="button-container-row">
         {/* helper function from above */}
