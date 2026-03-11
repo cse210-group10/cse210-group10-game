@@ -1,0 +1,52 @@
+[
+  {
+    "id": 0,
+    "character": "Maria Rodriguez",
+    "location": "San Antonio, Texas",
+    "age_school_year": "17 (HS Senior)",
+    "ethnicity": "Hispanic/Latina",
+    "gpa": 3.9,
+    "academic_focus": "Computer Science",
+    "description": "First-generation college student from a single-parent, low-income household (~$45,000/year) who is Pell Grant eligible. Bilingual in English and Spanish. Serves as President of the Coding Club and is a National Honor Society member. Has volunteered as a tutor for middle school students for three years and built a food pantry tracking app for her local community center."
+  },
+  {
+    "id": 1,
+    "character": "James \"JP\" Patterson",
+    "location": "Atlanta, Georgia",
+    "age_school_year": "16 (HS Junior)",
+    "ethnicity": "African American",
+    "gpa": 3.7,
+    "academic_focus": "Political Science/Pre-Law",
+    "description": "Middle-income student with college-educated parents and a PSAT score of 1380. A strong public speaker passionate about social justice and civil rights. Serves as Student Body Vice President and captains the debate team as a state qualifier. Founded his school's Black Student Union chapter, volunteers at a local legal aid clinic, and leads his church's youth group."
+  },
+  {
+    "id": 2,
+    "character": "Emily Chen",
+    "location": "Portland, Oregon",
+    "age_school_year": "15 (HS Sophomore)",
+    "ethnicity": "Asian American (Chinese)",
+    "gpa": 4.0,
+    "academic_focus": "Environmental Science/Biology",
+    "description": "Bilingual in English and Mandarin, born to Chinese immigrant parents in a middle-income household (~$78,000/year). Deeply passionate about climate change, she founded her school's environmental club and recycling initiative, and conducted independent research on local water quality. Competes in Science Olympiad, has played piano for 10 years performing at senior centers, volunteers at the Oregon Zoo, and helps care for a younger sibling with special needs."
+  },
+  {
+    "id": 3,
+    "character": "Marcus Thompson",
+    "location": "Detroit, Michigan",
+    "age_school_year": "17 (HS Senior)",
+    "ethnicity": "African American",
+    "gpa": 3.2,
+    "academic_focus": "Sports Management/Business",
+    "description": "First-generation college student living with his grandmother in a low-income household (~$32,000/year), working part-time at Foot Locker (15 hours/week) to help support his family. Despite personal hardships including an absent father and a mother struggling with addiction, he demonstrates a strong work ethic. A starting varsity basketball guard for three years, he also competes in track and field, mentors freshman athletes, and coaches kids in a community basketball league."
+  },
+  {
+    "id": 4,
+    "character": "Alex Rivera",
+    "location": "Tucson, Arizona",
+    "age_school_year": "17 (HS Senior)",
+    "ethnicity": "Hispanic/Latinx",
+    "gpa": 3.85,
+    "academic_focus": "Graphic Design/Digital Media",
+    "description": "Non-binary (they/them) LGBTQ+ identified DACA recipient who was brought to the U.S. at age 4, from a low-income household (~$38,000/year). Has produced award-winning designs for school events and serves as editor of both the school yearbook and literary magazine. Founded and leads their school's GSA, volunteers teaching art to elementary students, and runs a small freelance design business."
+  }
+]
