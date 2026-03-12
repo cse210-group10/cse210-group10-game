@@ -1,5 +1,5 @@
 .minigame-level1-container {
-  background-color: #bbdefb; /* Blue 100 - More distinct */
+  background-color: white; /* Blue 100 - More distinct */
   width: 100vw;
   height: 100vh;
   
@@ -25,26 +25,49 @@ p {
   font-size: 1.5rem;
 }
 
-/* margins for minigame 1 heading, description, and image */
-.minigame-level1-container p, h1, img, ul{
-  margin-left: 6rem;
-  margin-right: 6rem;
+h1 {
+  color: black;
+  font-size: 1.6rem;
 }
 
+/* margins for minigame 1 heading, description, and image */
+/* .minigame-level1-container p, h1, img, ul{
+  margin-left: 5rem;
+  margin-right: 5rem;
+} */
+
 /* container for the character info and scholarship info */
-.scholarship-compare{
-  display: flex;
+.scholarship-compare:after{
+  content: "";
+  display: table;
+  margin-top: 2rem;
+  clear: both;
 }
 
 /* character profile pic and info */
 .profile {
   float: left;
-  width: 60%;
+  width: 50%;
+}
+
+.profile p, h1, h2, img{
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 /* Currently selected scholarship info */
 .scholarship-info {
   float: left;
+  width: 50%;
+}
+
+.scholarship-info p{
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.profile-pic img{
+  width: 40%;
 }
 
 /* source for justify-content: https://www.geeksforgeeks.org/css/css-justify-content-property/ */
@@ -52,17 +75,17 @@ p {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 0.5rem;
-   
+}
+
+.scholarship-btn-group button{
+  margin: 10px;
 }
 
 /* Buttons to change which scholarship is viewed */
-.scholarship-button{
-  margin-right: 10px;
-}
+.submit-answer-button{
+  position: fixed;
+  bottom: 2rem;
+} 
 
-/* Space between submit button and scholaship buttons */
-.submit-answer-button {
-  margin-top: 20px;
-}
 
 
