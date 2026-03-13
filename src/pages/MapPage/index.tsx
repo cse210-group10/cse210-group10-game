@@ -31,20 +31,23 @@ function MapPage() {
   const selectedLevelConfig = selectedLevelId ? MINIGAMES[selectedLevelId]?.metadata : null;
 
   // show pop up at start of the game
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
 
   const { stars } = useStars();
+
+  // so popup shows if there are no stars
+  let isStars = Boolean(stars);
 
   // stars update will be handled upon completion of minigame
   // create minigame end scene with star results and it will update stars in map page accordingly
   return (
     <div className="map-page">
 
-      {showPopup && (
+      {showPopup && !isStars &&(
         <Popup
           title="Welcome!"
-          content={"You are trying to save money for school, but you need to figure out your finances. " +  
-            "You need to start earning and saving some money. To help you learn these skills, try to complete a few mini games to help you get started."}
+          content={"You are trying to earn and save money for school, but you need to figure out how to handle your finances. " +  
+            "Try to complete a few mini games to help you get started in learning these skills."}
           onClose={() => {
             setShowPopup(false);
           }}
