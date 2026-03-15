@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useBudgetGameLogic } from './useBudgetGameLogic'; // question logic
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 import QuestionDisplay from './question-display'; // question view
@@ -14,27 +14,27 @@ export const metadata = {
   id: "level-2"
 };
 
-const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
+const Minigame2: React.FC<MinigameProps> = ({ onComplete, progress }) => {
   //set-up everything from useBudgetGameLogic
   const {
     questionDisplayProps,
     popupProps,
     endPopupProps,
-    progress, //for tests
+    resultTally, //for tests
     last,
     workDays,
     submitAnswer,
     resetButtons,
     toggleDay,
-  } = useBudgetGameLogic(0);
+  } = useBudgetGameLogic(0, progress);
 
   // initialize progress bar with total number of questions
-  // useEffect(() => {
-  //   progress?.init(questionCount);
-  // }, [progress, questionCount]);
+  useEffect(() => {
+    progress?.init((questionDisplayProps.questionTotal - 1));
+  }, [progress, (questionDisplayProps.questionTotal - 1)]);
 
   // Stars calculation: 3 stars for 4-5 correct, 2 stars for 2-3 correct, 1 star for 0-1 correct
-  const correctAnswers = progress.correct;
+  const correctAnswers = resultTally.correct;
   const stars = correctAnswers >= 4 ? 3 : correctAnswers >= 2 ? 2 : 1;
 
   const result: MinigameResult = {  
