@@ -1,0 +1,107 @@
+/* ========== Minigame End Screen ========== */
+
+.end-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #D4EEFF;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  gap: 0;
+}
+
+/* ---- Stars above the card ---- */
+.end-stars {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.end-star-icon {
+  width: 64px;
+  height: 64px;
+  transition: transform 0.3s ease;
+}
+
+.end-star-earned {
+  animation: starPop 0.5s ease forwards;
+}
+
+@keyframes starPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Stagger the star animations */
+.end-star-earned:nth-child(1) { animation-delay: 0.1s; }
+.end-star-earned:nth-child(2) { animation-delay: 0.3s; }
+.end-star-earned:nth-child(3) { animation-delay: 0.5s; }
+
+/* ---- White card ---- */
+.end-card {
+  background: #FFFFFF;
+  border: 4px solid #000000;
+  border-radius: 40px;
+  padding: 60px 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  min-width: 400px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.end-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+/* ---- Return button ---- */
+.end-return-btn {
+  background-color: #4A90D9;
+  color: white;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.end-return-btn:hover {
+  transform: scale(1.05);
+  background-color: #3a7bc8;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .end-card {
+    min-width: auto;
+    width: 85%;
+    padding: 50px 40px 30px;
+  }
+
+  .end-star-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .end-title {
+    font-size: 1.8rem;
+  }
+}
