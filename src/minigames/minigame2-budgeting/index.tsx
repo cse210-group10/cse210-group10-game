@@ -5,6 +5,7 @@ import QuestionDisplay from './question-display'; // question view
 import type { MinigameResult, MinigameProps } from '../../types/Minigame';
 import Popup from '../../components/Popup';
 import type { PopupProps } from '../../types/General'; // pop-up for question feedback and end game summary
+import PopupLesson from "../../components/PopupLesson"; // pop-up for lesson
 import './styles.css';
 
 export const metadata = {
@@ -41,8 +42,12 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
     levelId: 'level-2'
   };
 
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
   const [showEndPopup, setShowEndPopup] = useState(false);
+  const [showPopupLesson] = useState(true);
+  const lastLessonID = 6; //id for last paragraph in lesson
+  const [lessonID, setLessonID] = useState(0);
+  const [title] = useState("Budget Planner");
 
   //helper function: set up the calendar views to be placed in corners of the buttons
   const renderCalendarButton = (isWork: boolean, index: number) => {
@@ -67,6 +72,14 @@ const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   return (
 
     <div className="minigame-level2-container">
+      {showPopupLesson && (lessonID != lastLessonID) &&(
+        <PopupLesson
+        title= {title}
+        contentID={lessonID}
+        onClickNext={() => setLessonID(prev => prev + 1)}
+        />
+      )}
+      
       {showPopup && (
           <Popup
           title={popupProps.title}
