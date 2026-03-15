@@ -6,7 +6,7 @@
       "weeksLeft": 29,
       "sponsor": "Bill & Melinda Gates Foundation",
       "amount": 200000,
-      "description": "Full-ride scholarship for exceptional minority students with significant financial need. For incoming undergraduate freshmen who are Pell-eligible minority students (African American, American Indian/Alaska Native, Asian Pacific Islander American, Hispanic American).",
+      "description": "Full-ride scholarship for exceptional minority students with significant financial need. For incoming undergraduate freshmen who are Pell-eligible minority students (African American, American Indian/Alaska Native, Asian Pacific Islander American, Hispanic American). Requires 8 short essay responses, 2 letters of recommendation, transcript, and detailed financial information. Must demonstrate Pell Grant eligibility and have significant community service hours documented.",
       "rankings": [0.95, 0.0, 0.0, 0.60, 0.0]
     },
     {
@@ -15,7 +15,7 @@
       "weeksLeft": 35.75,
       "sponsor": "Jack Kent Cooke Foundation",
       "amount": 55000,
-      "description": "Supports high-achieving students with financial need. For high school seniors with GPA 3.5+ and family income up to $95,000.",
+      "description": "Supports high-achieving students with financial need. For high school seniors with GPA 3.5+ and family income up to $95,000. Requires extensive application with multiple essays (including 650-word personal statement), 2 letters of recommendation, transcript, financial documents, and list of activities/awards. Semi-finalists must complete additional essays and interview.",
       "rankings": [0.90, 0.50, 0.0, 0.0, 0.0]
     },
     {
@@ -24,7 +24,7 @@
       "weeksLeft": 35.5,
       "sponsor": "The Coca-Cola Company",
       "amount": 20000,
-      "description": "Merit-based scholarship for community leaders. For high school seniors with minimum 3.0 GPA and demonstrated leadership.",
+      "description": "Merit-based scholarship for community leaders. For high school seniors with minimum 3.0 GPA and demonstrated leadership. Requires online application with short answer questions about leadership and community service, transcript, and documentation of 100+ community service hours. Semi-finalists submit additional essays and participate in interviews.",
       "rankings": [0.75, 0.90, 0.0, 0.75, 0.0]
     },
     {
@@ -33,7 +33,7 @@
       "weeksLeft": 0.5,
       "sponsor": "Davidson Institute",
       "amount": 50000,
-      "description": "Awards for students who complete significant projects in STEM, literature, music, or philosophy. For students 18 and under who have completed a significant piece of work.",
+      "description": "Awards for students who complete significant projects in STEM, literature, music, or philosophy. For students 18 and under who have completed a significant piece of work. Requires submission of completed significant work (research paper, portfolio, composition, etc.), project description essay, 2 professional letters of recommendation from mentors/experts in the field, video presentation, and detailed project documentation.",
       "rankings": [0.70, 0.30, 0.95, 0.0, 0.60]
     },
     {
@@ -42,7 +42,7 @@
       "weeksLeft": 0,
       "sponsor": "CAP Charitable Foundation",
       "amount": 40000,
-      "description": "Scholarship for African American students demonstrating leadership. For high school seniors showing academic excellence and community service.",
+      "description": "Scholarship for African American students demonstrating leadership. For high school seniors showing academic excellence and community service. Requires 4 essays (including leadership essay and community service essay), transcript, 3 letters of recommendation, and documentation of leadership roles and community service activities.",
       "rankings": [0.0, 0.95, 0.0, 0.50, 0.0]
     },
     {
@@ -51,7 +51,7 @@
       "weeksLeft": 5,
       "sponsor": "Hispanic Scholarship Fund",
       "amount": 5000,
-      "description": "Supporting Hispanic American students. For undergraduate and graduate students with Hispanic heritage and minimum 3.0 GPA.",
+      "description": "Supporting Hispanic American students. For undergraduate and graduate students with Hispanic heritage and minimum 3.0 GPA. Requires online application with 2 short essays (500 words each), transcript, FAFSA/financial information, and proof of Hispanic heritage.",
       "rankings": [0.95, 0.0, 0.0, 0.0, 0.70]
     },
     {
@@ -60,7 +60,7 @@
       "weeksLeft": 40,
       "sponsor": "Michael & Susan Dell Foundation",
       "amount": 20000,
-      "description": "Supports students who overcome adversity. For high school seniors who participated in approved college readiness program, have 2.4 GPA minimum, and are Pell-eligible.",
+      "description": "Supports students who overcome adversity. For high school seniors who participated in approved college readiness program, have 2.4 GPA minimum, and are Pell-eligible. Requires personal essay about overcoming obstacles, short answer questions, 1 letter of recommendation from college readiness program counselor, transcript, and proof of participation in approved program.",
       "rankings": [0.85, 0.0, 0.0, 0.95, 0.0]
     },
     {
@@ -69,7 +69,7 @@
       "weeksLeft": 30.5,
       "sponsor": "QuestBridge",
       "amount": 200000,
-      "description": "Matches high-achieving, low-income students with full scholarships. For high school seniors with family income typically under $65,000 and top academic performance.",
+      "description": "Matches high-achieving, low-income students with full scholarships. For high school seniors with family income typically under $65,000 and top academic performance. Requires extensive application including biographical essay, 2 short answer essays, 2 letters of recommendation, transcript, detailed financial information, and list of extracurricular activities. Finalists complete college-specific supplements.",
       "rankings": [0.95, 0.0, 0.0, 0.70, 0.0]
     },
     {
@@ -78,7 +78,7 @@
       "weeksLeft": 36.25,
       "sponsor": "Elks National Foundation",
       "amount": 50000,
-      "description": "Merit-based scholarship recognizing leadership and academic achievement. For high school seniors with U.S. citizenship, leadership experience, and financial need.",
+      "description": "Merit-based scholarship recognizing leadership and academic achievement. For high school seniors with U.S. citizenship, leadership experience, and financial need. Requires 500-word essay on 'How my family has impacted my life and career objectives', transcript, financial information, and documentation of leadership activities.",
       "rankings": [0.80, 0.85, 0.0, 0.80, 0.0]
     },
     {
@@ -87,7 +87,7 @@
       "weeksLeft": 42,
       "sponsor": "Burger King Foundation",
       "amount": 60000,
-      "description": "For students in the U.S., Canada, and Puerto Rico. For high school seniors with 2.5 GPA minimum, work experience preferred.",
+      "description": "For students in the U.S., Canada, and Puerto Rico. For high school seniors with 2.5 GPA minimum, work experience preferred. Requires online application with short essay about work experience and career goals, transcript, and documentation of employment (if applicable) and community involvement.",
       "rankings": [0.70, 0.70, 0.0, 0.95, 0.60]
     },
     {
@@ -96,7 +96,7 @@
       "weeksLeft": 52,
       "sponsor": "United Negro College Fund",
       "amount": 10000,
-      "description": "Various scholarships for African American students. For undergraduate and graduate students, specific requirements vary by scholarship.",
+      "description": "Various scholarships for African American students. For undergraduate and graduate students, specific requirements vary by scholarship. Requires general application with 1-2 essays (varies by specific scholarship), transcript, 1-2 letters of recommendation, and FAFSA information. Some scholarships have additional field-specific requirements.",
       "rankings": [0.0, 0.85, 0.0, 0.80, 0.0]
     },
     {
@@ -105,7 +105,7 @@
       "weeksLeft": 40.75,
       "sponsor": "Google",
       "amount": 10000,
-      "description": "Supporting women in computing and technology. For undergraduate and graduate women pursuing computer science or related field.",
+      "description": "Supporting women in computing and technology. For undergraduate and graduate women pursuing computer science or related field. Requires online application with essays about passion for technology and leadership, resume highlighting tech projects and activities, transcript, and 2 letters of recommendation from professors or mentors in tech field.",
       "rankings": [0.90, 0.0, 0.0, 0.0, 0.0]
     },
     {
@@ -114,7 +114,7 @@
       "weeksLeft": 0,
       "sponsor": "Point Foundation",
       "amount": 13600,
-      "description": "Supporting LGBTQ students. For undergraduate and graduate LGBTQ students with demonstrated leadership.",
+      "description": "Supporting LGBTQ students. For undergraduate and graduate LGBTQ students with demonstrated leadership. Requires 5 essays (including coming out story, leadership experience, and community impact), transcript, 2 letters of recommendation, video introduction, and documentation of LGBTQ community involvement.",
       "rankings": [0.0, 0.0, 0.0, 0.0, 0.85]
     },
     {
@@ -123,7 +123,7 @@
       "weeksLeft": 33.25,
       "sponsor": "National Merit Scholarship Corporation",
       "amount": 2500,
-      "description": "Based on PSAT/NMSQT performance. For high school juniors with high PSAT scores and U.S. citizenship or permanent resident status.",
+      "description": "Based on PSAT/NMSQT performance. For high school juniors with high PSAT scores and U.S. citizenship or permanent resident status. Requires PSAT/NMSQT score, SAT/ACT confirming score, essay, transcript, school endorsement, and extracurricular activities list. Semi-finalists must submit detailed academic and activity records.",
       "rankings": [0.0, 0.75, 0.0, 0.0, 0.0]
     },
     {
@@ -132,7 +132,7 @@
       "weeksLeft": 0.5,
       "sponsor": "TheDream.US",
       "amount": 33000,
-      "description": "Largest scholarship program for DREAMers. For high school seniors and community college graduates who are DACA eligible with significant financial need.",
+      "description": "Largest scholarship program for DREAMers. For high school seniors and community college graduates who are DACA eligible with significant financial need. Requires personal statement about DACA/immigration experience, essay on career goals, transcript, proof of DACA status or eligibility, 1 letter of recommendation, and financial information.",
       "rankings": [0.0, 0.0, 0.0, 0.0, 0.98]
     },
     {
@@ -141,7 +141,7 @@
       "weeksLeft": 42.25,
       "sponsor": "Foot Locker Foundation",
       "amount": 20000,
-      "description": "For student-athletes with financial need. For high school seniors who participate in high school or community-based sports with 3.0 GPA minimum.",
+      "description": "For student-athletes with financial need. For high school seniors who participate in high school or community-based sports with 3.0 GPA minimum. Requires essay on how sports has impacted your life, transcript, 1 letter of recommendation from coach or athletic director, documentation of athletic participation and statistics, and financial information.",
       "rankings": [0.0, 0.0, 0.0, 0.95, 0.0]
     },
     {
@@ -150,7 +150,7 @@
       "weeksLeft": 29,
       "sponsor": "Scholastic Inc.",
       "amount": 10000,
-      "description": "For creative teens in visual arts and writing. For students in grades 7-12 who submit original artwork or writing.",
+      "description": "For creative teens in visual arts and writing. For students in grades 7-12 who submit original artwork or writing. Requires submission of original artwork or writing pieces (varies by category), artist/author statement explaining the work, and entry form. No essays or letters of recommendation needed - judged solely on creative work submitted.",
       "rankings": [0.30, 0.0, 0.40, 0.0, 0.95]
     },
     {
@@ -159,7 +159,7 @@
       "weeksLeft": 35.5,
       "sponsor": "Veterans of Foreign Wars",
       "amount": 35000,
-      "description": "Audio essay competition on patriotic theme. For students in grades 9-12 who record a 3-5 minute audio essay.",
+      "description": "Audio essay competition on patriotic theme. For students in grades 9-12 who record a 3-5 minute audio essay. Requires 3-5 minute audio essay recording on annual patriotic theme, typed essay transcript, and entry form. No letters of recommendation needed. Judged on content, delivery, and originality.",
       "rankings": [0.50, 0.90, 0.50, 0.40, 0.0]
     },
     {
@@ -168,7 +168,7 @@
       "weeksLeft": 45.5,
       "sponsor": "American Museum of Natural History",
       "amount": 2500,
-      "description": "For original science research essays. For students in grades 7-12 who submit original research-based essay.",
+      "description": "For original science research essays. For students in grades 7-12 who submit original research-based essay. Requires 500-2,500 word original research essay on natural science topic based on hands-on investigation, bibliography, and optional visual materials (photos, diagrams, charts). No letters of recommendation needed.",
       "rankings": [0.0, 0.0, 0.95, 0.0, 0.0]
     },
     {
@@ -177,7 +177,7 @@
       "weeksLeft": 44.25,
       "sponsor": "National Federation of Independent Business",
       "amount": 25000,
-      "description": "For young entrepreneurs with their own business. For high school students who own and operate a small business.",
+      "description": "For young entrepreneurs with their own business. For high school students who own and operate a small business. Requires essay about business creation and operation, business plan or description, financial records/proof of business ownership, transcript, 1 letter of recommendation, and optional video showcasing the business.",
       "rankings": [0.0, 0.0, 0.0, 0.0, 0.90]
     }
   ]
