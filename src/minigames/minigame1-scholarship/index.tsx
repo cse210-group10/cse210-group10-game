@@ -87,7 +87,7 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
       <div className="scholarship-compare">
         <div className="profile">
           <div className="profile-pic">
-            <img src="/src/minigames/minigame1-scholarship/undraw_profile-pic.svg" alt="profile-pic" />
+            <img src={currentCharacter.profile_pic} alt="profile-pic" />
           </div>
           <div className="profile-info">
             <h1>Hi! I'm {currentCharacter.character}</h1>

@@ -2,6 +2,7 @@
   {
     "id": 0,
     "character": "Maria Rodriguez",
+    "profile_pic": "/src/minigames/minigame1-scholarship/character-avatars/maria.svg",
     "location": "San Antonio, Texas",
     "age_school_year": "17 (HS Senior)",
     "ethnicity": "Hispanic/Latina",
@@ -12,6 +13,7 @@
   {
     "id": 1,
     "character": "James \"JP\" Patterson",
+    "profile_pic": "/src/minigames/minigame1-scholarship/character-avatars/james.svg",
     "location": "Atlanta, Georgia",
     "age_school_year": "16 (HS Junior)",
     "ethnicity": "African American",
@@ -22,6 +24,7 @@
   {
     "id": 2,
     "character": "Emily Chen",
+    "profile_pic": "/src/minigames/minigame1-scholarship/character-avatars/emily.svg",
     "location": "Portland, Oregon",
     "age_school_year": "15 (HS Sophomore)",
     "ethnicity": "Asian American (Chinese)",
@@ -32,6 +35,7 @@
   {
     "id": 3,
     "character": "Marcus Thompson",
+    "profile_pic": "/src/minigames/minigame1-scholarship/character-avatars/marcus.svg",
     "location": "Detroit, Michigan",
     "age_school_year": "17 (HS Senior)",
     "ethnicity": "African American",
@@ -42,6 +46,7 @@
   {
     "id": 4,
     "character": "Alex Rivera",
+    "profile_pic": "/src/minigames/minigame1-scholarship/character-avatars/alex.svg",
     "location": "Tucson, Arizona",
     "age_school_year": "17 (HS Senior)",
     "ethnicity": "Hispanic/Latinx",
