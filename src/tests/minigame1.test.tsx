@@ -22,18 +22,27 @@ describe('Minigame1 - Scholarship Matcher Component', () => {
         render(<Minigame1 onComplete={vi.fn()} />);
 
         const firstCharacter = characterBank[0];
-        const profileInfo = screen.getByText(/Hi! I'm/i).closest('.profile-info');
+        const profileInfo = screen.getByText(/Hi! I'm/i).closest('.profile-info') as HTMLElement | null;
+        expect(profileInfo).not.toBeNull();
         
         expect(getByTextContent(profileInfo!, firstCharacter.academic_focus)).toBeInTheDocument();
         expect(getByTextContent(profileInfo!, firstCharacter.location)).toBeInTheDocument();
         expect(getByTextContent(profileInfo!, String(firstCharacter.gpa))).toBeInTheDocument();
     });
 
+    it('renders the correct profile image for the first character', () => {
+        render(<Minigame1 onComplete={vi.fn()} />);
+
+        const profileImage = screen.getByAltText('profile-pic');
+        expect(profileImage).toHaveAttribute('src', characterBank[0].profile_pic);
+    });
+
     it('displays all character details for the current question', () => {
         render(<Minigame1 onComplete={vi.fn()} />);
 
         const currentChar = characterBank[0];
-        const profileInfo = screen.getByText(/Hi! I'm/i).closest('.profile-info');
+        const profileInfo = screen.getByText(/Hi! I'm/i).closest('.profile-info') as HTMLElement | null;
+        expect(profileInfo).not.toBeNull();
         
         expect(within(profileInfo!).getByText(/School year:/)).toBeInTheDocument();
         expect(getByTextContent(profileInfo!, currentChar.age_school_year)).toBeInTheDocument();
@@ -102,6 +111,19 @@ describe('Minigame1 - Scholarship Matcher Component', () => {
         });
     });
 
+    it('updates the profile image when advancing to the next question', async () => {
+        render(<Minigame1 onComplete={vi.fn()} />);
+
+        const scholarshipButtons = screen.getAllByRole('button', { name: /Scholarship \d/i });
+        fireEvent.click(scholarshipButtons[0]);
+        fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
+
+        await waitFor(() => {
+            const profileImage = screen.getByAltText('profile-pic');
+            expect(profileImage).toHaveAttribute('src', characterBank[1].profile_pic);
+        });
+    });
+
     it('displays all 5 characters through 5 questions', async () => {
         render(<Minigame1 onComplete={vi.fn()} />);
 
@@ -141,7 +163,7 @@ describe('Minigame1 - Scholarship Matcher Component', () => {
             if (i < 4) {
                 // Close feedback popup if visible
                 await waitFor(() => {
-                    const closeButtons = screen.queryAllByRole('button', { name: /Close/i });
+                    screen.queryAllByRole('button', { name: /Close/i });
                 });
             }
         }
