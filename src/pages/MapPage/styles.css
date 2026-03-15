@@ -1,144 +1,219 @@
+/* ========== MapPage — Figma-matched game map ========== */
+
 .map-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: white;
-  padding: 4rem;
-}
-
-.map-title {
-  color: #000;
-  font-size: 3rem;
-  margin-bottom: 6rem;
-  font-weight: normal;
-}
-
-.map-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  height: 100vh;
+  background-color: #D4EEFF;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-.connecting-line {
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  right: 5%;
-  height: 4px;
-  background-color: #000;
-  z-index: 0;
-}
-
-.levels-row {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-}
-
-.level-button {
-  background-color: white;
-  color: #000;
-  border: 4px solid #000;
-  padding: 2rem;
-  font-size: 1.5rem;
-  font-weight: normal;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.level-button:hover {
-  background-color: #000;
-  color: white;
-}
-
+/* ---- HUD (top-right) ---- */
 .hud-container {
   position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.stars-container {
-  position: relative;
-  padding: 1.5rem;
-
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 0.5rem;
 }
 
-.stars-label {
-  color: #000;
-  padding: 0.6rem 1.5rem;
-  font-size: 1.4rem;
-  cursor: pointer;
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.coins-container {
+.hud-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.hud-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ---- Map container (full viewport) ---- */
+.map-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* ---- Layered images ---- */
+.map-island {
+  position: absolute;
+  bottom: 8%;
+  left: -2%;
+  width: 104%;
+  height: auto;
+  z-index: 1;
+}
+
+.map-path {
+  position: absolute;
+  bottom: 22%;
+  left: 8%;
+  width: 72%;
+  height: auto;
+  z-index: 2;
+}
+
+/* ---- Character + speech bubble ---- */
+.character-area {
+  position: absolute;
+  bottom: 30%;
+  left: 8%;
+  z-index: 5;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  transition: bottom 0.6s ease, left 0.6s ease;
 }
 
-
-.coins-label {
-  color: #000;
-  padding: 0.6rem 1.5rem;
-  font-size: 1.4rem;
-  cursor: pointer;
+.character-img {
+  width: 70px;
+  height: auto;
 }
 
-.coin-icon {
-  width: 22px;
-  height: 22px;
-  margin-right: 8px;
-  vertical-align: middle;
+.speech-bubble {
+  background: white;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  max-width: 160px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #333;
+  font-weight: 600;
 }
 
-.coin-buttons {
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+}
+
+.speech-bubble p {
+  margin: 0;
+}
+
+/* ---- Level circles ---- */
+.level-1-area {
+  position: absolute;
+  bottom: 23%;
+  left: 35%;
+  z-index: 5;
   display: flex;
-  gap: 0.4rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-.coin-btn {
-  background: white;
-  color: #000;
-  border: 2px solid #000;
-  border-radius: 8px;
-  width: 36px;
-  height: 36px;
-  font-size: 1.2rem;
+.level-2-area {
+  position: absolute;
+  bottom: 58%;
+  left: 58%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.level-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  border: 3px solid #4A90D9;
+  color: #4A90D9;
+  font-size: 1.4rem;
+  font-weight: 700;
   cursor: pointer;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.coin-btn:hover {
-  background: #000;
+.level-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(74, 144, 217, 0.4);
+  background-color: #4A90D9;
   color: white;
 }
 
-.coin-reset-btn {
-  background: white;
-  color: #000;
-  border: 2px solid #000;
-  border-radius: 8px;
-  height: 36px;
-  padding: 0 10px;
-  font-size: 0.9rem;
-  cursor: pointer;
+/* ---- Per-level stars ---- */
+.level-stars {
+  display: flex;
+  gap: 0px;
 }
 
-.coin-reset-btn:hover {
-  background: #000;
-  color: white;
+.level-star-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 -1px;
+}
+
+/* ---- House ---- */
+.house-img {
+  position: absolute;
+  bottom: 35%;
+  right: 12%;
+  width: 100px;
+  height: auto;
+  z-index: 5;
+}
+
+/* ---- Responsive adjustments ---- */
+@media (max-width: 768px) {
+  .character-img {
+    width: 50px;
+  }
+
+  .speech-bubble {
+    max-width: 120px;
+    font-size: 0.75rem;
+    padding: 8px 10px;
+  }
+
+  .level-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .level-star-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .house-img {
+    width: 70px;
+  }
+
+  .hud-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hud-value {
+    font-size: 1.2rem;
+  }
 }
