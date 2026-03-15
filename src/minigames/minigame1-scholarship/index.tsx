@@ -79,7 +79,7 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
       {showPopup && (
         <Popup
           title="Game Over!"
-          content={`You got ${totalCorrect.correct} out of 5 correct.`}
+          content={`You got ${totalCorrect.correct} out of ${totalQuestions} correct.`}
           onClose={() => {
             setShowPopup(false);
             onComplete({ stars, levelId: 'level-1' });

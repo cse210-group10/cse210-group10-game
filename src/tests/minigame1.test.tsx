@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import Minigame1 from '../minigames/minigame1-scholarship';
+import { SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS } from '../minigames/minigame1-scholarship/question-logic';
 
 describe('Minigame1 progress integration', () => {
   it('initializes the shared progress bar with the game question count', () => {
@@ -14,7 +15,7 @@ describe('Minigame1 progress integration', () => {
 
     render(<Minigame1 onComplete={vi.fn()} progress={progress} />);
 
-    expect(progress.init).toHaveBeenCalledWith(5);
+    expect(progress.init).toHaveBeenCalledWith(SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS);
   });
 
   it('marks the first question after the player submits an answer', () => {
