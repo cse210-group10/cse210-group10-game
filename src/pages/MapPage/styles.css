@@ -47,10 +47,12 @@
 }
 
 /* ---- Layered images ---- */
+
+/* this controls the island -- Duke */
 .map-island {
   position: absolute;
   bottom: 8%;
-  left: -2%;
+  left: -5%;
   width: 104%;
   height: auto;
   z-index: 1;
