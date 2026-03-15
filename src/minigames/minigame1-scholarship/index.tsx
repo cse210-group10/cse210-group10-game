@@ -23,10 +23,10 @@ export interface lessonData {
 // }
 // reference code for how to use stars onComplete for minigames
 
-const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
+const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
   const initialText = "Please select one of the scholarships with the buttons below.";
   const characterIndex = 0;
-  const { currentScholarships, submitAnswer, totalCorrect, questionId, isGameOver } = useScholarshipLogic(characterIndex);
+  const { currentScholarships, submitAnswer, totalCorrect, questionId, totalQuestions, isGameOver } = useScholarshipLogic(characterIndex);
   const [selectedScholarshipId, setSelectedScholarshipId] = useState<ScholarshipData | null>(null);
   const [scholarshipInfo, setScholarshipInfo] = useState<ScholarshipData | null>(null);
   const [submitVisible, setSubmitVisible] = useState(false);
@@ -42,6 +42,10 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
   const lastLessonID = 7; //id for last paragraph in lesson
   const [lessonID, setLessonID] = useState(0);
   const [title] = useState("Scholarship Matcher");
+
+  useEffect(() => {
+    progress?.init(totalQuestions);
+  }, [progress, totalQuestions]);
 
   useEffect(() => {
     if (!isGameOver || handledGameOverRef.current) return;
@@ -131,8 +135,15 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete }) => {
           className="submit-answer-button"
           onClick={() => {
             if (selectedScholarshipId) {
+              const currentQuestionIndex = questionId;
+
               submitAnswer(selectedScholarshipId.id, (isCorrect) => {
                 setFeedbackPopup({ visible: true, isCorrect });
+                if (isCorrect) {
+                  progress?.markCorrect(currentQuestionIndex);
+                  return;
+                }
+                progress?.markIncorrect(currentQuestionIndex);
               });
               setSubmitVisible(false);
               setSelectedScholarshipId(null);
