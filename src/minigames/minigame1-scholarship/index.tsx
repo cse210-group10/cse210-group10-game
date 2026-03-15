@@ -9,7 +9,7 @@ import PopupLesson from "../../components/PopupLesson";
 export const metadata = {
   title: "Scholarship Matcher",
   description:
-    "Placeholder",
+    "Question-based minigame where players match a student's profile to the best scholarship based on the scholarship's criteria and the student's needs.",
   id: "level-1",
 };
 
