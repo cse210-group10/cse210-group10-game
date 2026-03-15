@@ -14,16 +14,14 @@ export const useBudgetGameLogic = (initialLevel: number = 0, progressApi?: Progr
     submitAnswer,
     popupProps,
     endPopupProps,
-    resultTally, //for tests
+    progress, //for tests
     last,
-    questionCount
   } = useAnswerLogic(initialLevel, totalWorkDays, progressApi);
 
   const questionDisplayProps = {
       questionInfo: currentQuestion,
       amountPerDay: currentIncome,
       totalWorkDays: totalWorkDays,
-      questionTotal: questionCount
   }
 
   return {
@@ -31,7 +29,7 @@ export const useBudgetGameLogic = (initialLevel: number = 0, progressApi?: Progr
     submitAnswer,
     popupProps,
     endPopupProps,
-    resultTally, //for tests
+    progress, //for tests
     last,
     resetButtons,
     workDays,

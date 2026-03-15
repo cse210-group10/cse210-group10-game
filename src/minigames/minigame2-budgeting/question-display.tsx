@@ -10,21 +10,17 @@ export interface questionDisplayProps{
 
 const QuestionDisplay: React.FC<questionDisplayProps> = ({questionInfo, amountPerDay, totalWorkDays}) => {
     return(
-        <>
-            <div className="question-display-container">
-                {/*question info*/}
-                <h2>{questionInfo.question}</h2>
-                <div className="question-data-info">
-                    {/*displays rate earned and current amount from each work day*/}
-                    <p> You earn {questionInfo.rateEarned} coins per work day.</p>
-                </div>
+        <div className="question-display-container">
+            {/*question info*/}
+            <h2>{questionInfo.question}</h2>
+            <div className="question-data-info">
+                {/*displays rate earned and current amount from each work day*/}
+                <p> You earn {questionInfo.rateEarned} coins per work day.</p>
+                <p>Current: {amountPerDay} coins</p>
             </div>
             {/*Counter Display to check each work day, can reintegrate math logic later in calendar logic*/}
-            <div className="stats-display">
-                <h2>Current: {amountPerDay} coins</h2>
-                <h2>Total Work Days: {totalWorkDays}</h2>
-            </div>
-        </>
+            <h2>Total Work Days: {totalWorkDays}</h2>
+        </div>
     );
 
 };

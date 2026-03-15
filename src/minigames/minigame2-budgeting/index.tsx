@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useBudgetGameLogic } from './useBudgetGameLogic'; // question logic
 import CalendarButton from './calendar-button'; //buttons for interactive counter
 import QuestionDisplay from './question-display'; // question view
@@ -10,31 +10,31 @@ import './styles.css';
 
 export const metadata = {
   title: "Budget Planner",
-  description: "Here, you will explore the idea of budgeting!",
+  description: "Placeholder",
   id: "level-2"
 };
 
-const Minigame2: React.FC<MinigameProps> = ({ onComplete, progress }) => {
+const Minigame2: React.FC<MinigameProps> = ({ onComplete }) => {
   //set-up everything from useBudgetGameLogic
   const {
     questionDisplayProps,
     popupProps,
     endPopupProps,
-    resultTally, //for tests
+    progress, //for tests
     last,
     workDays,
     submitAnswer,
     resetButtons,
     toggleDay,
-  } = useBudgetGameLogic(0, progress);
+  } = useBudgetGameLogic(0);
 
   // initialize progress bar with total number of questions
-  useEffect(() => {
-    progress?.init((questionDisplayProps.questionTotal - 1));
-  }, [progress, (questionDisplayProps.questionTotal - 1)]);
+  // useEffect(() => {
+  //   progress?.init(questionCount);
+  // }, [progress, questionCount]);
 
   // Stars calculation: 3 stars for 4-5 correct, 2 stars for 2-3 correct, 1 star for 0-1 correct
-  const correctAnswers = resultTally.correct;
+  const correctAnswers = progress.correct;
   const stars = correctAnswers >= 4 ? 3 : correctAnswers >= 2 ? 2 : 1;
 
   const result: MinigameResult = {  
