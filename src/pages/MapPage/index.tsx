@@ -24,7 +24,7 @@ const CHARACTER_POSITIONS: Record<string, { bottom: string; left: string }> = {
 function MapPage() {
   const navigate = useNavigate();
   const [selectedLevelId, setSelectedLevelId] = useState<string | null>(null);
-  const [characterPos, setCharacterPos] = useState<string>('start');
+  const [hasClickedLevel, setHasClickedLevel] = useState(false);
   const { stars, getLevelStars } = useStars();
 
   // show pop up at start of the game
@@ -33,13 +33,31 @@ function MapPage() {
   // so popup shows if there are no stars
   let isStars = Boolean(stars);
 
+  // Read last played level from localStorage (persists across navigation)
+  const savedLevel = localStorage.getItem('lastPlayedLevel');
+  const baseCharacterPos = savedLevel && CHARACTER_POSITIONS[savedLevel] ? savedLevel : 'start';
+
+  // Character can also move temporarily when clicking a level
+  const [tempCharacterPos, setTempCharacterPos] = useState<string | null>(null);
+  const characterPos = tempCharacterPos ?? baseCharacterPos;
+
+  // Level unlocking: level-2 requires level-1 to be completed
+  const isLevelUnlocked = (levelId: string): boolean => {
+    if (levelId === 'level-1') return true;
+    if (levelId === 'level-2') return getLevelStars('level-1') > 0;
+    return false;
+  };
+
   const handleLevelClick = (levelId: string) => {
-    setCharacterPos(levelId);
+    if (!isLevelUnlocked(levelId)) return;
+    setHasClickedLevel(true);
+    setTempCharacterPos(levelId);
     setSelectedLevelId(levelId);
   };
 
   const handleStartLevel = () => {
     if (selectedLevelId) {
+      localStorage.setItem('lastPlayedLevel', selectedLevelId);
       navigate(`/minigame/${selectedLevelId}`);
       setSelectedLevelId(null);
     }
@@ -98,7 +116,7 @@ function MapPage() {
         {/* Winding path overlay */}
         <img src={pathImg} alt="path" className="map-path" />
 
-        {/* Character with speech bubble — moves to clicked level */}
+        {/* Character — moves to clicked level, persists via stars */}
         <div
           className="character-area"
           style={{
@@ -106,7 +124,8 @@ function MapPage() {
             left: CHARACTER_POSITIONS[characterPos].left,
           }}
         >
-          {characterPos === 'start' && (
+          {/* Speech bubble: only before first click */}
+          {!hasClickedLevel && characterPos === 'start' && (
             <div className="speech-bubble">
               <p>Click on "1" to start the first minigame.</p>
             </div>
@@ -114,7 +133,7 @@ function MapPage() {
           <img src={kidImg} alt="character" className="character-img" />
         </div>
 
-        {/* Level 1 - bottom area on the path */}
+        {/* Level 1 */}
         <div className="level-1-area">
           {renderLevelStars('level-1')}
           <button
@@ -125,14 +144,15 @@ function MapPage() {
           </button>
         </div>
 
-        {/* Level 2 - upper area on the path */}
+        {/* Level 2 — locked until level-1 completed */}
         <div className="level-2-area">
           {renderLevelStars('level-2')}
           <button
-            className="level-circle"
+            className={`level-circle ${!isLevelUnlocked('level-2') ? 'level-locked' : ''}`}
             onClick={() => handleLevelClick('level-2')}
+            disabled={!isLevelUnlocked('level-2')}
           >
-            2
+            {isLevelUnlocked('level-2') ? '2' : '🔒'}
           </button>
         </div>
 
