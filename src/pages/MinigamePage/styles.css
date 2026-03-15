@@ -25,6 +25,7 @@
 .minigame-header-center {
   position: absolute;
   left: 50%;
+  top: 4rem;
   transform: translateX(-50%);
   display: flex;
   align-items: center;

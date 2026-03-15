@@ -11,7 +11,7 @@
 }
 
 .back-button:hover {
-  background-color: #f0f0f0;
+  background-color: white;
   transform: translateY(-2px);
 }
 
@@ -38,7 +38,7 @@
   border-radius: 20px;
   /* padding: 1rem; */
   border-radius: 1.5rem;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* pushes header top, button bottom */
@@ -70,4 +70,20 @@
 .popup-content {
   color: #000;
   font-size: 1.5rem;
+  position: absolute;
+  top: 20%;
+}
+
+.lesson-button {
+  background-color: #689B40;
+  border: 2px solid #689B40;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 20%;
+}
+
+.lesson-button:hover {
+  background-color: white;
+  border: 2px solid #689B40;
+  color: #689B40;
 }

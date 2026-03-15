@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MINIGAMES } from '../../minigames';
 import LevelModal from './LevelModal';
 import { useStars } from './Stars';
+import Popup from "../../components/Popup";
 import './styles.css';
 
 function MapPage() {
@@ -29,12 +30,30 @@ function MapPage() {
 
   const selectedLevelConfig = selectedLevelId ? MINIGAMES[selectedLevelId]?.metadata : null;
 
+  // show pop up at start of the game
+  const [showPopup, setShowPopup] = useState(true);
+
   const { stars } = useStars();
+
+  // so popup shows if there are no stars
+  let isStars = Boolean(stars);
 
   // stars update will be handled upon completion of minigame
   // create minigame end scene with star results and it will update stars in map page accordingly
   return (
     <div className="map-page">
+
+      {showPopup && !isStars &&(
+        <Popup
+          title="Welcome!"
+          content={"You are trying to earn and save money for school, but you need to figure out how to handle your finances. " +  
+            "Try to complete a few mini games to help you get started in learning these skills."}
+          onClose={() => {
+            setShowPopup(false);
+          }}
+        />
+      )}
+
       <h1 className="map-title">Select a Level</h1>
 
       <div className="map-container">
