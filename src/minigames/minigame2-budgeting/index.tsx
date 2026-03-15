@@ -10,7 +10,7 @@ import './styles.css';
 
 export const metadata = {
   title: "Budget Planner",
-  description: "Placeholder",
+  description: "Here, you will explore the idea of budgeting!",
   id: "level-2"
 };
 
