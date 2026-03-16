@@ -78,6 +78,7 @@
   display: flex;
   align-items: flex-start; /* was center — top-anchors text so it scrolls down, not up */
   justify-content: center;
+  text-align: left;
   padding: 1rem 0;
   box-sizing: border-box;
   word-break: break-word;
