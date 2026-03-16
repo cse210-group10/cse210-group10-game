@@ -28,35 +28,35 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background-color: #f0f0f08b;
+  background-color: #000000ab;
 }
 
 .popup {
-  background-color: #f0f0f0;
-  width: 75vw;
-  height: 75vh;
+  background-color: #ffffff;
+  width: 50vw;
+  height: 45vh;
   border-radius: 20px;
   /* padding: 1rem; */
   border-radius: 1.5rem;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* pushes header top, button bottom */
   align-items: center;
+  padding: 5rem;                  /* breathing room around edges */
   opacity: 1;
 }
 
 .popup-title {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
   color: #1861CA;
-  width: 100%;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
-.close-button {
+.popup-button {
   background-color: #F3F7F0;
   color: #689B40;
   border: 0.17rem solid;
@@ -67,10 +67,19 @@
   font-weight: bold;
   border-radius: 2rem;
   cursor: pointer;
-  font-weight: normal;
-  color: #000;
 }
 
 .popup-content {
   color: #000;
+  font-size: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start; /* was center — top-anchors text so it scrolls down, not up */
+  justify-content: center;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
