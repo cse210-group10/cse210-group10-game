@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import type { MinigameProps } from "../../types/Minigame";
 import "./styles.css";
 import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
+import characterBank from "./characterBank.json";
 import Popup from "../../components/Popup";
 import PopupLesson from "../../components/PopupLesson";
 
@@ -25,8 +26,8 @@ export interface lessonData {
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
   const initialText = "Please select one of the scholarships with the buttons below.";
-  const characterIndex = 0;
-  const { currentScholarships, submitAnswer, totalCorrect, questionId, totalQuestions, isGameOver } = useScholarshipLogic(characterIndex);
+  const { currentScholarships, submitAnswer, totalCorrect, questionId, totalQuestions, isGameOver } = useScholarshipLogic();
+  const currentCharacter = characterBank[questionId];
   const [selectedScholarshipId, setSelectedScholarshipId] = useState<ScholarshipData | null>(null);
   const [scholarshipInfo, setScholarshipInfo] = useState<ScholarshipData | null>(null);
   const [submitVisible, setSubmitVisible] = useState(false);
@@ -48,10 +49,10 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
   }, [progress, totalQuestions]);
 
   useEffect(() => {
-    if (!isGameOver || handledGameOverRef.current) return;
+    if (!isGameOver || feedbackPopup.visible || handledGameOverRef.current) return;
     handledGameOverRef.current = true;
     setShowPopup(true);
-  }, [isGameOver]);
+  }, [isGameOver, feedbackPopup.visible]);
 
   const stars = totalCorrect.correct >= 4 ? 3 : totalCorrect.correct >= 2 ? 2 : 1;
 
@@ -73,7 +74,16 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
           content={feedbackPopup.isCorrect
             ? "Great job! That scholarship is the best match."
             : "Not quite! Try to match the scholarship to the student's needs."}
-          onClose={() => setFeedbackPopup({ visible: false, isCorrect: false })}
+          onClose={() => {
+            setFeedbackPopup({ visible: false, isCorrect: false });
+
+            // Match MG2 flow: on final question, show result feedback first,
+            // then show Game Over only after the feedback popup is dismissed.
+            if (isGameOver) {
+              handledGameOverRef.current = true;
+              setShowPopup(true);
+            }
+          }}
         />
       )}
       {showPopup && (
@@ -88,16 +98,19 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
       )}
 
       <div className="scholarship-compare">
-        <div className="profile">
+       <div className="profile">
           <div className="profile-pic">
-            <img src="/src/minigames/minigame1-scholarship/undraw_profile-pic.svg" alt="profile-pic" />
+            <img src={currentCharacter.profile_pic} alt="profile-pic" />
           </div>
-          <h1>Hi! I'm Bethany</h1>
-          <p>
-            Here is some information about me: I'm interested in environmental engineering 
-            and veterinary science. I hope to go to a school with a strong STEM program.  
-            Click on one of the scholarships below to decide which one is right for me.
-          </p>
+          <div className="profile-info">
+            <h1>Hi! I'm {currentCharacter.character}</h1>
+            <h2><strong>School year: {currentCharacter.age_school_year}</strong></h2>
+            <h2><strong>Location: {currentCharacter.location}</strong></h2>
+            <h2><strong>Ethnicity: {currentCharacter.ethnicity}</strong></h2>
+            <h2><strong>GPA: {currentCharacter.gpa}</strong></h2>
+            <h2><strong>Academic focus: {currentCharacter.academic_focus}</strong></h2>
+            <p>{currentCharacter.description}</p>
+          </div>
         </div>
 
         <div className="scholarship-info">
@@ -119,6 +132,8 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
         {currentScholarships.map((item, index) => (
           <button
             key={`${questionId}-${item.id}`}
+            className={selectedScholarshipId?.id === item.id ? "scholarship-option scholarship-option--selected" : "scholarship-option"}
+            aria-pressed={selectedScholarshipId?.id === item.id}
             onClick={() => {
               setSelectedScholarshipId(item);
               setScholarshipInfo(item);
