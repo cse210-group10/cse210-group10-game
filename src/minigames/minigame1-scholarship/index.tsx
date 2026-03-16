@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import type { MinigameProps } from "../../types/Minigame";
 import "./styles.css";
-import { useScholarshipLogic, type ScholarshipData, type CharacterData } from "./question-logic";
+import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
 import characterBank from "./characterBank.json";
 import Popup from "../../components/Popup";
 import PopupLesson from "../../components/PopupLesson";
@@ -26,8 +26,8 @@ export interface lessonData {
 
 const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
   const initialText = "Please select one of the scholarships with the buttons below.";
-  const characterIndex = 0;
-  const { currentScholarships, submitAnswer, totalCorrect, questionId, totalQuestions, isGameOver } = useScholarshipLogic(characterIndex);
+  const { currentScholarships, submitAnswer, totalCorrect, questionId, totalQuestions, isGameOver } = useScholarshipLogic();
+  const currentCharacter = characterBank[questionId];
   const [selectedScholarshipId, setSelectedScholarshipId] = useState<ScholarshipData | null>(null);
   const [scholarshipInfo, setScholarshipInfo] = useState<ScholarshipData | null>(null);
   const [submitVisible, setSubmitVisible] = useState(false);

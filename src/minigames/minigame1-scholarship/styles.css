@@ -30,6 +30,11 @@ h1 {
   font-size: 1.6rem;
 }
 
+h2 {
+  color: #1861CA;
+  font-size: 1.4rem;
+}
+
 /* margins for minigame 1 heading, description, and image */
 /* .minigame-level1-container p, h1, img, ul{
   margin-left: 5rem;

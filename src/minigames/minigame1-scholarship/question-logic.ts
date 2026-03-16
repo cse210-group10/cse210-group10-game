@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import scholarshipBank from './scholarshipBank.json';
-import characterBank from "./characterBank.json";
 
 
 /*
@@ -47,7 +46,6 @@ function getChosenArray(min: number, max: number): number[] {
 
 // hard-coded question bank for ease of use
 const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
-const currentCharacters: CharacterData[] = [...characterBank];
 
 // Custom hook to manage scholarship question logic
 export const useScholarshipLogic = () => {

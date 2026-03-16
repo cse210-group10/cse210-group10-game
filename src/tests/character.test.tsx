@@ -95,6 +95,7 @@ describe("ScholarshipCharacter - end game popup", () => {
       totalCorrect: { correct: 3, incorrect: 2 },
       progressArray: [true, true, true, false, false],
       questionId: 4,
+      totalQuestions: 5,
       isGameOver: true,
     } as any);
 
