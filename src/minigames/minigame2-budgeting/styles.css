@@ -33,14 +33,18 @@
   position: relative;
   width: 120px;
   height: 120px;
-  border: 2px solid #000;
+  border: 2px solid #2f6fdd;
+  border-radius: 8px;
+  background-color: #d7dee8;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
+  text-transform: capitalize;
+  color: #0f172a;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /*puts number on corner of buttons to match mock-up */
@@ -48,22 +52,30 @@
   position: absolute;
   top: 5px;           
   left: 8px;          
-  font-size: 0.9rem;
-  font-weight: normal;
+  font-size: 1.65rem;
+  font-weight: 500;
 }
 
 /* Initial "Rest" state - teal/cyan color */
 .is-rest {
-  background-color: #94e3da; 
-  border:2px solid #1659c4;
-  color: #2f558d;
+  background-color: #d7dee8;
+  border: 2px solid #2f6fdd;
+  color: #2f6fdd;
 }
 
 /* "Work" state - light green color */
 .is-work {
-  background-color: #A3E08E;
-  border:2px solid #2c7812;
-  color: #3c7b27;
+  background-color: #dbe1d8;
+  border: 2px solid #7baa5a;
+  color: #7baa5a;
+}
+
+.is-rest .day-number-label {
+  color: #2f6fdd;
+}
+
+.is-work .day-number-label {
+  color: #7baa5a;
 }
 
 .submit-button {

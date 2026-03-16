@@ -12,9 +12,11 @@ const MinigameEnd: React.FC<MinigameResult> = ({
 }) => {
   const navigate = useNavigate();
   const { addStars } = useStars();
+  const LAST_PLAYED_LEVEL_KEY = 'lastPlayedLevel';
 
   const handleReturnToMap = () => {
     addStars(levelId, stars);
+    localStorage.setItem(LAST_PLAYED_LEVEL_KEY, levelId);
     navigate('/map');
   };
 

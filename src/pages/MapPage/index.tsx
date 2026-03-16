@@ -21,6 +21,8 @@ const CHARACTER_POSITIONS: Record<string, { bottom: string; left: string }> = {
   'level-2': { bottom: '58%', left: '55%' },
 };
 
+const LAST_PLAYED_LEVEL_KEY = 'lastPlayedLevel';
+
 function MapPage() {
   const navigate = useNavigate();
   const [selectedLevelId, setSelectedLevelId] = useState<string | null>(null);
@@ -33,9 +35,14 @@ function MapPage() {
   // so popup shows if there are no stars
   let isStars = Boolean(stars);
 
-  // Read last played level from localStorage (persists across navigation)
-  const savedLevel = localStorage.getItem('lastPlayedLevel');
-  const baseCharacterPos = savedLevel && CHARACTER_POSITIONS[savedLevel] ? savedLevel : 'start';
+  // Start left by default; resume at last completed level when available.
+  const savedLevel = localStorage.getItem(LAST_PLAYED_LEVEL_KEY);
+  const hasSavedLevel = Boolean(
+    savedLevel &&
+    savedLevel in CHARACTER_POSITIONS &&
+    getLevelStars(savedLevel) > 0,
+  );
+  const baseCharacterPos = hasSavedLevel ? (savedLevel as keyof typeof CHARACTER_POSITIONS) : 'start';
 
   // Character can also move temporarily when clicking a level
   const [tempCharacterPos, setTempCharacterPos] = useState<string | null>(null);
@@ -57,7 +64,6 @@ function MapPage() {
 
   const handleStartLevel = () => {
     if (selectedLevelId) {
-      localStorage.setItem('lastPlayedLevel', selectedLevelId);
       navigate(`/minigame/${selectedLevelId}`);
       setSelectedLevelId(null);
     }
