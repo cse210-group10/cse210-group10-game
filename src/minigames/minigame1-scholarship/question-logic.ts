@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import scholarshipBank from './scholarshipBank.json';
-
+import characterBank from "./characterBank.json";
 
 
 /*
@@ -24,6 +24,17 @@ export interface ScholarshipData {
     rankings: number[]; 
 }
 
+export interface CharacterData {
+    id: number;
+    character: string;
+    location: string;
+    age_school_year: string;
+    ethnicity: string;
+    gpa: number;
+    academic_focus: string;
+    description: string;
+}
+
   export const SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS = 5;
 
 function getChosenArray(min: number, max: number): number[] {
@@ -36,9 +47,10 @@ function getChosenArray(min: number, max: number): number[] {
 
 // hard-coded question bank for ease of use
 const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
+const currentCharacters: CharacterData[] = [...characterBank];
 
 // Custom hook to manage scholarship question logic
-export const useScholarshipLogic = (characterIndex: number) => {
+export const useScholarshipLogic = () => {
   const [questionId, setQuestionId] = useState(0);
   const [totalCorrect, setTotalCorrect] = useState({ correct: 0, incorrect: 0 });
   const [progressArray, setProgressArray] = useState<(boolean | null)[]>(
@@ -64,7 +76,8 @@ export const useScholarshipLogic = (characterIndex: number) => {
   const validateAnswer = 
                         (selectedScholarshipId: number, 
                         scholarshipsForThisRound: ScholarshipData[]): boolean => {
-    // console.log("validateAnswer called");
+    // Use questionId as character index (question 0 = character 0, etc)
+    const characterIndex = questionId;
     // Get the rankings for this specific character from each of the 4 scholarships
     const characterScholarshipRankings = [];
     for (let i = 0; i < scholarshipsForThisRound.length; i++) {

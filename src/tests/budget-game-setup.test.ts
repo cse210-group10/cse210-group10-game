@@ -29,7 +29,7 @@ describe('useBudgetGameLogic Integration', () => {
         act(() => { result.current.budget.toggleDay(1); });
 
         act(() => {
-            result.current.budget.submitAnswer();
+            result.current.submitAnswer();
         });
         act(() => {
             result.current.budget.resetButtons();
@@ -51,7 +51,7 @@ describe('useBudgetGameLogic Integration', () => {
         act(() => { result.current.budget.toggleDay(2); });
 
         act(() => {
-            result.current.budget.submitAnswer();
+            result.current.submitAnswer();
         });
         act(() => {
             result.current.budget.resetButtons();
