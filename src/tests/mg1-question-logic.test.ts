@@ -1,7 +1,8 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { useScholarshipLogic } from '../minigames/minigame1-scholarship/question-logic';
+import { SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS, useScholarshipLogic } from '../minigames/minigame1-scholarship/question-logic';
 import type { ScholarshipData } from '../minigames/minigame1-scholarship/question-logic';
+import scholarshipBank from '../minigames/minigame1-scholarship/scholarshipBank.json';
 
 describe('useScholarshipLogic', () => {
     beforeEach(() => {
@@ -115,5 +116,44 @@ describe('useScholarshipLogic', () => {
         const { result } = renderHook(() => useScholarshipLogic(0));
 
         expect(result.current.currentScholarships.length).toBe(4);
+    });
+
+    it('initial question options are populated from scholarshipBank', async () => {
+        const { result } = renderHook(() => useScholarshipLogic(0));
+        const validIds = new Set(scholarshipBank.scholarships.map((s) => s.id));
+
+        await waitFor(() => {
+            expect(result.current.currentScholarships).toHaveLength(4);
+        });
+
+        const ids = result.current.currentScholarships.map((s) => s.id);
+        expect(new Set(ids).size).toBe(4);
+        expect(ids.every((id) => validIds.has(id))).toBe(true);
+    });
+
+    it('each question round populates with four unique scholarships from scholarshipBank', async () => {
+        const { result } = renderHook(() => useScholarshipLogic(0));
+        const validIds = new Set(scholarshipBank.scholarships.map((s) => s.id));
+
+        await waitFor(() => {
+            expect(result.current.currentScholarships).toHaveLength(4);
+        });
+
+        for (let i = 0; i < SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS; i++) {
+            await waitFor(() => {
+                expect(result.current.currentScholarships).toHaveLength(4);
+            });
+
+            const ids = result.current.currentScholarships.map((s) => s.id);
+            expect(new Set(ids).size).toBe(4);
+            expect(ids.every((id) => validIds.has(id))).toBe(true);
+
+            if (i < SCHOLARSHIP_MINIGAME_TOTAL_QUESTIONS - 1) {
+                const selectedId = result.current.currentScholarships[0].id;
+                act(() => {
+                    result.current.submitAnswer(selectedId);
+                });
+            }
+        }
     });
 });

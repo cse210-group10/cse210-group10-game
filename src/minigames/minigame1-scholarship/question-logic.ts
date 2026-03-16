@@ -37,7 +37,7 @@ function getChosenArray(min: number, max: number): number[] {
 const currentScholarships: ScholarshipData[] =[...scholarshipBank.scholarships];
 
 // Custom hook to manage scholarship question logic
-export const useScholarshipLogic = (characterIndex: number) => {
+export const useScholarshipLogic = (_characterIndex?: number) => {
   const [questionId, setQuestionId] = useState(0);
   const [totalCorrect, setTotalCorrect] = useState({ correct: 0, incorrect: 0 });
   const [progressArray, setProgressArray] = useState<(boolean | null)[]>(
@@ -63,7 +63,11 @@ export const useScholarshipLogic = (characterIndex: number) => {
   const validateAnswer = 
                         (selectedScholarshipId: number, 
                         scholarshipsForThisRound: ScholarshipData[]): boolean => {
+    if (scholarshipsForThisRound.length === 0) return false;
+
     // console.log("validateAnswer called");
+    // Use questionId as character index (question 0 = character 0, etc)
+    const characterIndex = questionId;
     // Get the rankings for this specific character from each of the 4 scholarships
     const characterScholarshipRankings = [];
     for (let i = 0; i < scholarshipsForThisRound.length; i++) {

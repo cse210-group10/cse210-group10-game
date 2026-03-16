@@ -1,96 +1,183 @@
+
 .minigame-level1-container {
-  background-color: white; /* Blue 100 - More distinct */
+  background: #f5f5f5;
   width: 100vw;
   height: 100vh;
-  
-  /* Reset Frame Styles - Full Screen Mode */
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
   margin: 0;
-  max-width: none;
-  max-height: none;
-  aspect-ratio: auto;
-
-  /* Internal Layout */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: clamp(1rem, 2vh, 1.8rem);
+  padding: 6.5rem clamp(1rem, 4vw, 3.5rem) 3rem;
+  box-sizing: border-box;
 }
 
-/* Text of the paragraphs for this minigame */
-p {
-  color: black;
-  font-size: 1.5rem;
+.minigame-level1-container h1,
+.minigame-level1-container h2,
+.minigame-level1-container p {
+  margin: 0;
 }
 
-h1 {
-  color: black;
-  font-size: 1.6rem;
+.scholarship-compare {
+  width: min(1450px, 100%);
+  display: grid;
+  grid-template-columns: minmax(420px, 1.05fr) minmax(500px, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: stretch;
+  min-height: clamp(430px, 52vh, 650px);
 }
 
-h2 {
-  color: #1861CA;
-  font-size: 1.4rem;
-}
-
-/* margins for minigame 1 heading, description, and image */
-/* .minigame-level1-container p, h1, img, ul{
-  margin-left: 5rem;
-  margin-right: 5rem;
-} */
-
-/* container for the character info and scholarship info */
-.scholarship-compare:after{
-  content: "";
-  display: table;
-  margin-top: 2rem;
-  clear: both;
-}
-
-/* character profile pic and info */
 .profile {
-  float: left;
-  width: 50%;
-}
-
-.profile p, h1, h2, img{
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
-
-/* Currently selected scholarship info */
-.scholarship-info {
-  float: left;
-  width: 50%;
-}
-
-.scholarship-info p{
-  margin-left: 5rem;
-  margin-right: 5rem;
-}
-
-.profile-pic img{
-  width: 40%;
-}
-
-/* source for justify-content: https://www.geeksforgeeks.org/css/css-justify-content-property/ */
-.scholarship-btn-group {
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.85rem, 1.5vw, 1.3rem);
+  height: 100%;
 }
 
-.scholarship-btn-group button{
-  margin: 10px;
+.profile-pic {
+  width: clamp(160px, 18vw, 250px);
+  height: clamp(160px, 18vw, 250px);
+  border-radius: 50%;
+  background: #e9e9e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* Buttons to change which scholarship is viewed */
-.submit-answer-button{
-  position: fixed;
-  bottom: 2rem;
-} 
+.profile-pic img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+}
+
+.profile-info {
+  width: 100%;
+  max-width: clamp(420px, 38vw, 620px);
+  border: 3px solid #d0d0d0;
+  border-radius: 22px;
+  background: #f3f3f3;
+  color: #111;
+  padding: clamp(0.9rem, 1.6vw, 1.3rem) clamp(1rem, 2vw, 1.6rem);
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.profile-info h1 {
+  font-size: clamp(1.55rem, 2.05vw, 2.35rem);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.profile-info h2 {
+  font-size: clamp(1.12rem, 1.32vw, 1.48rem);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #111;
+}
+
+.profile-info p {
+  color: #111;
+  font-size: clamp(1.08rem, 1.22vw, 1.33rem);
+  line-height: 1.38;
+  margin-top: 0.4rem;
+}
+
+.scholarship-info {
+  width: 100%;
+  border: 4px solid #1f5fbf;
+  border-radius: 24px;
+  background: #f7f7f7;
+  color: #111;
+  padding: clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 2vw, 1.8rem);
+  box-sizing: border-box;
+  min-height: clamp(340px, 46vh, 560px);
+  height: 100%;
+  align-self: center;
+}
+
+.scholarship-info h2 {
+  color: #1f5fbf;
+  font-size: clamp(2rem, 2.85vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.scholarship-info p {
+  color: #111;
+  font-size: clamp(1.15rem, 1.36vw, 1.52rem);
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
+}
+
+.scholarship-btn-group {
+  width: min(1200px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1.1vw, 1rem);
+  margin-bottom: 0.2rem;
+}
+
+.scholarship-option {
+  border: 3px solid #6ea44f;
+  border-radius: 16px;
+  background: #f6faf3;
+  color: #5e953f;
+  font-size: clamp(1.5rem, 1.65vw, 2rem);
+  font-weight: 700;
+  padding: clamp(0.6rem, 1.2vw, 0.95rem) 0.4rem;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+.scholarship-option:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+
+.scholarship-option--selected {
+  background: #6ea44f;
+  color: #fff;
+}
+
+.submit-answer-button {
+  border: 2px solid #6ea44f;
+  border-radius: 999px;
+  background: #eef6e7;
+  color: #5e953f;
+  font-size: clamp(1.45rem, 1.7vw, 2rem);
+  font-weight: 700;
+  min-width: 160px;
+  padding: clamp(0.4rem, 0.7vw, 0.62rem) clamp(1.3rem, 2vw, 2rem);
+  cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  .minigame-level1-container {
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-top: 7rem;
+  }
+
+  .scholarship-compare {
+    grid-template-columns: 1fr;
+    width: min(860px, 100%);
+    min-height: auto;
+  }
+
+  .scholarship-btn-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(860px, 100%);
+  }
+
+  .profile-info,
+  .scholarship-info {
+    max-width: none;
+  }
+}
 
 
 

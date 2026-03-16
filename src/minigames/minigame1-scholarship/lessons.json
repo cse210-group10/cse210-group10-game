@@ -27,12 +27,18 @@
 
         {
             "id": 5,
-            "lessonContent": "Most of this information about scholarships and applying to college is from  khan academy, so if you want more information or want to review, check out their resources."
+            "lessonContent": "Most of this information about scholarships and applying to college is from Khan Academy, so if you want more information or want to review, check out their resources."
 
         },
 
         {
             "id": 6,
+            "lessonContent": "Now, for the game! For each character, you will choose the best scholarship to apply to next, based on their needs and the scholarship criteria."
+
+        },
+
+        {
+            "id": 7,
             "lessonContent": "Remember to pay attention to the scholarships in the game. Write down the names of the ones you might be interested in applying to later."
 
         }
