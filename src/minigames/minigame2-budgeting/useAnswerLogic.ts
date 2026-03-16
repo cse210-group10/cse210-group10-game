@@ -37,7 +37,7 @@ export const useAnswerLogic = (initialLevel: number = 0, totalWorkDays: number, 
       if (isCorrect){
         setPopupProps({
           title: "Correct!",
-          content: "You got this question right. This ends the tutorial"
+          content: "You got this question right. This ends the tutorial- let's jump into the real game now!"
         });
           
         // setContent("You got this question right. This ends the tutorial")
@@ -55,7 +55,7 @@ export const useAnswerLogic = (initialLevel: number = 0, totalWorkDays: number, 
         //handle message for correct answer
         setPopupProps({
           title: "Correct!",
-          content: isTutorial ? "You got this question right. This ends the tutorial" : "You got this question right"
+          content: isTutorial ? "You got this question right. This ends the tutorial- let's jump into the real game now!" : "You got this question right! Great job, let's move on to the next one!"
         });
         // setContent(isTutorial ? "You got this question right. This ends the tutorial" : "You got this question right")
         setCorrectQuestions(prev => prev + 1);

@@ -1,31 +1,125 @@
 .start-page {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: white;
-  gap: 3rem;
+  width: 100vw;
+  background-color: #f2f2f2;
+  gap: clamp(2.2rem, 5vh, 4rem);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.start-page-coins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-coin {
+  position: absolute;
+  width: clamp(36px, 4.2vw, 60px);
+  opacity: 0.85;
+  animation: coinFloat 5.8s ease-in-out infinite;
+}
+
+.coin-1 {
+  top: 20%;
+  left: 28%;
+  animation-delay: 0s;
+}
+
+.coin-2 {
+  top: 20%;
+  right: 28%;
+  animation-delay: 1.2s;
+}
+
+.coin-3 {
+  top: 46%;
+  left: 18%;
+  animation-delay: 2.4s;
+}
+
+.coin-4 {
+  top: 46%;
+  right: 18%;
+  animation-delay: 0.7s;
+}
+
+.coin-5 {
+  bottom: 22%;
+  left: 34%;
+  animation-delay: 3.1s;
+}
+
+.coin-6 {
+  bottom: 22%;
+  right: 34%;
+  animation-delay: 1.9s;
+}
+
+@keyframes coinFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-14px) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(2px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-9px) rotate(8deg);
+  }
 }
 
 .game-title {
-  font-size: 4rem;
-  color: #000;
-  font-weight: normal;
+  position: relative;
+  z-index: 1;
+  max-width: 11ch;
+  font-size: clamp(3.2rem, 8.5vw, 5.4rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #1861ca;
+  font-weight: 700;
   margin: 0;
 }
 
 .start-button {
-  background-color: #000;
-  color: white;
-  border: none;
-  padding: 1.5rem 4rem;
-  font-size: 2rem;
-  font-weight: normal;
-  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+  background-color: #f3f7f0;
+  color: #689b40;
+  border: 0.17rem solid #689b40;
+  padding: 0.9rem 2.2rem;
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: 700;
+  border-radius: 0.95rem;
   cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.08s ease;
 }
 
 .start-button:hover {
-  background-color: #333;
+  background-color: #689b40;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.start-button:active {
+  background-color: #5c8a37;
+  color: #fff;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-coin {
+    animation: none;
+  }
 }
