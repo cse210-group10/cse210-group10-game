@@ -2,8 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import type { MinigameProps } from "../../types/Minigame";
 import "./styles.css";
-import { useScholarshipLogic, type ScholarshipData, type CharacterData } from "./question-logic";
-import characterBank from "./characterBank.json";
+import { useScholarshipLogic, type ScholarshipData } from "./question-logic";
 import Popup from "../../components/Popup";
 import PopupLesson from "../../components/PopupLesson";
 
@@ -91,17 +90,14 @@ const Minigame1: React.FC<MinigameProps> = ({ onComplete, progress }) => {
       <div className="scholarship-compare">
         <div className="profile">
           <div className="profile-pic">
-            <img src={currentCharacter.profile_pic} alt="profile-pic" />
+            <img src="/src/minigames/minigame1-scholarship/undraw_profile-pic.svg" alt="profile-pic" />
           </div>
-          <div className="profile-info">
-            <h1>Hi! I'm {currentCharacter.character}</h1>
-            <h2><strong>School year: {currentCharacter.age_school_year}</strong></h2>
-            <h2><strong>Location: {currentCharacter.location}</strong></h2>
-            <h2><strong>Ethnicity: {currentCharacter.ethnicity}</strong></h2>
-            <h2><strong>GPA: {currentCharacter.gpa}</strong></h2>
-            <h2><strong>Academic focus: {currentCharacter.academic_focus}</strong></h2>
-            <p>{currentCharacter.description}</p>
-          </div>
+          <h1>Hi! I'm Bethany</h1>
+          <p>
+            Here is some information about me: I'm interested in environmental engineering 
+            and veterinary science. I hope to go to a school with a strong STEM program.  
+            Click on one of the scholarships below to decide which one is right for me.
+          </p>
         </div>
 
         <div className="scholarship-info">
