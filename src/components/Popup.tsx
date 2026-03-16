@@ -14,12 +14,12 @@ const Popup: React.FC<PopupProps> = ({
 }) => {
 
   return (
-    <div className="popup-container">
-      <div className="popup">
+    <div className="popup-container" onClick={onClose}>
+      <div className="popup" onClick={(e) => e.stopPropagation()}>
             <h1 className="popup-title">{title}</h1>
             <p className="popup-content">{content}</p>
             <button
-            className="close-button"
+            className="popup-button"
             onClick={onClose}
             >
             Ok!

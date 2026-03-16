@@ -31,7 +31,7 @@ const PopupLesson: React.FC<PopupPropsLesson> = ({
             <h1 className="popup-title">{title}</h1>
             <p className="popup-content">{currentLessons[contentID].lessonContent}</p>
             <button
-            className="lesson-button"
+            className="popup-button"
             onClick={onClickNext}
             >
             Next
