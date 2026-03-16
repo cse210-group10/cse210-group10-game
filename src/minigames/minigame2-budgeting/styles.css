@@ -1,5 +1,5 @@
 .minigame-level2-container {
-  background-color: #c8e6c9; /* Green 100 - More distinct */
+  background-color: #ffffff; /* Green 100 - More distinct */
   width: 100%;
   height: 100%;
   
@@ -55,23 +55,72 @@
 /* Initial "Rest" state - teal/cyan color */
 .is-rest {
   background-color: #94e3da; 
-  color: #000;
+  border:2px solid #1659c4;
+  color: #2f558d;
 }
 
 /* "Work" state - light green color */
 .is-work {
-  background-color: #a8e08f;
-  color: #000;
+  background-color: #A3E08E;
+  border:2px solid #2c7812;
+  color: #3c7b27;
 }
 
 .submit-button {
   margin-top: 40px;
   padding: 10px 60px;
   font-size: 2rem;
-  background-color: #B0B3B5; /* Light gray from mockup */
-  color: #000;              /* Black text */
-  border: 1px solid #8e8e8e; /* Subtle border for definition */
+  background-color: #ceeec3; /* Light gray from mockup */
+  color: #44872d;              /* Black text */
+  border: 1px solid #578f45; /* Subtle border for definition */
   border-radius: 50px;      /* High value for rounded pill ends */
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+
+.minigame-level2-container p {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}  
+
+
+.question-display-container {
+  /* border */
+  border: 2px solid #d1d5db; /* Light grey/silver border */
+  border-radius: 15px;      
+  
+  /* spacing */
+  padding: 30px;
+  
+  /* question text aligns */
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* Centers the text horizontally */
+  justify-content: center;
+  
+  /* size */
+  margin: 20px auto;
+  width: fit-content;       /* Shrinks the box to fit the text */
+  min-width: 400px;         /* Prevents it from being too skinny */
+}
+
+.question-display-container h2:first-child {
+  color: #3b82f6;          /* The blue color for "Goal" */
+  font-size: 1.55rem;
+  margin-bottom: 10px;
+}
+
+.question-data-info p {
+  font-weight: 800;
+  font-size: 1.0rem;
+  color: #111827;          /* Near black */
+  margin: 0;
+}
+
+.stats-display {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #111827;
+  margin-top: 15px;
+}
+

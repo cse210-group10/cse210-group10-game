@@ -21,7 +21,7 @@ export const useAnswerLogic = (initialLevel: number = 0, totalWorkDays: number, 
   const [correctQuestions, setCorrectQuestions] = useState(0);
   const [last, setLast] = useState(false);
 
-  const [progress, setProgress] = useState({correct: 0, incorrect: 0});
+  const [resultTally, setResultTally] = useState({correct: 0, incorrect: 0});
 
   //math to check progress on answer
   const currentIncome = totalWorkDays * currentQuestion.rateEarned;
@@ -60,7 +60,7 @@ export const useAnswerLogic = (initialLevel: number = 0, totalWorkDays: number, 
         // setContent(isTutorial ? "You got this question right. This ends the tutorial" : "You got this question right")
         setCorrectQuestions(prev => prev + 1);
 
-        setProgress(prev => ({...prev, correct: prev.correct + 1}));
+        setResultTally(prev => ({...prev, correct: prev.correct + 1}));
         // Mark question as correct. currentQuestion.id is 1-based;
         // subtract 1 to convert to 0-based index for progress API.
         progressApi?.markCorrect(currentQuestion.id - 1);
@@ -77,7 +77,7 @@ export const useAnswerLogic = (initialLevel: number = 0, totalWorkDays: number, 
         });
         // setContent("Sorry... You are " + Math.abs(difference) + " coins " + status + ". Let's try on the next one!");
 
-        setProgress(prev => ({...prev, incorrect: prev.incorrect + 1}));
+        setResultTally(prev => ({...prev, incorrect: prev.incorrect + 1}));
         // Mark question as incorrect. currentQuestion.id is 1-based;
         // subtract 1 to convert to 0-based index for progress API.
         progressApi?.markIncorrect(currentQuestion.id - 1);
@@ -98,7 +98,8 @@ export const useAnswerLogic = (initialLevel: number = 0, totalWorkDays: number, 
     submitAnswer,
     popupProps,
     endPopupProps,
-    progress, //for tests
+    resultTally, //for tests
     last,
+    questionCount
   };
 };
